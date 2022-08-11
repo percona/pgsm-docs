@@ -67,6 +67,9 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tabbed:
         alternate_style: true
+  - pymdownx.tilde
+  - pymdownx.superfences
+  - pymdownx.details
   - pymdownx.highlight:
         linenums: false
   - pymdownx.emoji:
