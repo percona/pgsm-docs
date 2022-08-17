@@ -136,7 +136,7 @@ The PDF is in `site/_pdf`.
 
 
 View the site at <http://0.0.0.0:8000>
-    
+
 [MkDocs]: https://www.mkdocs.org/
 [Markdown]: https://daringfireball.net/projects/markdown/
 [Git]: https://git-scm.com
