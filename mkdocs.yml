@@ -5,7 +5,7 @@ site_description: Documentation
 site_author: Percona LLC
 copyright: Percona LLC, &#169; 2022
   
-repo_name: percona/pg_stat_monitor
+repo_name: percona/pgsm-docs
 repo_url: https://github.com/percona/pgsm-docs
 edit_uri: edit/main/docs/
 
