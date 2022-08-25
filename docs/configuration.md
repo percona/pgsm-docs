@@ -156,4 +156,6 @@ This parameter controls whether to enable or disable extracting comments from qu
 
 Type: boolean. Default: 0
 
+Available for PostgreSQL 14 and later versions. 
+
 This parameter instructs ``pg_stat_monitor`` to monitor query planning statistics. Requires the server restart.
