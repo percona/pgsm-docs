@@ -96,7 +96,7 @@ To uninstall `pg_stat_monitor`, do the following:
 1. Disable statistics collection. Establish the `psql` session and run the following command :
 
     ```sql
-    ALTER SYSTEM SET pg_stat_monitor.pgsm_enable = 0;
+    ALTER SYSTEM SET pg_stat_monitor.track = none;
     ```
 
 2. Drop `pg_stat_monitor` extension:
@@ -115,7 +115,7 @@ To uninstall `pg_stat_monitor`, do the following:
 
         If the `shared_preload_libraries` parameter includes other modules, specify them all for the `ALTER SYSTEM SET` command to keep using them.
 
-4. Restart the `postgresql` instance to apply the changes. The following command restarts PostgreSQL 13. Replace the version value with the one you are using. 
+4. Restart the `postgresql` instance to apply the changes. The following command restarts PostgreSQL 14. Replace the version value with the one you are using. 
 
     * On Debian and Ubuntu:
 
@@ -127,7 +127,7 @@ To uninstall `pg_stat_monitor`, do the following:
 
 
     ```sh
-    sudo systemctl restart postgresql-13
+    sudo systemctl restart postgresql-14
     ```
 
 
