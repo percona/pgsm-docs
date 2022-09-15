@@ -29,7 +29,7 @@ The `pg_stat_monitor` should work on the latest version of both [Percona Distrib
 | **Distribution** | **Version**     | **Provider** |
 | ---------------- | --------------- | ------------ |
 |[Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution)| [11](https://www.percona.com/downloads/percona-postgresql-11/LATEST/), [12](https://www.percona.com/downloads/postgresql-distribution-12/LATEST/), [13](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/) and [14](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/)| Percona|
-| PostgreSQL       | 11, 12, 13 and 14 | PostgreSQL Global Development Group (PGDG) |
+| [PostgreSQL](https://www.postgresql.org/download/)       | 11, 12, 13 and 14 | PostgreSQL Global Development Group (PGDG) |
 
 The RPM (for RHEL and CentOS) and the DEB (for Debian and Ubuntu) packages are available from Percona repositories for PostgreSQL versions [11](https://www.percona.com/downloads/percona-postgresql-11/LATEST/), [12](https://www.percona.com/downloads/postgresql-distribution-12/LATEST/), [13](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/) and [14](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/).
 
@@ -40,15 +40,16 @@ The RPM packages are also available in the official PostgreSQL (PGDG) `yum` repo
 * Use the [installation guidelines](setup.md) to install and set up `pg_stat_monitor`.
 * Refer to the [User guide](user_guide.md) for details about available features and functions, usage examples  and configuration parameters.
 
-## Get engaged
-
-* Use the [contributing guide](contributing.md) to learn how to become a contributor.
-* Use the [forum](https://forums.percona.com/c/postgresql/pg-stat-monitor/69) to discuss a topic with the community.
-
 
 ## Read more
 
 * [`pg_stat_monitor` view reference](reference.md)
 * [pg_stat_monitor and pg_stat_statements comparison](comparison.md)
  
+ 
+## Get engaged
+
+* Use the [contributing guide](contributing.md) to learn how to become a contributor.
+* Use the [forum](https://forums.percona.com/c/postgresql/pg-stat-monitor/69) to discuss a topic with the community.
+
 

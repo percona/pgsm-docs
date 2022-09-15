@@ -2,12 +2,13 @@
 
 ## Supported platforms
 
-The PostgreSQL YUM repository supports `pg_stat_monitor` for all [supported versions](#supported-versions) for the following platforms:
+Find the list of supported platforms for `pg_stat_monitor` within [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) on the [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-support-lifecycle#pgsql) page.
+
+The PostgreSQL YUM repository supports `pg_stat_monitor` for all [supported versions](index.md#supported-versions) for the following platforms:
 
 * Red Hat Enterprise/Rocky/CentOS/Oracle Linux 7 and 8
 * Fedora 33 and 34
 
-Find the list of supported platforms for `pg_stat_monitor` within [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) on the [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-support-lifecycle#pgsql) page.
 
 
 ## Installation guidelines
@@ -115,7 +116,7 @@ To uninstall `pg_stat_monitor`, do the following:
 
         If the `shared_preload_libraries` parameter includes other modules, specify them all for the `ALTER SYSTEM SET` command to keep using them.
 
-4. Restart the `postgresql` instance to apply the changes. The following command restarts PostgreSQL 13. Replace the version value with the one you are using. 
+4. Restart the `postgresql` instance to apply the changes. The following command restarts PostgreSQL 14. Replace the version value with the one you are using. 
 
     * On Debian and Ubuntu:
 
@@ -127,7 +128,7 @@ To uninstall `pg_stat_monitor`, do the following:
 
 
     ```sh
-    sudo systemctl restart postgresql-13
+    sudo systemctl restart postgresql-14
     ```
 
 

@@ -102,6 +102,7 @@ nav:
     - "User guide": "user_guide.md"
     - views.md
     - functions.md
+    - pmm.md
   - Reference:
     - pg_stat_monitor view reference:
       - reference.md
