@@ -40,14 +40,14 @@ To see how it works, refer to the [usage example](#query-information)
 
 ### Query timing information
 
-Understanding query execution time stats helps you identify what affects query performance and take measures to optimize it. `pg_stat_monitor` collects the total, min, max and average (mean) time it took to execute a particular query and provides this data in separate columns. See the [Query timing information](#query-timing-information-1) example for the sample output.
+Understanding query execution time stats helps you identify what affects query performance and take measures to optimize it. `pg_stat_monitor` collects the total, min, max and average (mean) time it took to execute a particular query and provides this data in separate columns. See the [Query timing information](#query-timing-information_1) example for the sample output.
 
 
 ### Query execution plan information
 
 Every query has a plan that was constructed for its executing. Collecting the query plan information as well as monitoring query plan timing helps you understand how you can modify the query to optimize its execution. It also helps make communication about the query clearer when discussing query performance with other DBAs and application developers.
 
-See the [Query execution plan](##query-execution-plan) example for the sample output.
+See the [Query execution plan](#query-execution-plan) example for the sample output.
 
 ### Use of actual data or parameters placeholders in queries
 
@@ -57,13 +57,13 @@ You can select whether to see queries with parameters placeholders or actual que
 
 `pg_stat_monitor` monitors queries per type (``SELECT``, `INSERT`, `UPDATE` or `DELETE`) and classifies them accordingly in the `cmd_type` column. This way you can separate the queries you are interested in and focus on identifying the issues and optimizing query performance.
 
-See the [Query type filtering example](#query-type-filtering-1) for the sample output.
+See the [Query type filtering example](#query-type-filtering_1) for the sample output.
 
 ### Query metadata
 
 Google’s Sqlcommenter is a useful tool that in a way bridges that gap between ORM libraries and understanding database performance. And ``pg_stat_monitor`` supports it. So, you can now put any key-value data (like what client executed a query or if it is testing vs production query) in the comments in `/* … */` syntax in your SQL statements, and the information will be parsed by `pg_stat_monitor` and made available in the comments column in the `pg_stat_monitor` view. For details on the comments’ syntax, see [Sqlcommenter documentation](https://google.github.io/sqlcommenter/).
 
-To see how it works, see the [Query metadata](#query-metadata-1) example.
+To see how it works, see the [Query metadata](#query-metadata_1) example.
 
 ### Top query tracking
 
@@ -73,11 +73,11 @@ Top query indicates the main query. To illustrate, for the SELECT query that is 
 
 This enables you to backtrack to the originating function and thus simplifies the tracking and analysis.
 
-Find more details in the [usage example](#top-query-tracking-1).
+Find more details in the [usage example](#top-query-tracking_1).
 
 ### Relations
 
-`pg_stat_monitor` provides the list of tables involved in the query in the relations column. This reduces time on identifying the tables and simplifies the analysis. To learn more, see the [usage examples](#relations-1)
+`pg_stat_monitor` provides the list of tables involved in the query in the relations column. This reduces time on identifying the tables and simplifies the analysis. To learn more, see the [usage examples](#relations_1)
 
 ### Monitoring queries terminated with ERROR, WARNING and LOG error levels
 
@@ -85,27 +85,25 @@ Monitoring queries that terminate with ERROR, WARNING, LOG states can give usefu
 
 Find details in the [usage example](#queries-terminated-with-errors)
 
-### Integration with PMM
-
-To timely identify and react on issues, performance should be automated and alerts should be sent when an issue occurs. There are many monitoring tools available for PostgreSQL, some of them (like Nagios) supporting custom metrics provided via extensions. Though you can integrate `pg_stat_monitor` with these tools, it natively supports integration with Percona Management and Monitoring (PMM). This integration allows you to enjoy all the features provided by both solutions: advanced statistics data provided by `pg_stat_monitor` and automated monitoring with data visualization on dashboards, security threat checks and alerting, available in PMM out of the box.
-
-To learn how to integrate pg_stat_monitor with PMM, see [Configure pg_stat_monitor in PMM](https://www.percona.com/doc/percona-monitoring-and-management/2.x/setting-up/client/postgresql.html#pg_stat_monitor)
-
 ### Histogram
 
 Histogram (the `resp_calls` parameter) provides a visual representation of query performance. With the help of the histogram function, you can view a timing/calling data histogram in response to an SQL query.
 
-Learn more about using histograms from the [usage example](#histogram-1).
+Learn more about using histograms from the [usage example](#histogram_1).
 
 ## Usage examples
 
 Note that the column names differ depending on the PostgreSQL version you are using. The following usage examples are provided for PostgreSQL version 13.
-For versions 11 and 12, please consult the [pg_stat_monitor reference](https://github.com/percona/pg_stat_monitor/blob/master/docs/REFERENCE.md).
+For versions 12 and 11, please consult the [pg_stat_monitor reference](reference.md).
 
 ### Querying buckets
 
 ```sql
-postgres=# select bucket, bucket_start_time, query,calls from pg_stat_monitor order by bucket;
+SELECT bucket, bucket_start_time, query,calls FROM pg_stat_monitor ORDER BY bucket;
+```
+
+Output:
+```
 -[ RECORD 1 ]-----+------------------------------------------------------------------------------------
 bucket | 0
 bucket_start_time | 2021-10-22 11:10:00
@@ -114,6 +112,7 @@ calls | 1
 ```
 
 The `bucket` parameter shows the number of a bucket for which a given record belongs.
+
 The `bucket_start_time` shows the start time of the bucket.
 `query` shows the actual query text.
 `calls` shows how many times a given query was called.
@@ -123,7 +122,12 @@ The `bucket_start_time` shows the start time of the bucket.
 **Example 1: Shows the usename, database name, unique queryid hash, query, and the total number of calls of that query.**
 
 ```sql
-postgres=# SELECT userid,  datname, queryid, substr(query,0, 50) AS query, calls FROM pg_stat_monitor;
+SELECT userid,  datname, queryid, substr(query,0, 50) AS query, calls FROM pg_stat_monitor;
+```
+
+Output:
+
+```
  userid  | datname  |     queryid      |                       query                       | calls
 ---------+----------+------------------+---------------------------------------------------+-------
  vagrant | postgres | 939C2F56E1F6A174 | END                                               |   561
@@ -146,7 +150,12 @@ postgres=# SELECT userid,  datname, queryid, substr(query,0, 50) AS query, calls
 **Example 2: Shows the connected application details.**
 
 ```sql
-postgres=# SELECT application_name, client_ip, substr(query,0,100) as query FROM pg_stat_monitor;
+SELECT application_name, client_ip, substr(query,0,100) as query FROM pg_stat_monitor;
+```
+
+Output:
+
+```
  application_name | client_ip |                                                query
 ------------------+-----------+-----------------------------------------------------------------------------------------------------
  pgbench          | 127.0.0.1 | truncate pgbench_history
@@ -163,13 +172,17 @@ postgres=# SELECT application_name, client_ip, substr(query,0,100) as query FROM
  psql             | 127.0.0.1 | SELECT application_name, client_ip, substr(query,$1,$2) as query FROM pg_stat_monitor
  pgbench          | 127.0.0.1 | select count(*) from pgbench_branches
 (13 rows)
-
 ```
 
 ### Query timing information
 
 ```sql
 SELECT  userid,  total_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
+```
+
+Output:
+
+```
  userid |     total_time     |      min_time      |      max_time      |     mean_time      |                              query
 --------+--------------------+--------------------+--------------------+--------------------+------------------------------------------------------------------
      10 |               0.14 |               0.14 |               0.14 |               0.14 | select * from pg_stat_monitor_reset()
@@ -182,7 +195,12 @@ SELECT  userid,  total_time, min_time, max_time, mean_time, query FROM pg_stat_m
 ### Query execution plan
 
 ```sql
-postgres=# SELECT substr(query,0,50), query_plan from pg_stat_monitor limit 10;
+SELECT substr(query,0,50), query_plan from pg_stat_monitor limit 10;
+```
+
+Output:
+
+```
                       substr                       |                                                  query_plan
 ---------------------------------------------------+---------------------------------------------------------------------------------------------------------------
  select o.n, p.partstrat, pg_catalog.count(i.inhpa | Limit                                                                                                        +
@@ -232,10 +250,15 @@ The `plan` column does not contain costing, width and other values. This is an e
 
 ### Query type filtering
 
-``pg_stat_monitor`` monitors queries per type (SELECT, INSERT, UPDATE OR DELETE) and classifies them accordingly in the ``cmd_type`` column thus reducing your efforts.
+``pg_stat_monitor`` monitors queries per type (`SELECT`, `INSERT`, `UPDATE` or `DELETE`) and classifies them accordingly in the ``cmd_type`` column thus reducing your efforts.
 
 ```sql
-postgres=# SELECT bucket, substr(query,0, 50) AS query, cmd_type FROM pg_stat_monitor WHERE elevel = 0;
+SELECT bucket, substr(query,0, 50) AS query, cmd_type FROM pg_stat_monitor WHERE elevel = 0;
+```
+
+Output:
+
+```
  bucket |                       query                       | cmd_type
 --------+---------------------------------------------------+----------
       4 | END                                               |
@@ -268,43 +291,83 @@ EXCEPTION WHEN OTHERS THEN
     RETURN NULL;
 END; $$ LANGUAGE plpgsql STRICT;
 
-postgres=# SELECT 1 AS num /* { "application", java_app, "real_ip", 192.168.1.1} */;
+SELECT 1 AS num /* { "application", java_app, "real_ip", 192.168.1.1} */;
+```
+
+Output:
+
+```
  num
 -----
    1
 (1 row)
+```
 
-postgres=# SELECT 1 AS num1,2 AS num2 /* { "application", java_app, "real_ip", 192.168.1.2} */;
+```sql
+SELECT 1 AS num1,2 AS num2 /* { "application", java_app, "real_ip", 192.168.1.2} */;
+```
+
+Output: 
+
+```
  num1 | num2
 ------+------
     1 |    2
 (1 row)
+```
 
-postgres=# SELECT 1 AS num1,2 AS num2, 3 AS num3 /* { "application", java_app, "real_ip", 192.168.1.3} */;
+```sql
+SELECT 1 AS num1,2 AS num2, 3 AS num3 /* { "application", java_app, "real_ip", 192.168.1.3} */;
+```
+
+Output:
+
+```
  num1 | num2 | num3
 ------+------+------
     1 |    2 |    3
 (1 row)
+```
 
-postgres=# SELECT 1 AS num1,2 AS num2, 3 AS num3, 4 AS num4 /* { "application", psql_app, "real_ip", 192.168.1.3} */;
+```sql
+SELECT 1 AS num1,2 AS num2, 3 AS num3, 4 AS num4 /* { "application", psql_app, "real_ip", 192.168.1.3} */;
+```
+
+Output:
+
+```
  num1 | num2 | num3 | num4
 ------+------+------+------
     1 |    2 |    3 |    4
 (1 row)
+```
 
-postgres=# select query, text_to_hstore(comments) as comments_tags from pg_stat_monitor;
+```sql
+SELECT query, text_to_hstore(comments) as comments_tags FROM pg_stat_monitor;
+```
+
+Output:
+
+```
                                                      query                                                     |                    comments_tags
 ---------------------------------------------------------------------------------------------------------------+-----------------------------------------------------
  SELECT $1 AS num /* { "application", psql_app, "real_ip", 192.168.1.3) */                                     | "real_ip"=>"192.168.1.1", "application"=>"java_app"
  SELECT pg_stat_monitor_reset();                                                                               |
- select query, comments, text_to_hstore(comments) from pg_stat_monitor;                                        |
+ SELECT query, comments, text_to_hstore(comments) FROM pg_stat_monitor;                                        |
  SELECT $1 AS num1,$2 AS num2, $3 AS num3 /* { "application", java_app, "real_ip", 192.168.1.3} */             | "real_ip"=>"192.168.1.3", "application"=>"java_app"
  select query, text_to_hstore(comments) as comments_tags from pg_stat_monitor;                                 |
  SELECT $1 AS num1,$2 AS num2 /* { "application", java_app, "real_ip", 192.168.1.2} */                         | "real_ip"=>"192.168.1.2", "application"=>"java_app"
  SELECT $1 AS num1,$2 AS num2, $3 AS num3, $4 AS num4 /* { "application", psql_app, "real_ip", 192.168.1.3} */ | "real_ip"=>"192.168.1.3", "application"=>"psql_app"
 (7 rows)
+```
 
-postgres=# select query, text_to_hstore(comments)->'application' as application_name from pg_stat_monitor;
+```sql
+select query, text_to_hstore(comments)->'application' as application_name from pg_stat_monitor;
+```
+
+Output:
+
+```
                                                      query                                                     | application_name
 ---------------------------------------------------------------------------------------------------------------+----------
  SELECT $1 AS num /* { "application", psql_app, "real_ip", 192.168.1.3) */                                     | java_app
@@ -318,8 +381,14 @@ postgres=# select query, text_to_hstore(comments)->'application' as application_
  select query, comments, text_to_hstore(comments) from pg_stat_monitor;                                        |
  SELECT $1 AS num1,$2 AS num2, $3 AS num3, $4 AS num4 /* { "application", psql_app, "real_ip", 192.168.1.3} */ | psql_app
 (10 rows)
+```
 
-postgres=# select query, text_to_hstore(comments)->'real_ip' as real_ip from pg_stat_monitor;
+```sql
+select query, text_to_hstore(comments)->'real_ip' as real_ip from pg_stat_monitor;
+```
+
+Output:
+```
                                                      query                                                     |  real_ip
 ---------------------------------------------------------------------------------------------------------------+-------------
  SELECT $1 AS num /* { "application", psql_app, "real_ip", 192.168.1.3) */                                     | 192.168.1.1
@@ -347,16 +416,30 @@ BEGIN
    return (select $1 + $2);
 END;
 $$ language plpgsql;
+```
 
+```sql
 SELECT add2(1,2);
+```
+
+Output:
+
+```
  add2
 -----
    3
 (1 row)
+```
 
 The ``pg_stat_monitor`` view shows all executed queries and shows the very first query in a row - calling the `add2` function.
 
-postgres=# SELECT queryid, top_queryid, query, top_query FROM pg_stat_monitor;
+```sql
+SELECT queryid, top_queryid, query, top_query FROM pg_stat_monitor;
+```
+
+Output:
+
+```
      queryid      |   top_queryid    |                       query.                           |     top_query
 ------------------+------------------+-------------------------------------------------------------------------+-------------------
  3408CA84B2353094 |                  | select add2($1,$2)                                     |
@@ -369,7 +452,12 @@ postgres=# SELECT queryid, top_queryid, query, top_query FROM pg_stat_monitor;
 **Example 1: List all the table names involved in the query.**
 
 ```sql
-postgres=# SELECT relations,query FROM pg_stat_monitor;
+SELECT relations,query FROM pg_stat_monitor;
+```
+
+Output:
+
+```
            relations                  |                                                query
 -------------------------------+------------------------------------------------------------------------------------------------------
                                       | END
@@ -407,6 +495,11 @@ Now when we query the ``pg_stat_monitor``, it will show the view name and also a
 
 ```sql
 SELECT relations, query FROM pg_stat_monitor;
+```
+
+Output:
+
+```
       relations      |    query                                                 
 ---------------------+----------------------------------------------------
  {test_view*,foo,bar} | select * from test_view
@@ -419,6 +512,11 @@ SELECT relations, query FROM pg_stat_monitor;
 ```sql
 SELECT substr(query,0,50) AS query, decode_error_level(elevel) AS elevel,sqlcode, calls, substr(message,0,50) message
 FROM pg_stat_monitor;
+```
+
+Output:
+
+```
                        query                       | elevel | sqlcode | calls |                      message
 ---------------------------------------------------+--------+---------+-------+---------------------------------------------------
  select substr(query,$1,$2) as query, decode_error |        |       0 |     1 |
@@ -438,6 +536,10 @@ Histogram (the `resp_calls` parameter) provides a visual representation of query
 
 ```sql
 SELECT resp_calls, query FROM pg_stat_monitor;
+```
+
+Output:
+
                     resp_calls                    |                 query                                        
 --------------------------------------------------+----------------------------------------------
 {1," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"} | select client_ip, query from pg_stat_monitor
