@@ -2,7 +2,7 @@
 
 Below is the complete list of the release notes for every version of ``pg_stat_monitor``.
 
-## 1.1.0
+## 1.1.0 (2022-09-05)
 
 ### Improvements
 
@@ -31,7 +31,7 @@ Below is the complete list of the release notes for every version of ``pg_stat_m
 [PG-455](https://jira.percona.com/browse/PG-455): Fixed the issue with data collection for any value specified for `pgsm_bucket_time` parameter within the min / max range
 
 
-## 1.0.1
+## 1.0.1 (2022-05-26)
 
 ### Bugs Fixed
 
@@ -41,11 +41,11 @@ Below is the complete list of the release notes for every version of ``pg_stat_m
 
 [DISTPG-427](https://jira.percona.com/browse/DISTPG-427): Fixed the issue with the extensions not working when pg_stat_monitor is enabled by replacing the `return` with `goto exit` for the `pgsm_emit_log_hook` function
 
-## 1.0.0
+## 1.0.0 (2022-05-03)
 
 Bump version from 1.0.0-rc.2 to 1.0.0.
 
-## 1.0.0-rc.2
+## 1.0.0-rc.2 (2022-04-21)
 
 ### Improvements
 
@@ -85,7 +85,7 @@ Bump version from 1.0.0-rc.2 to 1.0.0.
 
 [PG-369](https://jira.percona.com/browse/PG-358): Fixed issue with incorrect `wal_bytes` values for PostgreSQL 11 and 12 that caused Query Analytics failure in PMM by ignoring the `WalUsage` variable value for these versions.
 
-## 1.0.0-rc.1
+## 1.0.0-rc.1 (2022-08-12)
 
 ### Improvements
 
@@ -113,7 +113,13 @@ Bump version from 1.0.0-rc.2 to 1.0.0.
 
 [PG-272](https://jira.percona.com/browse/PG-272): Fixed the server crash when calling the `pg_stat_monitor_reset()` function by using the correct `PGSM_MAX_BUCKETS` GUC as the limit to the loop
 
-## REL0_9_0_STABLE
+## REL0_9_1 (2021-14-04)
+
+### Bugs Fixed
+
+[PG-190](https://jira.percona.com/browse/PG-190): Missing query, if query elapsed time is greater than bucket time.
+
+## REL0_9_0_STABLE (2021-03-31)
 
 ### Improvements
 
@@ -141,13 +147,13 @@ Regression Test Suite.
 
 Some Code refactoring.
 
-## REL0_8_1
+## REL0_8_1 (2021-02-17)
 
 [PG-147](https://jira.percona.com/browse/PG-147): Stored Procedure Support add parentid to track caller.
 
 [PG-177](https://jira.percona.com/browse/PG-177):  Error in Histogram ranges.
 
-## REL0_8_0_STABLE
+## REL0_8_0_STABLE (2021-02-11)
 
 ### Improvements
 
@@ -184,7 +190,7 @@ Column datname (string) was added (replacement for dbid).
 [PG-150](https://jira.percona.com/browse/PG-150): Error while logging CMD Type like SELECT, UPDATE, INSERT, DELETE.
 
 
-## REL0_7_2
+## REL0_7_2 (2021-01-14)
 
 [PG-165](https://jira.percona.com/browse/PG-165): Recycle expired buckets.
 
@@ -192,7 +198,7 @@ Column datname (string) was added (replacement for dbid).
 
 [PG-161](https://jira.percona.com/browse/PG-161): Miscellaneous small issues.
 
-## REL0_7_1
+## REL0_7_1 (2021-01-11)
 
 [PG-158](https://jira.percona.com/browse/PG-158): Segmentation fault while using pgbench with clients > 1.
 
@@ -202,7 +208,7 @@ Column datname (string) was added (replacement for dbid).
 
 
 
-## REL0_7_0_STABLE
+## REL0_7_0_STABLE (2020-12-28)
 
 ### Improvements
 
