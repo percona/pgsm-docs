@@ -2,6 +2,13 @@
 
 Below is the complete list of the release notes for every version of ``pg_stat_monitor``.
 
+## 1.1.1
+
+### Bugs Fixed
+
+[PG-520](https://jira.percona.com/browse/PG-520): Fix support of PostgreSQL 15 for pg_stat_monitor 
+
+
 ## 1.1.0 (2022-09-05)
 
 ### Improvements
