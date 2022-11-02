@@ -97,7 +97,7 @@ To uninstall `pg_stat_monitor`, do the following:
 1. Disable statistics collection. Establish the `psql` session and run the following command :
 
     ```sql
-    ALTER SYSTEM SET pg_stat_monitor.pgsm_enable = 0;
+    ALTER SYSTEM SET pg_stat_monitor.track = none;
     ```
 
 2. Drop `pg_stat_monitor` extension:
@@ -118,6 +118,7 @@ To uninstall `pg_stat_monitor`, do the following:
 
 4. Restart the `postgresql` instance to apply the changes. The following command restarts PostgreSQL 15. Replace the version value with the one you are using. 
 
+
     * On Debian and Ubuntu:
 
     ```sh
@@ -128,6 +129,7 @@ To uninstall `pg_stat_monitor`, do the following:
 
 
     ```sh
+
     sudo systemctl restart postgresql-15
     ```
 
