@@ -2,12 +2,13 @@
 
 ## Supported platforms
 
-The PostgreSQL YUM repository supports `pg_stat_monitor` for all [supported versions](#supported-versions) for the following platforms:
+Find the list of supported platforms for `pg_stat_monitor` within [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) on the [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-support-lifecycle#pgsql) page.
+
+The PostgreSQL YUM repository supports `pg_stat_monitor` for all [supported versions](index.md#supported-versions) for the following platforms:
 
 * Red Hat Enterprise/Rocky/CentOS/Oracle Linux 7 and 8
 * Fedora 33 and 34
 
-Find the list of supported platforms for `pg_stat_monitor` within [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) on the [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-support-lifecycle#pgsql) page.
 
 
 ## Installation guidelines
@@ -25,20 +26,20 @@ Choose the installation source:
         sudo percona-release setup ppgXX
         ```
 
-        Replace `XX` with the desired PostgreSQL version. For example, to install `pg_stat_monitor ` for PostgreSQL 13, specify `ppg13`.
+        Replace `XX` with the desired PostgreSQL version. For example, to install `pg_stat_monitor ` for PostgreSQL 15, specify `ppg15`.
 
     3. Install `pg_stat_monitor` package
 
         === "On Debian and Ubuntu"
 
             ``` sh
-            sudo apt-get install percona-pg-stat-monitor13
+            sudo apt-get install percona-pg-stat-monitor15
             ```
 
         === "On Red Hat Enterprise Linux"
 
             ``` sh
-            yum install percona-pg-stat-monitor13
+            yum install percona-pg-stat-monitor15
             ``` 
 
  
@@ -52,7 +53,7 @@ Choose the installation source:
     dnf install -y pg_stat_monitor_<VERSION>
     ```
 
-    Replace the `<VERSION>` variable with the PostgreSQL version you are using (e.g. specify `pg_stat_monitor_13` for PostgreSQL 13)
+    Replace the `<VERSION>` variable with the PostgreSQL version you are using (e.g. specify `pg_stat_monitor_15` for PostgreSQL 15)
 
 === "PGXN"
 
@@ -115,7 +116,8 @@ To uninstall `pg_stat_monitor`, do the following:
 
         If the `shared_preload_libraries` parameter includes other modules, specify them all for the `ALTER SYSTEM SET` command to keep using them.
 
-4. Restart the `postgresql` instance to apply the changes. The following command restarts PostgreSQL 14. Replace the version value with the one you are using. 
+4. Restart the `postgresql` instance to apply the changes. The following command restarts PostgreSQL 15. Replace the version value with the one you are using. 
+
 
     * On Debian and Ubuntu:
 
@@ -127,7 +129,8 @@ To uninstall `pg_stat_monitor`, do the following:
 
 
     ```sh
-    sudo systemctl restart postgresql-14
+
+    sudo systemctl restart postgresql-15
     ```
 
 
