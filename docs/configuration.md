@@ -159,11 +159,15 @@ Sets the overflow target for the `pg_stat_monitor`. Starting with version 1.10, 
 
 Type: boolean. Default: 0
 
-Server restart - YES.
+Server restart - NO.
 
 Enables or disables query plan monitoring. When the `pgsm_enable_query_plan` is disabled (0), the query plan will not be captured by `pg_stat_monitor`. Enabling it may adversely affect the database performance. 
 
 ### pg_stat_monitor.pgsm_track
+
+Default: top.
+
+Server restart - NO.
 
 This parameter controls which statements are tracked by `pg_stat_monitor`. 
 
@@ -173,9 +177,6 @@ Values:
 - `all`: Track top along with sub/nested queries. As a result, some SELECT statement may be shown as duplicates. 
 - `none`: Disable query monitoring. The module is still loaded and is using shared memory, etc. It only silently ignores the capturing of data.
 
-Default: top.
-
-Server restart - NO.
 
 ### pg_stat_monitor.pgsm_extract_comments
 
