@@ -6,11 +6,18 @@ Use the following command to view available configuration parameters in the `pg_
 SELECT * FROM pg_stat_monitor_settings;
 ```
 
-To amend the `pg_stat_monitor` configuration, use the General Configuration Unit (GCU) system. Some configuration parameters require the server restart and should be set before the server startup. These must be set in the `postgresql.conf` file. Other parameters do not require server restart and can be set permanently either in the `postgresql.conf` or from the client (`psql`) using the SET or ALTER SYSTEM SET commands.
+To amend the `pg_stat_monitor` configuration, use the General Configuration Unit (GCU) system. 
+
+There are two types of GUC variables:
+
+The first type can only be set in the `postgresql.conf` configuration file and comes into an effect on the start of the `postgres` server. You can set the same variable using the [`ALTER SYSTEM`](https://www.postgresql.org/docs/current/sql-altersystem.html) command. In this case the value of this variable is written into the `postgresql.auto.conf` which has preference over `postgresql.conf`. You also must restart the `postgres` server to apply the values from the `postgresql.auto.conf` file.  The user can change the variable using the [`SET`](https://www.postgresql.org/docs/current/sql-set.html) command without any error, but that does not affect the variable settings.
+
+The second type of GUC variables can be set by the user from the client (`psql`) using the SET command. These variables are session-based, and their values can only be visible on that sessions. These variables can also be set with the or ALTER SYSTEM command and in the configuration file, but in that case, the effect of these variables is on all new sessions.
+
 
 The following table shows setup options for each configuration parameter and whether the server restart is required to apply the parameter's value:
 
-| Parameter Name                                | SET | ALTER SYSTEM SET  |  server restart   | configuration reload
+| Parameter name                                | SET | ALTER SYSTEM SET  |  server restart   | configuration reload
 | ----------------------------------------------|-----|-------------------|-------------------|---------------------
 | [pg_stat_monitor.pgsm_max](#pg_stat_monitorpgsm_max) | :x:                |:x:                |:white_check_mark: | :x:
 | [pg_stat_monitor.pgsm_query_max_len](#pg_stat_monitorpgsm_query_max_len)            | :x:                |:x:                |:white_check_mark: | :x:
@@ -159,11 +166,15 @@ Sets the overflow target for the `pg_stat_monitor`. Starting with version 1.10, 
 
 Type: boolean. Default: no
 
-Server restart - YES.
+Server restart - NO.
 
 Enables or disables query plan monitoring. When the `pgsm_enable_query_plan` is disabled (no), the query plan will not be captured by `pg_stat_monitor`. Enabling it may adversely affect the database performance. 
 
 ### pg_stat_monitor.pgsm_track
+
+Default: top.
+
+Server restart - NO.
 
 This parameter controls which statements are tracked by `pg_stat_monitor`. 
 
@@ -173,9 +184,6 @@ Values:
 - `all`: Track top along with sub/nested queries. As a result, some SELECT statement may be shown as duplicates. 
 - `none`: Disable query monitoring. The module is still loaded and is using shared memory, etc. It only silently ignores the capturing of data.
 
-Default: top.
-
-Server restart - NO.
 
 ### pg_stat_monitor.pgsm_extract_comments
 
