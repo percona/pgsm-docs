@@ -78,7 +78,7 @@ Choose the installation source:
 
 
     ```sh
-    git clone git://github.com/Percona/pg_stat_monitor.git
+    git clone git://github.com/percona/pg_stat_monitor.git
     ```
 
     Compile and install the extension

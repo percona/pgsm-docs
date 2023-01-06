@@ -2,7 +2,8 @@
 
 Below is the complete list of the release notes for every version of ``pg_stat_monitor``.
 
-## 1.1.1 (2022-09-23)
+
+## 1.1.1 (2022-11-08)
 
 ### Improvements 
 
