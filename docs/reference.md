@@ -21,7 +21,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 15 and h
      userid               | regrole                  | An ID of the user who run a query |
      datname              | name                        | The name of a database where the query was executed
      toplevel             | bool                     | True means that a query was executed as a top-level statement
-     client_ip          | inet                       | The IP address of a client that run the query
+     client_ip          | inet                       | The IP address of a client that ran the query. Available only to superusers.
      queryid            | text                       | The internal hash code serving to identify every query in a statement
      top_queryid        | text             | The internal hash code serving to identify a top query in a statement|
      planid             | text                       | An internally generated ID of a query plan
@@ -83,7 +83,7 @@ The following is the view for PostgreSQL 14
     userid               | regrole                  | An ID of the user who run a query |
     datname              | name                        | The name of a database where the query was executed
     toplevel             | bool                     | True means that a query was executed as a top-level statement
-    client_ip          | inet                       | The IP address of a client that run the query
+    client_ip          | inet                       | The IP address of a client that ran the query. Available only to superusers
     queryid            | text                       | The internal hash code serving to identify every query in a statement
     top_queryid        | text             | The internal hash code serving to identify a top query in a statement|
     planid             | text                       | An internally generated ID of a query plan
@@ -145,7 +145,7 @@ The following is the view for PostgreSQL 13
     | bucket_start_time   | text             | The start time of the bucket|
     | userid              | regrole          | An ID of the user who run a query|
     | datname             | name             | The name of a database where the query was executed|
-    | client_ip           | inet             | The IP address of a client that run the query|
+    | client_ip           | inet             | The IP address of a client that ran the query. Available only to superusers|
     | queryid             | text             | The internal hash code serving to identify every query in a statement|
     | top_queryid         | text             | The internal hash code serving to identify a top query in a statement|
     | query               | text             | The actual text of the query
@@ -207,7 +207,7 @@ The following is the view for PostgreSQL 11 and 12:
     |bucket_start_time   | text                     | The start time of the bucket|
     |userid              | regrole                  | An ID of the user who run a query |
     |datname             | name                     | The name of a database where the query was executed
-    |client_ip           | inet                     | The IP address of a client that run the query|
+    |client_ip           | inet                     | The IP address of a client that ran the query. Available only to superusers|
     |queryid             | text                     | The internal hash code serving to identify every query in a statement
     |top_queryid         | text                     | The internal hash code serving to identify a top query in a statement|
     |query               | text                       | The actual text of the query |
