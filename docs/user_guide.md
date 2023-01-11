@@ -540,13 +540,21 @@ SELECT resp_calls, query FROM pg_stat_monitor;
 
 Output:
 
+```
                     resp_calls                    |                 query                                        
 --------------------------------------------------+----------------------------------------------
 {1," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"} | select client_ip, query from pg_stat_monitor
 {3," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 1"} | select * from pg_stat_monitor_reset()
 {3," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 1"} | SELECT * FROM foo
+```
 
+```sql
 postgres=# SELECT * FROM histogram(0, 'F44CD1B4B33A47AF') AS a(range TEXT, freq INT, bar TEXT);
+```
+
+Output:
+
+```text
        range        | freq |              bar
 --------------------+------+--------------------------------
   (0 - 3)}          |    2 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■

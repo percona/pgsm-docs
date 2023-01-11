@@ -111,9 +111,9 @@ This parameter is used to set the lifetime of the bucket. System switches betwee
 
 Values:
 
-- Min: 0
+- Min: 1
 - Max: 2147483647
-- Default: 0
+- Default: 1
 
 Server restart - YES.
 
@@ -125,7 +125,7 @@ Values:
 
 - Min: 10
 - Max: 2147483647
-- Default: 100000
+- Default: 10000
 
 Server restart - YES.
 
@@ -137,7 +137,7 @@ Values:
 
 - Min: 2
 - Max: 50
-- Default: 10
+- Default: 20
 
 Server restart - YES.
 
