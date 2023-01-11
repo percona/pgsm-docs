@@ -36,6 +36,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 15 and h
      elevel             | integer                    | Shows the error level of a query (WARNING, ERROR, LOG)
      sqlcode            | text                       | SQL error code
      message            | text                       | The error message
+     bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
      plans_calls        | bigint                     | The number of times the statement was planned
      total_plan_time    | double precision           | The total time (in ms) spent on planning the statement
      min_plan_time      | double precision           | Minimum time (in ms) spent on planning the statement
@@ -98,6 +99,7 @@ The following is the view for PostgreSQL 14
     elevel             | integer                    | Shows the error level of a query (WARNING, ERROR, LOG)
     sqlcode            | text                       | SQL error code
     message            | text                       | The error message
+    bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
     plans_calls        | bigint                     | The number of times the statement was planned
     total_plan_time    | double precision           | The total time (in ms) spent on planning the statement
     min_plan_time      | double precision           | Minimum time (in ms) spent on planning the statement
@@ -167,6 +169,7 @@ The following is the view for PostgreSQL 13
     | mean_exec_time      | double precision | The mean (average) time (in ms) it took to execute a query
     | stddev_exec_time    | double precision | The standard deviation of time (in ms) spent on executing a query
     | rows_retrieved      | bigint           | The number of rows retrieved when executing a query
+    | bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
     | plans_calls         | bigint           | The number of times the statement was planned
     | total_plan_time     | double precision | The total time (in ms) spent on planning the statement
     | min_plan_time       | double precision | Minimum time (in ms) spent on planning the statement
@@ -222,6 +225,7 @@ The following is the view for PostgreSQL 11 and 12:
     |elevel             | integer                    | Shows the error level of a query (WARNING, ERROR, LOG)|
     |sqlcode            | text                    | SQL error code
     |message            | text                       | The error message
+    |bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
     |calls              | bigint                     | The number of times a particular query was executed|
     |total_time    | double precision           | The total time (in ms) spent on the statement
     |min_time      | double precision           | Minimum time (in ms) spent on the statement
