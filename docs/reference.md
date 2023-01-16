@@ -142,7 +142,7 @@ The following is the view for PostgreSQL 13
     |      Column         |       Type       | Description
     |---------------------|------------------|------------------------------|
     | bucket              | bigint           |Data collection unit. The number shows what bucket in a chain a record belongs to| 
-    | bucket_start_time   | text             | The start time of the bucket|
+    | bucket_start_time   | timestamp with time zone| The start time of the bucket|
     | userid              | regrole          | An ID of the user who run a query|
     | datname             | name             | The name of a database where the query was executed|
     | client_ip           | inet             | The IP address of a client that run the query|
@@ -204,7 +204,7 @@ The following is the view for PostgreSQL 11 and 12:
     | Column             |  Type                    | Description
     |--------------------|--------------------------|------------------
     |bucket              | bigint                   | Data collection unit. The number shows what bucket in a chain a record belongs to|
-    |bucket_start_time   | text                     | The start time of the bucket|
+    |bucket_start_time   | timestamp with time zone | The start time of the bucket|
     |userid              | regrole                  | An ID of the user who run a query |
     |datname             | name                     | The name of a database where the query was executed
     |client_ip           | inet                     | The IP address of a client that run the query|
