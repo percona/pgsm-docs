@@ -535,21 +535,27 @@ Histogram (the `resp_calls` parameter) provides a visual representation of query
 
 
 ```sql
-SELECT resp_calls, query FROM pg_stat_monitor;
+SELECT substr(query, 0,50) as query, queryid, calls, resp_calls FROM pg_stat_monitor ORDER BY query COLLATE "C";
 ```
 
 Output:
 
 ```
-                    resp_calls                    |                 query                                        
---------------------------------------------------+----------------------------------------------
-{1," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"} | select client_ip, query from pg_stat_monitor
-{3," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 1"} | select * from pg_stat_monitor_reset()
-{3," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 1"} | SELECT * FROM foo
+                       query                       |     queryid      | calls | resp_calls
+---------------------------------------------------+------------------+-------+------------
+ SELECT * FROM histogram($1, $2) AS a(range TEXT,  | 69FEFA985E701794 |     1 | {1,0,0}
+ SELECT * FROM histogram($1, $2) AS a(range TEXT,  | 69FEFA985E701794 |     1 | {1,0,0}
+ SELECT a.attname,                                +| 96F8E4B589EF148F |     1 | {1,0,0}
+   pg_catalog.format_type(a.attt                   |                  |       |
+ SELECT bucket, bucket_start_time, query,calls FRO | EB658FD0FE5E4203 |     2 | {2,0,0}
+ SELECT c.oid,                                    +| 34B888E5C844519C |     1 | {1,0,0}
+   n.nspname,                                     +|                  |       |
+   c.relname                                      +|                  |       |
+ FROM pg_ca                                        |                  |       |
 ```
 
 ```sql
-postgres=# SELECT * FROM histogram(0, 'F44CD1B4B33A47AF') AS a(range TEXT, freq INT, bar TEXT);
+SELECT * FROM histogram(0, 'AA25AA7E49F081F4') AS a(range TEXT, freq INT, bar TEXT);
 ```
 
 Output:
@@ -570,5 +576,8 @@ Output:
 (10 rows)
 ```
 
-There are 10 time based buckets of the time generated automatically based on total buckets in the field ``resp_calls``. The value in the field shows how many queries run in that period of time.
+For `pg_stat_monitor` version 1.1.1 and earlier, the output shows the time generated automatically based on the total number of buckets in the `resp_calls` field which corresponds to the value specified by the user in the `pgsm_histogram_buckets` configuration parameter (defaults to 10).
+
+Starting with version 2.0.0, the histogram output shows two additional buckets: one that starts from 0 and ends to the minimum start time defined in the `pgsm_histogram_min` configuration parameter, Another bucket starts from the max time and lasts to the infinity. These additional buckets enable users to see the how the data is distributed within the full range of values, not just within the range of values specified within the min and max_time.
+
 
