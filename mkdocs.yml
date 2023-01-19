@@ -129,6 +129,8 @@ nav:
     - comparison.md
     - configuration.md
   - Release notes:
-    - release_notes.md
+    - Release notes index: release-notes/release_notes.md
+    - release-notes/2.0.0.md
+    - release-notes/1.x.md
   - contributing.md
 # - Version Selector: "../"
