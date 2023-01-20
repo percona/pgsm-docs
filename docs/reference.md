@@ -18,12 +18,14 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 15 and h
      |--------------------|--------------------------|------------------
       bucket              | bigint                  | Data collection unit. The number shows what bucket in a chain a record belongs to
      bucket_start_time    | timestamp with time zone | The start time of the bucket|
-     userid               | regrole                  | An ID of the user who run a query |
+     userid               | oid                  | An ID of the user who run a query |
+     user                 | regrole              | The name of the user who run a query
+     dbid                 | oid                  | the ID of the database where the query was executed
      datname              | name                        | The name of a database where the query was executed
      toplevel             | bool                     | True means that a query was executed as a top-level statement
-     client_ip          | inet                       | The IP address of a client that ran the query. Available only to superusers.
-     queryid            | text                       | The internal hash code serving to identify every query in a statement
-     top_queryid        | text             | The internal hash code serving to identify a top query in a statement|
+     client_ip          | inet                       | The IP address of a client that run the query
+     queryid            | bigint                       | The internal hash code serving to identify every query in a statement
+     top_queryid        | bignit             | The internal hash code serving to identify a top query in a statement|
      planid             | text                       | An internally generated ID of a query plan
      query_plan         | text                       | The sequence of steps used to execute a query. This parameter is available only when the `pgsm_enable_query_plan` is enabled.
      top_query          | text                       | Shows the top query used in a statement |
@@ -37,7 +39,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 15 and h
      sqlcode            | text                       | SQL error code
      message            | text                       | The error message
      bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
-     plans_calls        | bigint                     | The number of times the statement was planned
+     plans              | bigint                     | The number of times the statement was planned
      total_plan_time    | double precision           | The total time (in ms) spent on planning the statement
      min_plan_time      | double precision           | Minimum time (in ms) spent on planning the statement
      max_plan_time      | double precision           | Maximum time (in ms) spent on planning the statement
@@ -49,7 +51,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 15 and h
      max_exec_time           | double precision           | The maximum time (in ms) it took to execute a query
      mean_exec_time          | double precision           | The mean (average) time (in ms) it took to execute a query
      stddev_exec_time        | double precision           | The standard deviation of time (in ms) spent on executing a query
-     rows_retrieved     | bigint                     | The number of rows retrieved when executing a query
+     rows                    | bigint                     | The number of rows retrieved when executing a query
      shared_blks_hit    | bigint                     | Shows the total number of shared memory blocks returned from the cache
      shared_blks_read   | bigint                     | Shows the total number of shared blocks returned not from the cache
      shared_blks_dirtied | bigint                     | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)
@@ -90,12 +92,14 @@ The following is the view for PostgreSQL 14
     |--------------------|--------------------------|------------------
      bucket              | bigint                  | Data collection unit. The number shows what bucket in a chain a record belongs to
     bucket_start_time    | timestamp with time zone | The start time of the bucket|
-    userid               | regrole                  | An ID of the user who run a query |
+    dbid                 | oid                  | the ID of the database where the query was executed
+    userid               | oid                  | An ID of the user who run a query |
+    user                 | regrole              | The name of the user who run a query
     datname              | name                        | The name of a database where the query was executed
     toplevel             | bool                     | True means that a query was executed as a top-level statement
     client_ip          | inet                       | The IP address of a client that ran the query. Available only to superusers
-    queryid            | text                       | The internal hash code serving to identify every query in a statement
-    top_queryid        | text             | The internal hash code serving to identify a top query in a statement|
+    queryid            | bigint                       | The internal hash code serving to identify every query in a statement
+    top_queryid        | bigint             | The internal hash code serving to identify a top query in a statement|
     planid             | text                       | An internally generated ID of a query plan
     query_plan         | text                       | The sequence of steps used to execute a query. This parameter is available only when the `pgsm_enable_query_plan` is enabled.
     top_query          | text                       | Shows the top query used in a statement |
@@ -109,7 +113,7 @@ The following is the view for PostgreSQL 14
     sqlcode            | text                       | SQL error code
     message            | text                       | The error message
     bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
-    plans_calls        | bigint                     | The number of times the statement was planned
+    plans        | bigint                     | The number of times the statement was planned
     total_plan_time    | double precision           | The total time (in ms) spent on planning the statement
     min_plan_time      | double precision           | Minimum time (in ms) spent on planning the statement
     max_plan_time      | double precision           | Maximum time (in ms) spent on planning the statement
@@ -121,7 +125,7 @@ The following is the view for PostgreSQL 14
     max_exec_time           | double precision           | The maximum time (in ms) it took to execute a query
     mean_time          | double precision           | The mean (average) time (in ms) it took to execute a query
     stddev_exec_time        | double precision           | The standard deviation of time (in ms) spent on executing a query
-    rows_retrieved     | bigint                     | The number of rows retrieved when executing a query
+    rows     | bigint                     | The number of rows retrieved when executing a query
     shared_blks_hit    | bigint                     | Shows the total number of shared memory blocks returned from the cache
     shared_blks_read   | bigint                     | Shows the total number of shared blocks returned not from the cache
     shared_blks_dirtied | bigint                     | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)
@@ -152,11 +156,13 @@ The following is the view for PostgreSQL 13
     |---------------------|------------------|------------------------------|
     | bucket              | bigint           |Data collection unit. The number shows what bucket in a chain a record belongs to| 
     | bucket_start_time   | timestamp with time zone| The start time of the bucket|
-    | userid              | regrole          | An ID of the user who run a query|
+    | dbid                 | oid                  | the ID of the database where the query was executed
+    | userid               | oid                  | An ID of the user who run a query |
+    | user                 | regrole              | The name of the user who run a query
     | datname             | name             | The name of a database where the query was executed|
     | client_ip           | inet             | The IP address of a client that ran the query. Available only to superusers|
-    | queryid             | text             | The internal hash code serving to identify every query in a statement|
-    | top_queryid         | text             | The internal hash code serving to identify a top query in a statement|
+    | queryid             | bigint             | The internal hash code serving to identify every query in a statement|
+    | top_queryid         | bigint             | The internal hash code serving to identify a top query in a statement|
     | query               | text             | The actual text of the query
     | comments            | text             | Comments about the query
     | planid              | text             | An internally generated ID of a query plan|
@@ -175,9 +181,9 @@ The following is the view for PostgreSQL 13
     | max_exec_time       | double precision | The maximum time (in ms) it took to execute a query
     | mean_exec_time      | double precision | The mean (average) time (in ms) it took to execute a query
     | stddev_exec_time    | double precision | The standard deviation of time (in ms) spent on executing a query
-    | rows_retrieved      | bigint           | The number of rows retrieved when executing a query
+    | rows      | bigint           | The number of rows retrieved when executing a query
     | bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
-    | plans_calls         | bigint           | The number of times the statement was planned
+    | plans         | bigint           | The number of times the statement was planned
     | total_plan_time     | double precision | The total time (in ms) spent on planning the statement
     | min_plan_time       | double precision | Minimum time (in ms) spent on planning the statement
     | max_plan_time       | double precision | Maximum time (in ms) spent on planning the statement
@@ -213,11 +219,13 @@ The following is the view for PostgreSQL 11 and 12:
     |--------------------|--------------------------|------------------
     |bucket              | bigint                   | Data collection unit. The number shows what bucket in a chain a record belongs to|
     |bucket_start_time   | timestamp with time zone | The start time of the bucket|
-    |userid              | regrole                  | An ID of the user who run a query |
+    | dbid                 | oid                  | the ID of the database where the query was executed
+    | userid               | oid                  | An ID of the user who run a query |
+    | user                 | regrole              | The name of the user who run a query|
     |datname             | name                     | The name of a database where the query was executed
     |client_ip           | inet                     | The IP address of a client that ran the query. Available only to superusers|
-    |queryid             | text                     | The internal hash code serving to identify every query in a statement
-    |top_queryid         | text                     | The internal hash code serving to identify a top query in a statement|
+    |queryid             | bigint                     | The internal hash code serving to identify every query in a statement
+    |top_queryid         | bigint                     | The internal hash code serving to identify a top query in a statement|
     |query               | text                       | The actual text of the query |
     |comments            | text                     |Comments about the query |
     |planid              | text                       | An internally generated ID of a query plan|
@@ -237,7 +245,7 @@ The following is the view for PostgreSQL 11 and 12:
     |max_time      | double precision           | Maximum time (in ms) spent on the statement
     |mean_time     | double precision           | The mean (average) time (in ms) spent on the statement
     |stddev_time   | double precision           | The standard deviation of time (in ms) spent on the statement|
-    |rows_retrieved     | bigint                     | The number of rows retrieved when executing a query|
+    |rows     | bigint                     | The number of rows retrieved when executing a query|
     |shared_blks_hit    | bigint                     | Shows the total number of shared memory blocks returned from the cache|
     |shared_blks_read   | bigint                     | Shows the total number of shared blocks returned not from the cache
     |shared_blks_dirtied | bigint                     | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)|
