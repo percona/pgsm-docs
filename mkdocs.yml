@@ -3,7 +3,7 @@
 site_name: pg_stat_monitor Documentation
 site_description: Documentation
 site_author: Percona LLC
-copyright: Percona LLC, &#169; 2022
+copyright: Percona LLC, &#169; 2023
   
 repo_name: percona/pgsm-docs
 repo_url: https://github.com/percona/pgsm-docs
@@ -98,6 +98,7 @@ nav:
   - Installation and setup:
     - "Install": "install.md"
     - "Set up": "setup.md"
+  - Upgrade: upgrade.md
   - User guide:
     - "User guide": "user_guide.md"
     - views.md
