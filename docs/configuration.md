@@ -143,6 +143,8 @@ Server restart - YES.
 
 This parameter sets the maximum number of histogram buckets. Starting with version 1.1.0, the maximum value is changed to 50.
 
+Starting with version 2.0.0, on server startup `pg_stat_monitor` calculates the maximum number of buckets that can be created for the time range specified in `pgsm_histogram_min`/`pgsm_histogram_max` and compares it with the number of buckets specified by the user. If the calculated number falls below the user configuration, the warning is written to the server log.
+
 ### pg_stat_monitor.pgsm_query_shared_buffer
 
 Values:

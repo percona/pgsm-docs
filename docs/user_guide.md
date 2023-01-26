@@ -87,7 +87,14 @@ Find details in the [usage example](#queries-terminated-with-errors)
 
 ### Histogram
 
-Histogram (the `resp_calls` parameter) provides a visual representation of query performance. With the help of the histogram function, you can view a timing/calling data histogram in response to an SQL query.
+Histogram (the `resp_calls` parameter) provides a visual representation of query performance data distributed across buckets. With the help of the histogram function, you can view a timing/calling data graph in response to an SQL query.
+
+The histogram output is controlled by the following configuration parameters:
+
+* `pgsm_histogram_min` – the minimum execution time for a query, in ms (default 1)
+* `pgsm_histogram_max` – the maximum execution time for a query, in ms (default 10000)
+* `pgsm_histogram_buckets` – the maximum number of buckets to be shown in histogram (default 20)
+
 
 Learn more about using histograms from the [usage example](#histogram_1).
 
@@ -563,21 +570,34 @@ Output:
 ```text
        range        | freq |              bar
 --------------------+------+--------------------------------
-  (0 - 3)}          |    2 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  (3 - 10)}         |    0 |
-  (10 - 31)}        |    1 | ■■■■■■■■■■■■■■■
-  (31 - 100)}       |    0 |
-  (100 - 316)}      |    0 |
-  (316 - 1000)}     |    0 |
-  (1000 - 3162)}    |    0 |
-  (3162 - 10000)}   |    0 |
-  (10000 - 31622)}  |    0 |
-  (31622 - 100000)} |    0 |
+  {{0 - 3}          |    2 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  (3 - 10}          |    0 |
+  (10 - 31}         |    1 | ■■■■■■■■■■■■■■■
+  (31 - 100}        |    0 |
+  (100 - 316}       |    0 |
+  (316 - 100}       |    0 |
+  (1000 - 3162}     |    0 |
+  (3162 - 10000}    |    0 |
+  (10000 - 31622}   |    0 |
+  (31622 - 100000}} |    0 |
 (10 rows)
 ```
 
 For `pg_stat_monitor` version 1.1.1 and earlier, the output shows the time generated automatically based on the total number of buckets in the `resp_calls` field which corresponds to the value specified by the user in the `pgsm_histogram_buckets` configuration parameter (defaults to 10).
 
-Starting with version 2.0.0, the histogram output shows two additional buckets: one that starts from 0 and ends to the minimum start time defined in the `pgsm_histogram_min` configuration parameter, Another bucket starts from the max time and lasts to the infinity. These additional buckets enable users to see the how the data is distributed within the full range of values, not just within the range of values specified within the min and max_time.
+Starting with version 2.0.0 the histogram output includes two additional buckets for queries whose execution time falls out of the min/max time range specified by the user. The first bucket starts with 0 and ends with the histogram_min value. Another bucket starts from the histogram_max time and lasts to the infinity.  
+
+These additional buckets enable users to see the how the data is distributed within the full range of values, not only the values specified within the min and max time range. 
+
+!!! note 
+
+    Additional buckets are created only if the `pgsm_histogram_min` value is greater than `0` if the `pgsm_histogram_max` value is less than the maximum possible value (`2147483647`)
+
+The output clearly shows to which bucket a value belongs to:
+
+* `()` show that the data is excluded form the range 
+* `{}` indicate the data as included in the range. 
+
+For example, in the data range {{0 – 3} and (3 – 10}}, the value 3 belongs to the first bucket.
 
 
