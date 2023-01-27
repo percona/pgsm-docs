@@ -3,7 +3,7 @@
 `pg_stat_monitor` provides a view where the statistics data is displayed. To see all available columns, run the following command from `psql`:
 
 ```sql
-postgres=# \d pg_stat_monitor
+postgres=# \d pg_stat_monitor;
 ```
 
 Some column names differ depending on the PostgreSQL version. 
