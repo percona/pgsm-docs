@@ -11,12 +11,14 @@ edit_uri: edit/main/docs/
 
 use_directory_urls: false
 
-# Theme for netlify testing
+# Theme settings
 theme:
   name: material
   logo: _images/percona-logo.svg
   favicon: _images/percona-favicon.ico
   custom_dir: _resource/overrides
+  font:
+    text: Poppins
 
   palette:
 
@@ -37,8 +39,14 @@ theme:
 # Theme features
 
   features:
+    - search.share
     - search.highlight
+    - content.action.copy
+    - content.action.view
+    - content.action.edit
+    - content.tabs.link
     - navigation.top
+    - navigation.tracking
 
 
 extra_css:
@@ -78,8 +86,11 @@ markdown_extensions:
   #- plantuml_markdown
 
 plugins:
-  - search
-  - git-revision-date
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  - git-revision-date-localized:
+      enable_creation_date: true
+      enabled: !ENV [ENABLED_GIT_REVISION_DATE, True]
   - section-index # Adds links to nodes - comment out when creating PDF
 #  - htmlproofer # Uncomment to check links - but extends build time significantly
   - mike:
@@ -92,6 +103,14 @@ plugins:
 extra:
   version:
     provider: mike
+  homepage: https://docs.percona.com
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
 
 nav:
   - index.md
