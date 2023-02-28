@@ -91,6 +91,7 @@ The following is the view for PostgreSQL 14
     | Column             |  Type                    | Description
     |--------------------|--------------------------|------------------
      bucket              | bigint                  | Data collection unit. The number shows what bucket in a chain a record belongs to
+<<<<<<< HEAD
     bucket_start_time    | timestamp with time zone | The start time of the bucket|
     dbid                 | oid                  | the ID of the database where the query was executed
     userid               | oid                  | An ID of the user who run a query |
@@ -99,6 +100,16 @@ The following is the view for PostgreSQL 14
     toplevel             | bool                     | True means that a query was executed as a top-level statement
     client_ip          | inet                       | The IP address of a client that ran the query. Available only to superusers
     queryid            | bigint                       | The internal hash code serving to identify every query in a statement
+=======
+     bucket_start_time    | timestamp with time zone | The start time of the bucket|
+     userid               | oid                  | An ID of the user who run a query |
+     user                 | regrole              | The name of the user who run a query
+     dbid                 | oid                  | the ID of the database where the query was executed
+     datname              | name                        | The name of a database where the query was executed
+     toplevel             | bool                     | True means that a query was executed as a top-level statement
+     client_ip          | inet                       | The IP address of a client that run the query
+     queryid            | bigint                       | The internal hash code serving to identify every query in a statement
+>>>>>>> Updated columns for other PG versions
     top_queryid        | bigint             | The internal hash code serving to identify a top query in a statement|
     planid             | text                       | An internally generated ID of a query plan
     query_plan         | text                       | The sequence of steps used to execute a query. This parameter is available only when the `pgsm_enable_query_plan` is enabled.
@@ -112,7 +123,10 @@ The following is the view for PostgreSQL 14
     elevel             | integer                    | Shows the error level of a query (WARNING, ERROR, LOG)
     sqlcode            | text                       | SQL error code
     message            | text                       | The error message
+<<<<<<< HEAD
     bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
+=======
+>>>>>>> Updated columns for other PG versions
     plans        | bigint                     | The number of times the statement was planned
     total_plan_time    | double precision           | The total time (in ms) spent on planning the statement
     min_plan_time      | double precision           | Minimum time (in ms) spent on planning the statement
@@ -155,12 +169,21 @@ The following is the view for PostgreSQL 13
     |      Column         |       Type       | Description
     |---------------------|------------------|------------------------------|
     | bucket              | bigint           |Data collection unit. The number shows what bucket in a chain a record belongs to| 
+<<<<<<< HEAD
     | bucket_start_time   | timestamp with time zone| The start time of the bucket|
     | dbid                 | oid                  | the ID of the database where the query was executed
     | userid               | oid                  | An ID of the user who run a query |
     | user                 | regrole              | The name of the user who run a query
     | datname             | name             | The name of a database where the query was executed|
     | client_ip           | inet             | The IP address of a client that ran the query. Available only to superusers|
+=======
+    | bucket_start_time   | text             | The start time of the bucket|
+    | userid               | oid                  | An ID of the user who run a query |
+    | user                 | regrole              | The name of the user who run a query
+    | dbid                 | oid                  | the ID of the database where the query was executed
+    | datname             | name             | The name of a database where the query was executed|
+    | client_ip           | inet             | The IP address of a client that run the query|
+>>>>>>> Updated columns for other PG versions
     | queryid             | bigint             | The internal hash code serving to identify every query in a statement|
     | top_queryid         | bigint             | The internal hash code serving to identify a top query in a statement|
     | query               | text             | The actual text of the query
@@ -181,9 +204,14 @@ The following is the view for PostgreSQL 13
     | max_exec_time       | double precision | The maximum time (in ms) it took to execute a query
     | mean_exec_time      | double precision | The mean (average) time (in ms) it took to execute a query
     | stddev_exec_time    | double precision | The standard deviation of time (in ms) spent on executing a query
+<<<<<<< HEAD
     | rows      | bigint           | The number of rows retrieved when executing a query
     | bucket_done        | boolean                    | Indicates whether the bucket is still active (false) or completed (true). If the bucket is active, more queries and stats could be added to this bucket. If the bucket is completed, the bucket is not active and no more queries nor stats can be added there, thus allowing accurate data display for monitoring applications
     | plans         | bigint           | The number of times the statement was planned
+=======
+    | rows       | bigint           | The number of rows retrieved when executing a query
+    | plans          | bigint           | The number of times the statement was planned
+>>>>>>> Updated columns for other PG versions
     | total_plan_time     | double precision | The total time (in ms) spent on planning the statement
     | min_plan_time       | double precision | Minimum time (in ms) spent on planning the statement
     | max_plan_time       | double precision | Maximum time (in ms) spent on planning the statement
@@ -218,12 +246,21 @@ The following is the view for PostgreSQL 11 and 12:
     | Column             |  Type                    | Description
     |--------------------|--------------------------|------------------
     |bucket              | bigint                   | Data collection unit. The number shows what bucket in a chain a record belongs to|
+<<<<<<< HEAD
     |bucket_start_time   | timestamp with time zone | The start time of the bucket|
     | dbid                 | oid                  | the ID of the database where the query was executed
     | userid               | oid                  | An ID of the user who run a query |
     | user                 | regrole              | The name of the user who run a query|
     |datname             | name                     | The name of a database where the query was executed
     |client_ip           | inet                     | The IP address of a client that ran the query. Available only to superusers|
+=======
+    |bucket_start_time   | text                     | The start time of the bucket|
+    |userid               | oid                  | An ID of the user who run a query |
+    | user                 | regrole              | The name of the user who run a query
+    | dbid                 | oid                  | the ID of the database where the query was executed
+    |datname             | name                     | The name of a database where the query was executed
+    |client_ip           | inet                     | The IP address of a client that run the query|
+>>>>>>> Updated columns for other PG versions
     |queryid             | bigint                     | The internal hash code serving to identify every query in a statement
     |top_queryid         | bigint                     | The internal hash code serving to identify a top query in a statement|
     |query               | text                       | The actual text of the query |
@@ -245,7 +282,12 @@ The following is the view for PostgreSQL 11 and 12:
     |max_time      | double precision           | Maximum time (in ms) spent on the statement
     |mean_time     | double precision           | The mean (average) time (in ms) spent on the statement
     |stddev_time   | double precision           | The standard deviation of time (in ms) spent on the statement|
+<<<<<<< HEAD
     |rows     | bigint                     | The number of rows retrieved when executing a query|
+=======
+    | plans              | bigint                     | The number of times the statement was planned
+    |rows      | bigint                     | The number of rows retrieved when executing a query|
+>>>>>>> Updated columns for other PG versions
     |shared_blks_hit    | bigint                     | Shows the total number of shared memory blocks returned from the cache|
     |shared_blks_read   | bigint                     | Shows the total number of shared blocks returned not from the cache
     |shared_blks_dirtied | bigint                     | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)|
