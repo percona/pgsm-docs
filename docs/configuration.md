@@ -29,7 +29,9 @@ The following table shows setup options for each configuration parameter and whe
 | [pg_stat_monitor.pgsm_histogram_max](#pg_stat_monitorpgsm_histogram_max)        |  :x:                |:x:                |:white_check_mark: | :x:
 | [pg_stat_monitor.pgsm_histogram_buckets](#pg_stat_monitorpgsm_histogram_buckets)   | :x:                |:x:                |:white_check_mark: | :x:
 | [pg_stat_monitor.pgsm_query_shared_buffer](#pg_stat_monitorpgsm_query_shared_buffer)      | :x:                |:x:                |:white_check_mark: | :x:
+| [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
 | [pg_stat_monitor.pgsm_overflow_target](#pg_stat_monitorpgsm_overflow_target) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
+| [pg_stat_monitor.pgsm_enable_pgsm_query_id](#pg_stat_monitorpgsm_enable_pgsm_query_id) |   :x:  |  :x:  |   :white_check_mark: |  :x:  | 
 | [pg_stat_monitor.pgsm_enable_query_plan](#pg_stat_monitorpgsm_enable_query_plan)  |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
 | [pg_stat_monitor.pgsm_track](#pg_stat_monitorpgsm_track) |  :x:  |  :x:  |   :x:  | :white_check_mark: |
 | [pg_stat_monitor.pgsm_extract_comments](#pg_stat_monitorpgsm_extract_comments)|  :x:  |  :x:  |   :x:  | :white_check_mark: |
@@ -155,12 +157,30 @@ Server restart - YES.
 
 This parameter defines the shared memory limit (in MB) allocated for a query tracked by ``pg_stat_monitor``. 
 
+### pg_stat_monitor.pgsm_enable_overflow
+
+Type: boolean. Default: yes
+
+Server restart - NO.
+
+Controls whether pg_stat_monitor can grow beyond shared memory into swap space.
+
 ### pg_stat_monitor.pgsm_overflow_target
 
 Type: boolean (YES / NO). Default: NO
 Server restart - NO.
 
-Sets the overflow target for the `pg_stat_monitor`. Starting with version 1.10, the default value is NO. In version 1.0.0 and earlier, the default value was 1 (YES).
+Starting with version 2.0.0, this option is deprecated. Use the [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) instead. 
+
+Sets the overflow target for the `pg_stat_monitor`. Starting with version 1.1.1, the default value is NO. In version 1.0.0 and earlier, the default value was 1 (YES).
+
+### pg_stat_monitor.pgsm_enable_pgsm_query_id
+
+Type: boolean. Default: yes
+
+Server restart - No.
+
+Controls the generation of a unique hash code that identifies the query. This hash code is independent of PostgreSQL server version, constants within the query, database, user or schema. Its usage allows getting insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas. Enabling this parameter results in additional load on the database.
 
 ### pg_stat_monitor.pgsm_enable_query_plan
 
