@@ -82,7 +82,6 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 15 and h
      jit_emission_time    | double precision     | Total time spent by the statement on emitting code, in milliseconds
 
 
-
 ## PostgreSQL 14
 
 The following is the view for PostgreSQL 14
