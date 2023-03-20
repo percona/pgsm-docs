@@ -3,16 +3,22 @@
 Use the following command to view available configuration parameters in the `pg_stat_monitor_settings` view:
 
 ```sql
-SELECT * FROM pg_stat_monitor_settings;
+SELECT *
+
+FROM pg_settings
+
+WHERE name like 'pg_stat_monitor.%';
 ```
 
 To amend the `pg_stat_monitor` configuration, use the General Configuration Unit (GCU) system. 
 
-There are two types of GUC variables:
+!!! admonition "GUC variable types"
 
-The first type can only be set in the `postgresql.conf` configuration file and comes into an effect on the start of the `postgres` server. You can set the same variable using the [`ALTER SYSTEM`](https://www.postgresql.org/docs/current/sql-altersystem.html) command. In this case the value of this variable is written into the `postgresql.auto.conf` which has preference over `postgresql.conf`. You also must restart the `postgres` server to apply the values from the `postgresql.auto.conf` file.  The user can change the variable using the [`SET`](https://www.postgresql.org/docs/current/sql-set.html) command without any error, but that does not affect the variable settings.
+    There are two types of GUC variables:
 
-The second type of GUC variables can be set by the user from the client (`psql`) using the SET command. These variables are session-based, and their values can only be visible on that sessions. These variables can also be set with the or ALTER SYSTEM command and in the configuration file, but in that case, the effect of these variables is on all new sessions.
+    The first type can only be set in the `postgresql.conf` configuration file and comes into an effect on the start of the `postgres` server. You can set the same variable using the [`ALTER SYSTEM`](https://www.postgresql.org/docs/current/sql-altersystem.html) command. In this case the value of this variable is written into the `postgresql.auto.conf` which has preference over `postgresql.conf`. You also must restart the `postgres` server to apply the values from the `postgresql.auto.conf` file.  The user can change the variable using the [`SET`](https://www.postgresql.org/docs/current/sql-set.html) command without any error, but that does not affect the variable settings.
+
+    The second type of GUC variables can be set by the user from the client (`psql`) using the SET command. These variables are session-based, and their values can only be visible on that sessions. These variables can also be set with the or ALTER SYSTEM command and in the configuration file, but in that case, the effect of these variables is on all new sessions.
 
 
 The following table shows setup options for each configuration parameter and whether the server restart is required to apply the parameter's value:

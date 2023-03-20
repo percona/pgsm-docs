@@ -2,14 +2,14 @@
 
 ## pg_stat_monitor_reset()
 
-This function resets all the statistics and clears the view. The function will delete all the previous data.
+This function resets all the statistics and clears the view. The function deletes all the previous data.
 
 ## pg_stat_monitor_version()
 
 This function provides the version of `pg_stat_monitor`.
 
-```
-postgres=# select pg_stat_monitor_version();
+```sql
+SELECT pg_stat_monitor_version();
  pg_stat_monitor_version
 -------------------------
  devel
