@@ -28,7 +28,7 @@ A new row is created for each key in the `pg_stat_monitor` view.
 
 `pg_stat_monitor` inherits the metrics available in `pg_stat_statements`, plus provides additional ones. See the [`pg_stat_monitor` vs `pg_stat_statements` comparison](comparison.md) for details.
 
-For security reasons, only superusers and members of the `pg_read_all_stats` role are allowed to see the SQL text and `queryid` of queries executed by other users. Other users can see the statistics, however, if the view has been installed in their database.
+For security reasons, only superusers and members of the `pg_read_all_stats` role are allowed to see the SQL text, `client_ip` and `queryid` of queries executed by other users. Other users can see the statistics, however, if the view has been installed in their database.
 
 ## pg_stat_monitor_settings view (dropped)
 
