@@ -117,13 +117,13 @@ This parameter is used to set the lifetime of the bucket. System switches betwee
 
 Values:
 
-- Min: 1
+- Min: 0
 - Max: 2147483647
 - Default: 1
 
 Server restart - YES.
 
-``pg_stat_monitor`` also stores the execution time histogram. This parameter is used to set the lower bound of the histogram (in ms).
+The minimum execution time for a query to appear in histogram output (in ms). Starting with version 2.0.0, this parameter can be set as a decimal value, allowing to output queries with the execution time less than 1 ms.
 
 ### pg_stat_monitor.pgsm_histogram_max
 
@@ -135,7 +135,7 @@ Values:
 
 Server restart - YES.
 
-This parameter sets the upper bound of the execution time histogram (in ms). 
+This parameter sets the upper bound of the query execution time for the histogram output (in ms). Starting with version 2.0.0, you can set a decimal value for this parameter thus fine-tuning the output to more precision. 
 
 ### pg_stat_monitor.pgsm_histogram_buckets
 
@@ -148,6 +148,8 @@ Values:
 Server restart - YES.
 
 This parameter sets the maximum number of histogram buckets. Starting with version 1.1.0, the maximum value is changed to 50.
+
+Starting with version 2.0.0, on server startup `pg_stat_monitor` calculates the maximum number of buckets that can be created for the time range specified in `pgsm_histogram_min`/`pgsm_histogram_max` and compares it with the number of buckets specified by the user. If the calculated number falls below the user configuration, the warning is written to the server log.
 
 ### pg_stat_monitor.pgsm_query_shared_buffer
 

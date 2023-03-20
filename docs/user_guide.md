@@ -87,7 +87,14 @@ Find details in the [usage example](#queries-terminated-with-errors)
 
 ### Histogram
 
-Histogram (the `resp_calls` parameter) provides a visual representation of query performance. With the help of the histogram function, you can view a timing/calling data histogram in response to an SQL query.
+Histogram (the `resp_calls` parameter) provides a visual representation of query performance data distributed across buckets. With the help of the histogram function, you can view a timing/calling data graph in response to an SQL query.
+
+The histogram output is controlled by the following configuration parameters:
+
+* `pgsm_histogram_min` – the minimum execution time for a query, in ms (default 1)
+* `pgsm_histogram_max` – the maximum execution time for a query, in ms (default 10000)
+* `pgsm_histogram_buckets` – the maximum number of buckets to be shown in histogram (default 20)
+
 
 Learn more about using histograms from the [usage example](#histogram_1).
 
@@ -535,40 +542,68 @@ Histogram (the `resp_calls` parameter) provides a visual representation of query
 
 
 ```sql
-SELECT resp_calls, query FROM pg_stat_monitor;
+SELECT bucket, queryid, resp_calls, query FROM pg_stat_monitor;
 ```
 
 Output:
 
 ```
-                    resp_calls                    |                 query                                        
---------------------------------------------------+----------------------------------------------
-{1," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"} | select client_ip, query from pg_stat_monitor
-{3," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 1"} | select * from pg_stat_monitor_reset()
-{3," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 0"," 1"} | SELECT * FROM foo
+bucket |       queryid        |                  resp_calls                   |             query
+--------+----------------------+-----------------------------------------------+--------------------------------
+      1 | -7911769593731908992 | {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0} | SELECT pg_stat_monitor_reset()
+      3 |  2920803561901199087 | {0,0,0,0,0,0,0,0,0,1,0,0,0,1,1,1,2,1,0,0,0,0} | SELECT pg_sleep($1)
+(2 rows)                                        |                  |       |
 ```
 
 ```sql
-postgres=# SELECT * FROM histogram(0, 'F44CD1B4B33A47AF') AS a(range TEXT, freq INT, bar TEXT);
+SELECT * FROM histogram(3, '2920803561901199087') AS a(range TEXT, freq INT, bar TEXT);
 ```
 
 Output:
 
 ```text
-       range        | freq |              bar
---------------------+------+--------------------------------
-  (0 - 3)}          |    2 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
-  (3 - 10)}         |    0 |
-  (10 - 31)}        |    1 | ■■■■■■■■■■■■■■■
-  (31 - 100)}       |    0 |
-  (100 - 316)}      |    0 |
-  (316 - 1000)}     |    0 |
-  (1000 - 3162)}    |    0 |
-  (3162 - 10000)}   |    0 |
-  (10000 - 31622)}  |    0 |
-  (31622 - 100000)} |    0 |
-(10 rows)
+           range           | freq |                                            bar
+---------------------------+------+--------------------------------------------------------------------------------------------
+ {{0.000 - 1.000}          |    0 |
+  (1.000 - 2.778}          |    0 |
+  (2.778 - 4.162}          |    0 |
+  (4.162 - 6.623}          |    0 |
+  (6.623 - 11.000}         |    0 |
+  (11.000 - 18.783}        |    0 |
+  (18.783 - 32.623}        |    0 |
+  (32.623 - 57.234}        |    0 |
+  (57.234 - 101.000}       |    0 |
+  (101.000 - 178.827}      |    1 | ■■■■■■■■■■■■■■■
+  (178.827 - 317.226}      |    0 |
+  (317.226 - 563.338}      |    0 |
+  (563.338 - 1000.994}     |    0 |
+  (1000.994 - 1779.268}    |    1 | ■■■■■■■■■■■■■■■
+  (1779.268 - 3163.256}    |    1 | ■■■■■■■■■■■■■■■
+  (3163.256 - 5624.371}    |    1 | ■■■■■■■■■■■■■■■
+  (5624.371 - 10000.920}   |    2 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  (10000.920 - 17783.643}  |    1 | ■■■■■■■■■■■■■■■
+  (17783.643 - 31623.492}  |    0 |
+  (31623.492 - 56234.598}  |    0 |
+  (56234.598 - 100000.000} |    0 |
+  (100000.000 - ...}}      |    0 |
+(22 rows)
 ```
 
-There are 10 time based buckets of the time generated automatically based on total buckets in the field ``resp_calls``. The value in the field shows how many queries run in that period of time.
+For `pg_stat_monitor` version 1.1.1 and earlier, the output shows the time generated automatically based on the total number of buckets in the `resp_calls` field which corresponds to the value specified by the user in the `pgsm_histogram_buckets` configuration parameter (defaults to 10).
+
+Starting with version 2.0.0 the histogram output includes two additional buckets for queries whose execution time falls out of the min/max time range specified by the user. The first bucket starts with 0 and ends with the `pgsm_histogram_min` value. Another bucket starts from the `pgsm_histogram_max` time and lasts to the infinity.  
+
+These additional buckets enable users to see the how the data is distributed within the full range of values, not only the values specified within the min and max time range. 
+
+!!! note 
+
+    Additional buckets are created only if the `pgsm_histogram_min` value is greater than `0` if the `pgsm_histogram_max` value is less than the maximum possible value (`2147483647`)
+
+The output clearly shows to which bucket a value belongs to:
+
+* `()` show that the data is excluded form the range 
+* `{}` indicate the data as included in the range. 
+
+For example, in the data range (1.000 - 2.778} and (2.778 - 4.162}, the value 2.778 belongs to the first bucket.
+
 
