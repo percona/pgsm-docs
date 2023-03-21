@@ -33,8 +33,8 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 15 and h
      comments           | text                       | Comments about the query
      application_name   | text                       | Shows the name of the application connected to the database
      relations          | text[]                     | The list of tables involved in the query
-     cmd_type           | integer                    | Type of the query executed
-     cmd_type_text      | text                       | The description of the query executed
+     cmd_type           | integer                    | The ID of the query type. <br> Supported values: 1 - SELECT; 2 - UPDATE; 3 - INSERT; 4 - DELETE.
+     cmd_type_text      | text                       | The type of the query executed
      elevel             | integer                    | Shows the error level of a query (WARNING, ERROR, LOG)
      sqlcode            | text                       | SQL error code
      message            | text                       | The error message
@@ -108,8 +108,8 @@ The following is the view for PostgreSQL 14
     comments           | text                       | Comments about the query
     application_name   | text                       | Shows the name of the application connected to the database
     relations          | text[]                     | The list of tables involved in the query
-    cmd_type           | integer                    | Type of the query executed
-    cmd_type_text      | text                       | The description of the query executed
+    cmd_type           | integer                    | The ID of the query type. <br> Supported values: 1 - SELECT; 2 - UPDATE; 3 - INSERT; 4 - DELETE.
+    cmd_type_text      | text                       | The type of the query executed
     elevel             | integer                    | Shows the error level of a query (WARNING, ERROR, LOG)
     sqlcode            | text                       | SQL error code
     message            | text                       | The error message
@@ -172,8 +172,8 @@ The following is the view for PostgreSQL 13
     | top_query           | text             | Shows the top query used in a statement
     | application_name    | text             | Shows the name of the application connected to the database
     | relations           | text[]           | The list of tables involved in the query
-    |cmd_type             | integer          | Type of the query executed|
-    |cmd_type_text        | text             | The description of the query executed|
+    |cmd_type           | integer                    | The ID of the query type. <br> Supported values: 1 - SELECT; 2 - UPDATE; 3 - INSERT; 4 - DELETE.
+    |cmd_type_text      | text                       | The type of the query executed|
     |elevel               | integer          | Shows the error level of a query (WARNING, ERROR, LOG)|
     |sqlcode              | text             | SQL error code
     |message              | text             | The error message
@@ -236,8 +236,8 @@ The following is the view for PostgreSQL 11 and 12:
     |top_query           | text                     | Shows the top query used in a statement |
     |application_name   | text                      | Shows the name of the application connected to the database|
     |relations          | text[]                     | The list of tables involved in the query|
-    |cmd_type           | integer                    | Type of the query executed|
-    |cmd_type_text      | text                     | The description of the query executed|
+    |cmd_type           | integer                    | The ID of the query type. <br> Supported values: 1 - SELECT; 2 - UPDATE; 3 - INSERT; 4 - DELETE.
+    |cmd_type_text      | text                       | The type of the query executed|
     |elevel             | integer                    | Shows the error level of a query (WARNING, ERROR, LOG)|
     |sqlcode            | text                    | SQL error code
     |message            | text                       | The error message

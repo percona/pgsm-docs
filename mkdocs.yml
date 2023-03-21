@@ -41,7 +41,7 @@ theme:
   features:
     - search.share
     - search.highlight
-    - content.action.copy
+    - content.code.copy
     - content.action.view
     - content.action.edit
     - content.tabs.link
@@ -119,7 +119,7 @@ nav:
     - "Set up": "setup.md"
   - Upgrade: upgrade.md
   - User guide:
-    - "User guide": "user_guide.md"
+    - "Features": "user_guide.md"
     - views.md
     - functions.md
     - pmm.md
