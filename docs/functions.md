@@ -6,8 +6,8 @@ All database users can use the following functions directly:
 
 This function provides the version of `pg_stat_monitor`.
 
-```
-postgres=# select pg_stat_monitor_version();
+```sql
+SELECT pg_stat_monitor_version();
  pg_stat_monitor_version
 -------------------------
  devel
