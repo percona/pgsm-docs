@@ -397,6 +397,10 @@ Top query indicates the main query. To illustrate, for the SELECT query that is 
 
 This enables you to backtrack to the originating function and thus simplifies the tracking and analysis.
 
+`pg_stat_monitor` doesn't track top query for [Stored procedures](https://www.postgresql.org/docs/current/xproc.html) and other non-utility statements. To see the statistics data about stored procedures, enable the [`pg_stat_monitor.pgsm_track_utility`](configuration.md#pg_stat_monitorpgsm_track_utility) configuration parameter.
+
+To track subqueries within a function, set the [`pg_stat_monitor.pgsm_track`](configuration.md#pg_stat_monitorpgsm_track) configuration parameter to `all`.
+
 !!! example
 
     In the following example we create a function `add2` that adds one parameter value to another one and call this function to calculate 1+2.
