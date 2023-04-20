@@ -1,4 +1,4 @@
-# Configuration parameters
+# Configuration
 
 Use the following command to view available configuration parameters in the `pg_stat_monitor_settings` view:
 
@@ -20,6 +20,7 @@ To amend the `pg_stat_monitor` configuration, use the General Configuration Unit
 
     The second type of GUC variables can be set by the user from the client (`psql`) using the SET command. These variables are session-based, and their values can only be visible on that sessions. These variables can also be set with the or ALTER SYSTEM command and in the configuration file, but in that case, the effect of these variables is on all new sessions.
 
+## Parameters
 
 The following table shows setup options for each configuration parameter and whether the server restart is required to apply the parameter's value:
 

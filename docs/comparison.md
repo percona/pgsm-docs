@@ -1,4 +1,4 @@
-# pg_stat_monitor and pg_stat_statements view comparison
+# Comparison with pg_stat_statements 
 
 The `pg_stat_monitor` extension is developed on the basis of `pg_stat_statements`  as its more advanced replacement.
 

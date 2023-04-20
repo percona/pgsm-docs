@@ -83,7 +83,7 @@ markdown_extensions:
   - pymdownx.emoji:
        emoji_index: !!python/name:materialx.emoji.twemoji
        emoji_generator: !!python/name:materialx.emoji.to_svg
-  #- plantuml_markdown
+
 
 plugins:
   - search:
@@ -93,11 +93,9 @@ plugins:
       enabled: !ENV [ENABLED_GIT_REVISION_DATE, True]
   - section-index # Adds links to nodes - comment out when creating PDF
 #  - htmlproofer # Uncomment to check links - but extends build time significantly
-  - mike:
-      version_selector: true
-      css_dir: css
-      javascript_dir: js
-      canonical_version: null   
+  - macros:
+      include_yaml:
+        - 'variables.yml' # Use in markdown as '{{ VAR }}'   
 
 
 extra:
@@ -113,8 +111,13 @@ extra:
       make our documentation better.
 
 nav:
-  - index.md
-  - Installation and setup:
+  - Home: index.md
+  - comparison.md
+  - Release notes:
+    - Release notes index: release-notes/release_notes.md
+    - release-notes/2.0.0.md
+    - release-notes/1.x.md
+  - Install and set up:
     - "Install": "install.md"
     - "Set up": "setup.md"
   - Upgrade: upgrade.md
@@ -122,15 +125,11 @@ nav:
     - "Features": "user_guide.md"
     - views.md
     - functions.md
-    - pmm.md
+  - pmm.md
   - Reference:
     - pg_stat_monitor view reference:
       - reference.md
-    - comparison.md
     - configuration.md
-  - Release notes:
-    - Release notes index: release-notes/release_notes.md
-    - release-notes/2.0.0.md
-    - release-notes/1.x.md
+  - Uninstall: uninstall.md
   - contributing.md
 # - Version Selector: "../"

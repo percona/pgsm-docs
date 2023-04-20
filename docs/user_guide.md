@@ -566,6 +566,7 @@ The histogram output is controlled by the following configuration parameters:
 
     Output:
 
+    {% raw %}
     ```{.sql .no-copy}
                range           | freq |                                            bar
     ---------------------------+------+--------------------------------------------------------------------------------------------
@@ -593,7 +594,8 @@ The histogram output is controlled by the following configuration parameters:
       (100000.000 - ...}}      |    0 |
     (22 rows)
     ```
-
+    {% endraw %}
+    
 For pg_stat_monitor version 1.1.1 and earlier, the output shows the time generated automatically based on the total number of buckets in the resp_calls field which corresponds to the value specified by the user in the pgsm_histogram_buckets configuration parameter (defaults to 10).
 
 Starting with version 2.0.0 the histogram output includes two additional buckets for queries whose execution time falls out of the min/max time range specified by the user. The first bucket starts with 0 and ends with the pgsm_histogram_min value. Another bucket starts from the pgsm_histogram_max time and lasts to the infinity.
