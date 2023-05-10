@@ -49,9 +49,9 @@ The following table shows setup options for each configuration parameter and whe
 
 Values:
 
-- Min: 1
-- Max: 1000
-- Default: 100
+- Min: 10
+- Max: 10240
+- Default: 256
 
 Server restart - YES
 
@@ -95,7 +95,7 @@ In version 1.0.0 and earlier, the parameter type is "integer" and the default va
 Values:
 
 - Min: 1
-- Max: 10
+- Max: 20000
 - Default: 10
 
 Server restart - YES
@@ -120,7 +120,7 @@ This parameter is used to set the lifetime of the bucket. System switches betwee
 Values:
 
 - Min: 0
-- Max: 2147483647
+- Max: 50000000
 - Default: 1
 
 Server restart - YES
@@ -132,7 +132,7 @@ The minimum execution time for a query to appear in histogram output (in ms). St
 Values:
 
 - Min: 10
-- Max: 2147483647
+- Max: 50000000
 - Default: 10000
 
 Server restart - YES
@@ -149,7 +149,7 @@ Values:
 
 Server restart - YES
 
-This parameter sets the maximum number of histogram buckets. Starting with version 1.1.0, the maximum value is changed to 50.
+This parameter sets the maximum number of histogram buckets. Starting with version 1.1.0, the maximum value is changed to 50. 
 
 Starting with version 2.0.0, on server startup `pg_stat_monitor` calculates the maximum number of buckets that can be created for the time range specified in `pgsm_histogram_min`/`pgsm_histogram_max` and compares it with the number of buckets specified by the user. If the calculated number falls below the user configuration, the warning is written to the server log.
 
@@ -201,7 +201,7 @@ Enables or disables query plan monitoring. When the `pgsm_enable_query_plan` is 
 
 ### pg_stat_monitor.pgsm_track
 
-Default: top.
+Default: top
 
 Server restart - NO
 
