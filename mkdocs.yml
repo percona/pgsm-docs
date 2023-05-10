@@ -91,6 +91,12 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
       enabled: !ENV [ENABLED_GIT_REVISION_DATE, True]
+  - meta-descriptions:
+      export_csv: false
+      quiet: false
+      enable_checks: false
+      min_length: 50
+      max_length: 160
   - section-index # Adds links to nodes - comment out when creating PDF
 #  - htmlproofer # Uncomment to check links - but extends build time significantly
   - mike:
@@ -98,7 +104,6 @@ plugins:
       css_dir: css
       javascript_dir: js
       canonical_version: null   
-
 
 extra:
   version:
