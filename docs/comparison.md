@@ -10,7 +10,7 @@ Note that [`pg_stat_monitor` and `pg_stat_statements` process statistics data di
 To see all available columns, run the following command from the `psql` terminal:
 
 ```sql
- postgres=# \d pg_stat_monitor;
+\d pg_stat_monitor;
 ```
 
 The following table compares the `pg_stat_monitor` (PGSM) view with that of `pg_stat_statements` (PGSS).

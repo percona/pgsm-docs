@@ -29,14 +29,13 @@ To uninstall `pg_stat_monitor`, do the following:
 
     * On Debian and Ubuntu:
 
-    ```sh
-    sudo systemctl restart postgresql.service
+    ```{.bash data-prompt="$"}
+    $ sudo systemctl restart postgresql.service
     ```
 
     * On Red Hat Enterprise Linux and CentOS:
 
 
-    ```sh
-
-    sudo systemctl restart postgresql-15
+    ```{.bash data-prompt="$"}
+    $ sudo systemctl restart postgresql-15
     ```

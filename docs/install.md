@@ -22,8 +22,8 @@ Choose the installation source:
     1. [Install percona-release](https://www.percona.com/doc/percona-repo-config/installing.html).
     2. Enable Percona repository:
 
-        ``` sh
-        sudo percona-release setup ppgXX
+        ```{.bash data-prompt="$"}
+        $ sudo percona-release setup ppgXX
         ```
 
         Replace `XX` with the desired PostgreSQL version. For example, to install `pg_stat_monitor ` for PostgreSQL 15, specify `ppg15`.
@@ -32,14 +32,14 @@ Choose the installation source:
 
         === "On Debian and Ubuntu"
 
-            ``` sh
-            sudo apt-get install percona-pg-stat-monitor15
+            ```{.bash data-prompt="$"}
+            $ sudo apt-get install percona-pg-stat-monitor15
             ```
 
         === "On Red Hat Enterprise Linux"
 
-            ``` sh
-            yum install percona-pg-stat-monitor15
+            ```{.bash data-prompt="$"}
+            $ yum install percona-pg-stat-monitor15
             ``` 
 
  
@@ -49,8 +49,8 @@ Choose the installation source:
 
     Install `pg_stat_monitor`:
 
-    ```sh
-    dnf install -y pg_stat_monitor_<VERSION>
+    ```{.bash data-prompt="$"}
+    $ dnf install -y pg_stat_monitor_<VERSION>
     ```
 
     Replace the `<VERSION>` variable with the PostgreSQL version you are using (e.g. specify `pg_stat_monitor_15` for PostgreSQL 15)
@@ -61,8 +61,8 @@ Choose the installation source:
 
     Use the following command:
 
-    ```sh
-    pgxn install pg_stat_monitor
+    ```{.bash data-prompt="$"}
+    $ pgxn install pg_stat_monitor
     ```
 
 === "Build from source code"
@@ -77,16 +77,16 @@ Choose the installation source:
     You can download the source code of the latest release of `pg_stat_monitor` from [the releases page on GitHub](https://github.com/Percona/pg_stat_monitor/releases) or using git:
 
 
-    ```sh
-    git clone git://github.com/percona/pg_stat_monitor.git
+    ```{.bash data-prompt="$"}
+    $ git clone git://github.com/percona/pg_stat_monitor.git
     ```
 
     Compile and install the extension
 
-    ```sh
-    cd pg_stat_monitor
-    make USE_PGXS=1
-    make USE_PGXS=1 install
+    ```{.bash data-prompt="$"}
+    $ cd pg_stat_monitor
+    $ make USE_PGXS=1
+    $ make USE_PGXS=1 install
     ```
 
 ## Next steps
