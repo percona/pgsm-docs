@@ -121,6 +121,7 @@ nav:
   - comparison.md
   - Release notes:
     - Release notes index: release-notes/release_notes.md
+    - release-notes/2.0.1.md
     - release-notes/2.0.0.md
     - release-notes/1.x.md
   - Install and set up:
@@ -137,5 +138,10 @@ nav:
       - reference.md
     - configuration.md
   - Uninstall: uninstall.md
+  - Release notes:
+    - Release notes index: release-notes/release_notes.md
+    - release-notes/2.0.1.md
+    - release-notes/2.0.0.md
+    - release-notes/1.x.md
   - contributing.md
 # - Version Selector: "../"
