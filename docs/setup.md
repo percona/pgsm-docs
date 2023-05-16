@@ -20,14 +20,14 @@ Load `pg_stat_monitor` at the start time by adding it to the `shared_preload_lib
 
     === "On Debian and Ubuntu"
 
-        ```sh
-        sudo systemctl restart postgresql.service
+        ```{.bash data-prompt="$"}
+        $ sudo systemctl restart postgresql.service
         ```
 
     === "On Red Hat Enterprise Linux and derivatives"
 
-        ```sh
-        sudo systemctl restart postgresql-XXX
+        ```{.bash data-prompt="$"}
+        $ sudo systemctl restart postgresql-XXX
         ```
         
         Replace the `XXX` with the PostgreSQL version you are using.
