@@ -8,25 +8,27 @@ Before upgrading `pg_stat_monitor`, learn about changes for the desired version 
 
     We always recommend updating to the latest version of `pg_stat_monitor` to receive bug fixes and benefit from newest features and enhancements. 
 
-Check what version of `pg_stat_monitor` is running in your database:
+1. Install the new version of the extension using the [preferred installation method](install.md#installation-guidelines).  
 
-```sql
-SELECT pg_stat_monitor_version();
-```
+2. Check what version of `pg_stat_monitor` is running in your database:
 
-Sample output:
+    ```sql
+    SELECT pg_stat_monitor_version();
+    ```    
 
-```{.text .no-copy}
- pg_stat_monitor_version
--------------------------
- 1.1.1
-(1 row)
-```
+    Sample output:    
 
-To upgrade the extension, use the [ALTER EXTENSION](https://www.postgresql.org/docs/current/sql-alterextension.html) command with the `UPDATE TO` option. Replace the `<version>` placeholder with the desired version of the extension. 
+    ```{.text .no-copy}
+     pg_stat_monitor_version
+    -------------------------
+     1.1.1
+    (1 row)
+    ```
 
-Your PostgreSQL user must have the privileges of a superuser or a database owner to run the command:
+3. To upgrade the extension, use the [ALTER EXTENSION](https://www.postgresql.org/docs/current/sql-alterextension.html) command with the `UPDATE TO` option. Replace the `<version>` placeholder with the desired version of the extension. 
 
-```sql
-ALTER EXTENSION pg_stat_monitor UPDATE TO '<version>';
-``` 
+    Your PostgreSQL user must have the privileges of a superuser or a database owner to run the command:    
+
+    ```sql
+    ALTER EXTENSION pg_stat_monitor UPDATE TO '<version>';
+    ``` 
