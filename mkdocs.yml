@@ -122,6 +122,7 @@ nav:
   - comparison.md
   - Release notes:
     - Release notes index: release-notes/release_notes.md
+    - release_notes/2.0.2.md
     - release-notes/2.0.1.md
     - release-notes/2.0.0.md
     - release-notes/1.x.md
