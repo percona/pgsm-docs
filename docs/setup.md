@@ -43,7 +43,13 @@ CREATE EXTENSION pg_stat_monitor;
 
 After the setup is complete, you can see the stats collected by `pg_stat_monitor`.
 
-By default, `pg_stat_monitor` is created for the `postgres` database. To access the statistics from other databases, you need to create the extension for every database.
+By default, `pg_stat_monitor` is created for the `postgres` database. To access the statistics from other databases, you need to create the extension for every database. 
+
+!!! note
+
+    When you create a new database `newdb`, `pg_stat_monitor` is not accessible from it, yet the statistics metrics are captured. You can see the metrics for the `newdb` database either when you query it from the existing database `mydb` or after you explicitly create the `pg_stat_monitor` extension for the `newdb` database.
+
+    To reduce this manual work, see the [How to automatically enable pg_stat_monitor for every newly created database](auto-enable.md) guide.
 
 ## Next steps
 
