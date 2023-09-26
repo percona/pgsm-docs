@@ -1,70 +1,107 @@
-# Automatically create `pg_stat_monitor` for every newly created database
+# Make `pg_stat_monitor` automatically accessible for every newly created database
 
 In PostgreSQL, a database is created by copying the [system template database](https://www.postgresql.org/docs/current/manage-ag-templatedbs.html) `template1`. To automatically create the `pg_stat_monitor` extension for every newly created database, you can do the following:
 
-* create a new system template database, create the extension for it and define this template when you create the database.  
-* modify the `template1` template database and create the extension for it. Then all databases you create will have the `pg_stat_monitor` view available.
+* modify the `template1` template database and create the extension for it. Then all databases you create have the `pg_stat_monitor` view available.
+* create a new system template database and create the extension for it. You need to define this template when you create a database to have the `pg_stat_monitor` view available for it.
 
-For either option, your user must have the superuser privileges.
+For either option, your user must have the superuser privileges. In the following procedures, the `postgres` user is used:
 
-The following steps show how to create the new template database it as the `postgres` user:
+=== "Modify `template1` database"
 
-1. Log in as the `postgres` user
+    1. Log in as the `postgres` user    
 
-    ```{.bash data-prompt="$"}
-    $ sudo su postgres
-    ```
+        ```{.bash data-prompt="$"}
+        $ sudo su postgres
+        ``` 
 
-2. Create a database to serve as the template.
+    2. Create the extension for the `template1` database
 
-    ```{.bash data-prompt="$"}
-    $ createdb my_template
-    ```
+        ```{.bash data-prompt="$"}
+        $ psql -d template1 -c 'create extension pg_stat_monitor;'
+        ```
 
-3. Connect to this database and create the `pg_stat_monitor` extension
+    3. Create a new database
 
-    ```{.bash data-prompt="$"}
-    $ psql -d my_template -c 'create extension pg_stat_monitor;'
-    ```
+        ```{.bash data-prompt="$"}
+        $ createdb -T my_template dbtest
+        ```    
 
-    !!! note
+    4. Check that `pg_stat_monitor` is accessible from the database    
 
-        If you opt to modify the `template1` database, specify it instead of `my_template`.
+        ```{.bash data-prompt="$"}
+        $ psql -d dbtest -c '\dx';
+        ```
+        
+        Output:    
 
-4. Set the database as the template database. 
+        ```{.text .no-copy}
+              Name       | Version |   Schema   |
+                   Description
+        -----------------+---------+------------+-------------------------------------------------------------------------------------------------------------
+        ----------------------------------------------------------------------------------------------------------------------------------------------
+         pg_stat_monitor | 2.0     | public     | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg
+        _stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information.
+         plpgsql         | 1.0     | pg_catalog | PL/pgSQL procedural language
+        (2 rows)
+        ```
 
-    * Connect to the database:
 
-       ```{.bash data-prompt="$"}
-       $ psql -d my_template
-       ```
-    * Update the database
+=== "Create a new template database"    
 
-       ```sql
-       UPDATE pg_database SET datistemplate=true where datname='my_template';
-       ```
+    1. Log in as the `postgres` user    
 
-5. Create a database using the new template
+        ```{.bash data-prompt="$"}
+        $ sudo su postgres
+        ```    
 
-    ```{.bash data-prompt="$"}
-    $ createdb -T my_template dbtest
-    ```
+    2. Create a database to serve as the template.    
 
-6. Check that `pg_stat_monitor` is accessible from the database
+        ```{.bash data-prompt="$"}
+        $ createdb my_template
+        ```    
 
-    ```{.bash data-prompt="$"}
-    $ psql -d dbtest -c '\dx';
-    ```
-    
-    Output:
+    3. Connect to this database and create the `pg_stat_monitor` extension    
 
-    ```{.text .no-copy}
-          Name       | Version |   Schema   |
-               Description
-    -----------------+---------+------------+-------------------------------------------------------------------------------------------------------------
-    ----------------------------------------------------------------------------------------------------------------------------------------------
-     pg_stat_monitor | 2.0     | public     | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg
-    _stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information.
-     plpgsql         | 1.0     | pg_catalog | PL/pgSQL procedural language
-    (2 rows)
-    ```
+        ```{.bash data-prompt="$"}
+        $ psql -d my_template -c 'create extension pg_stat_monitor;'
+        ```     
+
+    4. Set the database as the template database.     
+
+        * Connect to the database:    
+
+           ```{.bash data-prompt="$"}
+           $ psql -d my_template
+           ```
+        
+        * Update the database    
+
+           ```sql
+           UPDATE pg_database SET datistemplate=true where datname='my_template';
+           ```    
+
+    5. Create a database using the new template    
+
+        ```{.bash data-prompt="$"}
+        $ createdb -T my_template dbtest
+        ```    
+
+    6. Check that `pg_stat_monitor` is accessible from the database    
+
+        ```{.bash data-prompt="$"}
+        $ psql -d dbtest -c '\dx';
+        ```
+        
+        Output:    
+
+        ```{.text .no-copy}
+              Name       | Version |   Schema   |
+                   Description
+        -----------------+---------+------------+-------------------------------------------------------------------------------------------------------------
+        ----------------------------------------------------------------------------------------------------------------------------------------------
+         pg_stat_monitor | 2.0     | public     | The pg_stat_monitor is a PostgreSQL Query Performance Monitoring tool, based on PostgreSQL contrib module pg
+        _stat_statements. pg_stat_monitor provides aggregated statistics, client information, plan details including plan, and histogram information.
+         plpgsql         | 1.0     | pg_catalog | PL/pgSQL procedural language
+        (2 rows)
+        ```
