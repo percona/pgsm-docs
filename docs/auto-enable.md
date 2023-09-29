@@ -1,11 +1,11 @@
 # Make `pg_stat_monitor` automatically accessible for every newly created database
 
-In PostgreSQL, a database is created by copying the [system template database](https://www.postgresql.org/docs/current/manage-ag-templatedbs.html) `template1`. To automatically create the `pg_stat_monitor` extension for every newly created database, you can do the following:
+In PostgreSQL, a database is created by copying the [system template database](https://www.postgresql.org/docs/current/manage-ag-templatedbs.html) `template1`. To automatically make `pg_stat_monitor` available for every newly created database, you can do the following:
 
-* modify the `template1` template database and create the extension for it. Then all databases you create have the `pg_stat_monitor` view available.
-* create a new system template database and create the extension for it. You need to define this template when you create a database to have the `pg_stat_monitor` view available for it.
+* modify the `template1` template database and enable the extension for it. Then all databases you create have the `pg_stat_monitor` view available.
+* create a new system template database and enable the extension for it. You need to define this template when you create a database to have the `pg_stat_monitor` view available for it.
 
-For either option, your user must have the superuser privileges. In the following procedures, the `postgres` user is used:
+For either option, your user must have the superuser privileges; the instructions below assume your are working as the `postgres` user:
 
 === "Modify `template1` database"
 
