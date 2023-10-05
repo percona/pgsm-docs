@@ -135,6 +135,8 @@ nav:
     - views.md
     - functions.md
   - pmm.md
+  - How to:
+    - Auto-create pg_stat_monitor for new databases: auto-enable.md
   - Reference:
     - pg_stat_monitor view reference:
       - reference.md

@@ -32,9 +32,11 @@ Load `pg_stat_monitor` at the start time by adding it to the `shared_preload_lib
         
         Replace the `XXX` with the PostgreSQL version you are using.
 
-## 2. Create the extension 
+After you have  added `pg_stat_monitor` to the `shared_preload_libraries`,  it starts collecting statistics data for all existing databases. To access this data, you need to [create the view](#2-create-the-extension-view) on every database that you wish to monitor. 
 
-Create the extension with the user that has the privileges of a superuser or a database owner. Connect to `psql` as a superuser for a database and run the [CREATE EXTENSION](https://www.postgresql.org/docs/current/sql-createextension.html) command:
+## 2. Create the extension view
+
+Create the extension view with the user that has the privileges of a superuser or a database owner. Connect to `psql` as a superuser for a database and run the [CREATE EXTENSION](https://www.postgresql.org/docs/current/sql-createextension.html) command:
 
 
 ```sql
@@ -43,7 +45,13 @@ CREATE EXTENSION pg_stat_monitor;
 
 After the setup is complete, you can see the stats collected by `pg_stat_monitor`.
 
-By default, `pg_stat_monitor` is created for the `postgres` database. To access the statistics from other databases, you need to create the extension for every database.
+By default, `pg_stat_monitor` is created for the `postgres` database. To access the statistics from other databases, you need to create the extension view for every database. 
+
+!!! note
+
+    When you create a new database `newdb`, `pg_stat_monitor` captures the statistics metrics, yet you cannot see them because the `pg_stat_monitor` view is not accessible for it. You can see the metrics for the `newdb` database either when you query it from the existing database `mydb` or after you explicitly create the `pg_stat_monitor` view for the `newdb` database.
+
+    To reduce this manual work, see the [How to automatically make the `pg_stat_monitor` view accessible for every newly created database](auto-enable.md) guide.
 
 ## Next steps
 
