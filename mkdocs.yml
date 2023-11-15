@@ -1,10 +1,12 @@
-# MkDocs configuration for Netlify builds
+# MkDocs general configuration
 
 site_name: pg_stat_monitor Documentation
 site_description: Documentation
 site_author: Percona LLC
-copyright: Percona LLC, &#169; 2023
-  
+copyright: >
+  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2023 — <a href="#__consent">Cookie Consent</a>
+
+ 
 repo_name: percona/pgsm-docs
 repo_url: https://github.com/percona/pgsm-docs
 edit_uri: edit/main/docs/
@@ -122,6 +124,7 @@ nav:
   - comparison.md
   - Release notes:
     - Release notes index: release-notes/release_notes.md
+    - release_notes/2.0.3.md
     - release_notes/2.0.2.md
     - release-notes/2.0.1.md
     - release-notes/2.0.0.md
