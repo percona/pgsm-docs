@@ -4,7 +4,7 @@ site_name: pg_stat_monitor Documentation
 site_description: Documentation
 site_author: Percona LLC
 copyright: >
-  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2023 — <a href="#__consent">Cookie Consent</a>
+  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2024 
 
  
 repo_name: percona/pgsm-docs
@@ -20,7 +20,8 @@ theme:
   favicon: _images/percona-favicon.ico
   custom_dir: _resource/overrides
   font:
-    text: Poppins
+    text: Roboto
+    code: Roboto Mono
 
   palette:
 
@@ -54,39 +55,50 @@ theme:
 extra_css:
   - https://unicons.iconscout.com/release/v3.0.3/css/line.css
   - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css
-  - css/version-select.css
-  - css/toctree.css
   - css/percona.css
   - css/extra.css
+  - css/design.css
+  - css/osano.css
 
 extra_javascript:
   - js/version-select.js
   - js/promptremover.js
+  - js/consent.js
 
 markdown_extensions:
-  - attr_list
-  - toc:
-      permalink: True
-  - admonition
-  - footnotes
-  - def_list   # https://michelf.ca/projects/php-markdown/extra/#def-list
-  - meta
-  - smarty:
-        smart_angled_quotes: true
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.tilde
-  - pymdownx.superfences
-  - pymdownx.tabbed:
-        alternate_style: true
-  - pymdownx.tilde
-  - pymdownx.superfences
-  - pymdownx.details
-  - pymdownx.highlight:
-        linenums: false
-  - pymdownx.emoji:
-       emoji_index: !!python/name:materialx.emoji.twemoji
-       emoji_generator: !!python/name:materialx.emoji.to_svg
+  attr_list: {}
+  md_in_html: {}
+  toc:
+    permalink: True
+  admonition: {}
+  footnotes: {}
+  def_list: {}   # https://michelf.ca/projects/php-markdown/extra/#def-list
+  meta: {}
+  smarty:
+    smart_angled_quotes: true
+  pymdownx.mark: {}
+  pymdownx.smartsymbols: {}
+  pymdownx.tilde: {}
+  pymdownx.tabbed:
+    alternate_style: true
+  pymdownx.snippets:  
+    base_path: ["snippets"]
+    auto_append:
+     - services-banner.md
+  pymdownx.superfences:
+    custom_fences:
+     - name: mermaid
+       class: mermaid
+       format: !!python/name:pymdownx.superfences.fence_code_format
+  pymdownx.details: {}
+  pymdownx.highlight:
+    use_pygments: true
+  pymdownx.emoji:
+    emoji_index: !!python/name:material.extensions.emoji.twemoji
+    emoji_generator: !!python/name:material.extensions.emoji.to_svg
+    options:
+      custom_icons:
+        - _resource/.icons
 
 
 plugins:
@@ -110,22 +122,34 @@ plugins:
 extra:
   version:
     provider: mike
+  analytics:
+    provider: google
+    property: G-J4J70BNH0G
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/emoticon-happy-outline
+          name: This page was helpful
+          data: 1
+          note: >-
+            Thanks for your feedback!
+        - icon: material/emoticon-sad-outline
+          name: This page could be improved
+          data: 0
+          note: >- 
+            Thank you for your feedback! Help us improve by using our 
+            <a href="https://docs.google.com/forms/d/1bkWACehjqlwA0AKf-qTJcXvYbOSYgze8iTPXjntqmNo/edit" target="_blank" rel="noopener">
+            feedback form</a>.
   homepage: https://docs.percona.com
-  consent:
-    title: Cookie consent
-    description: >- 
-      We use cookies to recognize your repeated visits and preferences, as well
-      as to measure the effectiveness of our documentation and whether users
-      find what they're searching for. With your consent, you're helping us to
-      make our documentation better. Read more about <a class="reference external" href="https://www.percona.com/20180524-cookie-policy" target="_blank">Percona Cookie Policy</a>.
 
 nav:
   - Home: index.md
   - comparison.md
   - Release notes:
     - Release notes index: release-notes/release_notes.md
-    - release_notes/2.0.3.md
-    - release_notes/2.0.2.md
+    - release-notes/2.0.4.md
+    - release-notes/2.0.3.md
+    - release-notes/2.0.2.md
     - release-notes/2.0.1.md
     - release-notes/2.0.0.md
     - release-notes/1.x.md

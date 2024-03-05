@@ -10,6 +10,6 @@ Below is the complete list of the release notes for every version of ``pg_stat_m
 
 ## Version 1.x release notes
 
-[Version 1.x release notes](release_notes-1.x.md)
+[Version 1.x release notes](1.x.md)
 
 
