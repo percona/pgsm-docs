@@ -16,14 +16,20 @@ use_directory_urls: false
 # Theme settings
 theme:
   name: material
-  logo: _images/percona-logo.svg
-  favicon: _images/percona-favicon.ico
+  logo: _images/postgresql-mark.svg
+  favicon: _images/postgresql-fav.svg
   custom_dir: _resource/overrides
   font:
     text: Roboto
     code: Roboto Mono
 
   palette:
+
+    # Automatic switching
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Color theme set to Automatic. Click to change
 
     # Light mode
     - media: "(prefers-color-scheme: light)"
@@ -59,6 +65,8 @@ extra_css:
   - css/extra.css
   - css/design.css
   - css/osano.css
+  - css/landing.css
+  - css/postgresql.css
 
 extra_javascript:
   - js/version-select.js
@@ -140,7 +148,6 @@ extra:
             Thank you for your feedback! Help us improve by using our 
             <a href="https://docs.google.com/forms/d/1bkWACehjqlwA0AKf-qTJcXvYbOSYgze8iTPXjntqmNo/edit" target="_blank" rel="noopener">
             feedback form</a>.
-  homepage: https://docs.percona.com
 
 nav:
   - Home: index.md
