@@ -11,7 +11,7 @@ The `pg_stat_monitor` is a Query Performance Monitoring tool for PostgreSQL. It 
 
 The `pg_stat_monitor` code is [in the dedicated repository](https://github.com/percona/pg_stat_monitor/blob/main).
 
-This repository contains the source files for [`pg_stat_monitor` documentation](https://docs.percona.com/pgsm-docs). The documentation is written in [Markdown markup language](https://www.markdownguide.org/) and is created using [MkDocs](https://www.mkdocs.org/). 
+This repository contains the source files for [`pg_stat_monitor` documentation](https://docs.percona.com/pg-stat-monitor/). The documentation is written in [Markdown markup language](https://www.markdownguide.org/) and is created using [MkDocs](https://www.mkdocs.org/). 
 
 ## Contributing
 
