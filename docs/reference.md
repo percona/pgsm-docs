@@ -85,7 +85,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 17 and h
      | jit_deform_count     | bigint               | Total number of tuple deform functions JIT-compiled by the statement | 
      jit_deform_time       | double precision | Total time spent by the statement on JIT-compiling tuple deform functions, in milliseconds | 
      | stats_since         | timestamp with time zone| Time at which statistics gathering started for this statement|
-     | minmax_stats_since  | timestamp with time zone| Time at which min/max statistics gathering started for this statement (fields min_plan_time, max_plan_time, min_exec_time and max_exec_time) |
+     | minmax_stats_since  | timestamp with time zone| Time at which min/max statistics gathering started for this statement (fields min_plan_time, max_plan_time, min_exec_time and max_exec_time). Please note that unlike  `pg_stat_statements`, `pg_stat_monitor` doesn't have an option to reset min/max counters, so `minmax_stats_since` always equals to `stats_since` |
      
 
 ## PostgreSQL 16
