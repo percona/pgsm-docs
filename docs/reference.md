@@ -142,8 +142,8 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 17 and h
      | temp_blks_written  | bigint                      | Total number of blocks of temporary files written to a drive
      | blk_read_time      | double precision            | Total waiting time (in ms) for reading blocks
      | blk_write_time     | double precision            | Total waiting time (in ms) for writing blocks to a drive
-     | temp_blk_read_time | double precision            | Total number of temp blocks read by the statement 
-     | temp_blk_write_time| double precision            | Total number of temp blocks written by the statement
+     | temp_blk_read_time | double precision            | Total time the statement spent reading temporary file blocks, in milliseconds
+     | temp_blk_write_time| double precision            | Total time the statement spent writing temporary file blocks, in milliseconds
      | resp_calls         | text[]                      | Call histogram
      | cpu_user_time      | double precision            | The time (in ms) the CPU spent on running the query
      | cpu_sys_time       | double precision            | The time (in ms) the CPU spent on executing the kernel code
