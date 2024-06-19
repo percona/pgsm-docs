@@ -140,8 +140,8 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 17 and h
      | local_blks_written | bigint                      | Total number of local blocks  written simultaneously to a drive during the query execution
      | temp_blks_read     | bigint                      | Total number of blocks of temporary files read from a drive. Temporary files are used when there's not enough memory to execute a query
      | temp_blks_written  | bigint                      | Total number of blocks of temporary files written to a drive
-     | blk_read_time      | double precision            | Total waiting time (in ms) for reading blocks
-     | blk_write_time     | double precision            | Total waiting time (in ms) for writing blocks to a drive
+     | blk_read_time      | double precision            | Total time the statement spent reading data file blocks, in milliseconds
+     | blk_write_time     | double precision            | Total time the statement spent writing data file blocks, in milliseconds
      | temp_blk_read_time | double precision            | Total time the statement spent reading temporary file blocks, in milliseconds
      | temp_blk_write_time| double precision            | Total time the statement spent writing temporary file blocks, in milliseconds
      | resp_calls         | text[]                      | Call histogram
