@@ -57,12 +57,22 @@ Choose the installation source:
 
 === "PGXN"
 
-    You can install `pg_stat_monitor` from PGXN (PostgreSQL Extensions Network) using the [PGXN client](https://pgxn.github.io/pgxnclient/).
+    You can install `pg_stat_monitor` from [PGXN (PostgreSQL Extensions Network)](https://pgxn.org/) using the [PGXN client](https://pgxn.github.io/pgxnclient/).
 
     Use the following command:
 
     ```{.bash data-prompt="$"}
     $ pgxn install pg_stat_monitor
+    ```
+
+=== "Trunk"
+
+    You can install `pg_stat_monitor` from [Trunk (A PostgreSQL Extensions Registry)](https://pgt.dev/) using the [Trunk CLI](https://github.com/tembo-io/trunk?tab=readme-ov-file#installation).
+
+    Use the following command:
+
+    ```{.bash data-prompt="$"}
+    $ trunk install pg_stat_monitor
     ```
 
 === "Build from source code"
