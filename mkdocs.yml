@@ -148,8 +148,19 @@ extra:
             feedback form</a>.
 
 nav:
-  - Home: index.md
-  - comparison.md
+  - About: 
+    - "pg_stat_monitor": index.md
+    - comparison.md
+  - Get started:
+    - "Install": "install.md"
+    - "Set up": "setup.md"
+  - Usage: "user_guide.md"
+  - Configuration: configuration.md
+  - Upgrade: upgrade.md
+  - pmm.md
+  - How to:
+    - Auto-create pg_stat_monitor for new databases: auto-enable.md
+  - Uninstall: uninstall.md
   - Release notes:
     - Release notes index: release-notes/release_notes.md
     - release-notes/2.0.4.md
@@ -158,24 +169,12 @@ nav:
     - release-notes/2.0.1.md
     - release-notes/2.0.0.md
     - release-notes/1.x.md
-  - Install and set up:
-    - "Install": "install.md"
-    - "Set up": "setup.md"
-  - Upgrade: upgrade.md
-  - User guide:
-    - "Features": "user_guide.md"
-    - views.md
-    - functions.md
-  - pmm.md
-  - How to:
-    - Auto-create pg_stat_monitor for new databases: auto-enable.md
   - Reference:
-    - pg_stat_monitor view reference:
-      - reference.md
-    - configuration.md
-  - Uninstall: uninstall.md
+    - Views: views.md
+    - functions.md
+    - reference.md
+    - copyright.md
+    - trademark-policy.md
   - contributing.md
-  - copyright.md
-  - trademark-policy.md
 # - Version Selector: "../"
 
