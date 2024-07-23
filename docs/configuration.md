@@ -240,4 +240,4 @@ Type: boolean. Default: YES
 
 Server restart - NO
 
-Controls whether name of the application that executes query should be recorded or not. Application name is part of entry key, so disabling it will cause cumulation the same-query statistics issued from different applications in the same entry. Please note that application name trackin is expensive operation so you can face perfomance degradation in case of big nuber of connections, so it's recommeded to disable this feature for such instances.
+Controls whether name of the application that executes query should be recorded or not. Application name is part of entry key, so disabling it will cause cumulation the same-query statistics issued from different applications in the same entry. Please note that application name tracking is expensive operation so you can face perfomance degradation correlated to number of connections, so it's recommeded to disable this feature.
