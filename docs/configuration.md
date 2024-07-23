@@ -43,6 +43,7 @@ The following table shows setup options for each configuration parameter and whe
 | [pg_stat_monitor.pgsm_track](#pg_stat_monitorpgsm_track) |  :x:  |  :x:  |   :x:  | :white_check_mark: |
 | [pg_stat_monitor.pgsm_extract_comments](#pg_stat_monitorpgsm_extract_comments)|  :x:  |  :x:  |   :x:  | :white_check_mark: |
 | [pg_stat_monitor.pgsm_track_planning](#pg_stat_monitorpgsm_track_planning) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
+| [pg_stat_monitor.pgsm_track_application_names](#pg_stat_monitorpgsm_track_application_names) |   :white_check_mark:  |  :white_check_mark:  |   :x: |  :x:  |
 
 ## Parameters description
 
@@ -232,3 +233,11 @@ Server restart - YES
 Available for PostgreSQL 14 and later versions. 
 
 This parameter instructs ``pg_stat_monitor`` to monitor query planning statistics. 
+
+### pg_stat_monitor.pgsm_track_application_names
+
+Type: boolean. Default: YES
+
+Server restart - NO
+
+Controls whether name of the application that executes query should be recorded or not. Application name is part of entry key, so disabling it will cause cumulation the same-query statistics issued from different applications in the same entry. Please note that application name trackin is expensive operation so you can face perfomance degradation in case of big nuber of connections, so it's recommeded to disable this feature for such instances.
