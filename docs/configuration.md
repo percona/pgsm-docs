@@ -22,28 +22,28 @@ To amend the `pg_stat_monitor` configuration, use the General Configuration Unit
 
 ## Parameters
 
-The following table shows setup options for each configuration parameter and whether the server restart is required to apply the parameter's value:
+The following table shows context for each configuration parameter. Global parameters applied during server startup, so their change requires server restart. Session parameters can be set at any time.
 
-| Parameter name                                | SET | ALTER SYSTEM SET  |  server restart   | configuration reload
-| ----------------------------------------------|-----|-------------------|-------------------|---------------------
-| [pg_stat_monitor.pgsm_max](#pg_stat_monitorpgsm_max) | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_query_max_len](#pg_stat_monitorpgsm_query_max_len)            | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_track_utility](#pg_stat_monitorpgsm_track_utility)            | :white_check_mark: |:white_check_mark: |:x: | :white_check_mark:
-| [pg_stat_monitor.pgsm_normalized_query](#pg_stat_monitorpgsm_normalized_query)         | :white_check_mark: |:white_check_mark: |:x: | :white_check_mark:
-| [pg_stat_monitor.pgsm_max_buckets](#pg_stat_monitorpgsm_max_buckets)              | :x:                |:x:                |:white_check_mark: | :white_check_mark:
-| [pg_stat_monitor.pgsm_bucket_time](#pg_stat_monitorpgsm_bucket_time)              |  :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_histogram_min](#pg_stat_monitorpgsm_histogram_min) |  :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_histogram_max](#pg_stat_monitorpgsm_histogram_max)        |  :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_histogram_buckets](#pg_stat_monitorpgsm_histogram_buckets)   | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_query_shared_buffer](#pg_stat_monitorpgsm_query_shared_buffer)      | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_overflow_target](#pg_stat_monitorpgsm_overflow_target) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_enable_pgsm_query_id](#pg_stat_monitorpgsm_enable_pgsm_query_id) |   :x:  |  :x:  |   :white_check_mark: |  :x:  | 
-| [pg_stat_monitor.pgsm_enable_query_plan](#pg_stat_monitorpgsm_enable_query_plan)  |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_track](#pg_stat_monitorpgsm_track) |  :x:  |  :x:  |   :x:  | :white_check_mark: |
-| [pg_stat_monitor.pgsm_extract_comments](#pg_stat_monitorpgsm_extract_comments)|  :x:  |  :x:  |   :x:  | :white_check_mark: |
-| [pg_stat_monitor.pgsm_track_planning](#pg_stat_monitorpgsm_track_planning) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_track_application_names](#pg_stat_monitorpgsm_track_application_names) |   :white_check_mark:  |  :white_check_mark:  |   :x: |  :x:  |
+| Parameter name                                                                               | Global             | Session            |
+| -------------------------------------------------------------------------------------------- | ------------------ | ------------------ |
+| [pg_stat_monitor.pgsm_max](#pg_stat_monitorpgsm_max)                                         | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_query_max_len](#pg_stat_monitorpgsm_query_max_len)                     | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_max_buckets](#pg_stat_monitorpgsm_max_buckets)                         | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_bucket_time](#pg_stat_monitorpgsm_bucket_time)                         | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_histogram_min](#pg_stat_monitorpgsm_histogram_min)                     | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_histogram_max](#pg_stat_monitorpgsm_histogram_max)                     | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_histogram_buckets](#pg_stat_monitorpgsm_histogram_buckets)             | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_query_shared_buffer](#pg_stat_monitorpgsm_query_shared_buffer)         | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_overflow_target](#pg_stat_monitorpgsm_overflow_target)                 | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_track_utility](#pg_stat_monitorpgsm_track_utility)                     | :x:                | :white_check_mark: |
+| [pg_stat_monitor.pgsm_enable_pgsm_query_id](#pg_stat_monitorpgsm_enable_pgsm_query_id)       | :x:                | :white_check_mark: |
+| [pg_stat_monitor.pgsm_normalized_query](#pg_stat_monitorpgsm_normalized_query)               | :x:                | :white_check_mark: |
+| [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow)                 | :white_check_mark: | :x:                |
+| [pg_stat_monitor.pgsm_enable_query_plan](#pg_stat_monitorpgsm_enable_query_plan)             | :x:                | :white_check_mark: |
+| [pg_stat_monitor.pgsm_extract_comments](#pg_stat_monitorpgsm_extract_comments)               | :x:                | :white_check_mark: |
+| [pg_stat_monitor.pgsm_track](#pg_stat_monitorpgsm_track)                                     | :x:                | :white_check_mark: |
+| [pg_stat_monitor.pgsm_track_planning](#pg_stat_monitorpgsm_track_planning)                   | :x:                | :white_check_mark: |
+| [pg_stat_monitor.pgsm_track_application_names](#pg_stat_monitorpgsm_track_application_names) | :x:                | :white_check_mark: |
 
 ## Parameters description
 
@@ -171,7 +171,7 @@ This parameter defines the shared memory limit (in MB) allocated for a query tra
 
 Type: boolean. Default: YES
 
-Server restart - NO
+Server restart - YES
 
 Controls whether pg_stat_monitor can grow beyond shared memory into swap space.
 
@@ -179,7 +179,7 @@ Controls whether pg_stat_monitor can grow beyond shared memory into swap space.
 
 Type: boolean (YES / NO). Default: NO
 
-Server restart - NO
+Server restart - YES
 
 Starting with version 2.0.0, this option is deprecated. Use the [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) instead. 
 
