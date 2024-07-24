@@ -18,7 +18,7 @@ Load `pg_stat_monitor` at the start time by adding it to the `shared_preload_lib
 
     !!! warning
    
-        It's make sence to disable application name tracking as it's expensive feature and may cause perfomance degradation proportional to connections number.
+        It makes sense to disable the application name tracking because it may cause perfomance degradation proportional to the number of connections.
 
         ```sql
         ALTER SYSTEM SET pg_stat_monitor.pgsm_track_application_names = 'no';
