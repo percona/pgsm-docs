@@ -16,7 +16,16 @@ Load `pg_stat_monitor` at the start time by adding it to the `shared_preload_lib
     >
     >`pg_stat_monitor` **must** follow `pg_stat_statements`. For example, `ALTER SYSTEM SET shared_preload_libraries = 'foo, pg_stat_statements, pg_stat_monitor'`.
 
-2. Start or restart the `postgresql` instance to apply the changes.
+    !!! warning
+   
+        It makes sense to disable the application name tracking because it may cause perfomance degradation proportional to the number of connections.
+
+        ```sql
+        ALTER SYSTEM SET pg_stat_monitor.pgsm_track_application_names = 'no';
+        ```
+   
+
+3. Start or restart the `postgresql` instance to apply the changes.
 
     === "On Debian and Ubuntu"
 
