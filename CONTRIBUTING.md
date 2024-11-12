@@ -13,7 +13,7 @@ If you'd like to submit a code patch, follow the [Contributing guide in `pg_stat
 `pg_stat_monitor` documentation is written in Markdown language, so you can 
 [edit it online via GitHub](#edit-documentation-online-vi-github). If you wish to have more control over the doc process, jump to how to [edit documentation locally](#edit-documentation-locally). 
 
-Before you start, learn what [git], [MkDocs] and [Docker] are and what [Markdown] is and how to write it. For your convenience, there's also a cheat sheet to help you with the syntax. 
+Before you start, learn what [git], [MkDocs] and [Docker] are and what [Markdown] is and how to write it. For your convenience, there's also a [cheat sheet](https://www.markdownguide.org/cheat-sheet/) to help you with the syntax. 
 
 The doc files are in the `docs` directory.
 
