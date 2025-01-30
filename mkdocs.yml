@@ -4,7 +4,7 @@ site_name: pg_stat_monitor Documentation
 site_description: Documentation
 site_author: Percona LLC
 copyright: >
-  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2024 
+  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2025 
 
  
 repo_name: percona/pgsm-docs
@@ -89,8 +89,8 @@ markdown_extensions:
     alternate_style: true
   pymdownx.snippets:  
     base_path: ["snippets"]
-    auto_append:
-     - services-banner.md
+#    auto_append:
+#     - services-banner.md
   pymdownx.superfences:
     custom_fences:
      - name: mermaid
@@ -151,6 +151,7 @@ nav:
   - About: 
     - "pg_stat_monitor": index.md
     - comparison.md
+  - get-help.md
   - Get started:
     - "Install": "install.md"
     - "Set up": "setup.md"
