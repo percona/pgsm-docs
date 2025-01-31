@@ -51,7 +51,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 17 and h
      | max_exec_time           | double precision           | The maximum time (in ms) it took to execute a query
      | mean_exec_time          | double precision           | The mean (average) time (in ms) it took to execute a query
      | stddev_exec_time        | double precision           | The standard deviation of time (in ms) spent on executing a query
-     | rows                    | bigint                     | The number of rows retrieved when executing a query
+     | rows                    | bigint                     | The number of rows affected by database operations. Specifically, this is the number of records retrieved by a `SELECT` operation, added by an `INSERT` operation, modified by an `UPDATE` operation or removed by a `DELETE` operation 
      | shared_blks_hit    | bigint                     | Shows the total number of shared memory blocks returned from the cache
      | shared_blks_read   | bigint                     | Shows the total number of shared blocks returned not from the cache
      | shared_blks_dirtied | bigint                     | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)
@@ -129,7 +129,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 17 and h
      | max_exec_time           | double precision           | The maximum time (in ms) it took to execute a query
      | mean_exec_time          | double precision           | The mean (average) time (in ms) it took to execute a query
      | stddev_exec_time        | double precision           | The standard deviation of time (in ms) spent on executing a query
-     | rows                    | bigint                     | The number of rows retrieved when executing a query
+     | rows                    | bigint                     | The number of rows affected by database operations. Specifically, this is the number of records retrieved by a `SELECT` operation, added by an `INSERT` operation, modified by an `UPDATE` operation or removed by a `DELETE` operation 
      | shared_blks_hit    | bigint                     | Shows the total number of shared memory blocks returned from the cache
      | shared_blks_read   | bigint                     | Shows the total number of shared blocks returned not from the cache
      | shared_blks_dirtied | bigint                     | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)
@@ -201,7 +201,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 17 and h
      max_exec_time           | double precision           | The maximum time (in ms) it took to execute a query
      mean_exec_time          | double precision           | The mean (average) time (in ms) it took to execute a query
      stddev_exec_time        | double precision           | The standard deviation of time (in ms) spent on executing a query
-     rows                    | bigint                     | The number of rows retrieved when executing a query
+     rows                    | bigint                     | The number of rows affected by database operations. Specifically, this is the number of records retrieved by a `SELECT` operation, added by an `INSERT` operation, modified by an `UPDATE` operation or removed by a `DELETE` operation 
      shared_blks_hit    | bigint                     | Shows the total number of shared memory blocks returned from the cache
      shared_blks_read   | bigint                     | Shows the total number of shared blocks returned not from the cache
      shared_blks_dirtied | bigint                     | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)
@@ -269,7 +269,7 @@ The following is the view for PostgreSQL 14
     | max_exec_time      | double precision | The maximum time (in ms) it took to execute a query
     | mean_exec_time     | double precision | The mean (average) time (in ms) it took to execute a query 
     | stddev_exec_time   | double precision | The standard deviation of time (in ms) spent on executing a query
-    | rows               | bigint       | The number of rows retrieved when executing a query
+    | rows                    | bigint                     | The number of rows affected by database operations. Specifically, this is the number of records retrieved by a `SELECT` operation, added by an `INSERT` operation, modified by an `UPDATE` operation or removed by a `DELETE` operation 
     | shared_blks_hit    | bigint       | Shows the total number of shared memory blocks returned from the cache
     | shared_blks_read   | bigint       | Shows the total number of shared blocks returned not from the cache
     | shared_blks_dirtied | bigint      | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)
@@ -334,7 +334,7 @@ The following is the view for PostgreSQL 13
     | max_exec_time      | double precision | The maximum time (in ms) it took to execute a query
     | mean_exec_time     | double precision | The mean (average) time (in ms) it took to execute a query 
     | stddev_exec_time   | double precision | The standard deviation of time (in ms) spent on executing a query
-    | rows               | bigint       | The number of rows retrieved when executing a query
+    | rows                    | bigint                     | The number of rows affected by database operations. Specifically, this is the number of records retrieved by a `SELECT` operation, added by an `INSERT` operation, modified by an `UPDATE` operation or removed by a `DELETE` operation 
     | shared_blks_hit    | bigint       | Shows the total number of shared memory blocks returned from the cache
     | shared_blks_read   | bigint       | Shows the total number of shared blocks returned not from the cache
     | shared_blks_dirtied | bigint      | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)
@@ -398,7 +398,7 @@ The following is the view for PostgreSQL 11 and 12:
     | max_time          | double precision| Maximum time (in ms) spent on the statement
     | mean_time         | double precision| The mean (average) time (in ms) spent on the statement
     | stddev_time       | double precision| The standard deviation of time (in ms) spent on the statement|
-    | rows              | bigint   | The number of rows retrieved when executing a query|
+    | rows                    | bigint                     | The number of rows affected by database operations. Specifically, this is the number of records retrieved by a `SELECT` operation, added by an `INSERT` operation, modified by an `UPDATE` operation or removed by a `DELETE` operation 
     | shared_blks_hit   | bigint   | Shows the total number of shared memory blocks returned from the cache|
     | shared_blks_read  | bigint   | Shows the total number of shared blocks returned not from the cache
     | shared_blks_dirtied| bigint  | Shows the number of shared memory blocks "dirtied" by the query execution (i.e. a query modified at least one tuple in a block and this block must be written to a drive)|
