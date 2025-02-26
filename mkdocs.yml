@@ -164,6 +164,7 @@ nav:
   - Uninstall: uninstall.md
   - Release notes:
     - Release notes index: release-notes/release_notes.md
+    - release-notes/2.1.1.md
     - release-notes/2.1.0.md
     - release-notes/2.0.4.md
     - release-notes/2.0.3.md

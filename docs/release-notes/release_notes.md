@@ -4,6 +4,7 @@ Below is the complete list of the release notes for every version of ``pg_stat_m
 
 ## Version 2.x release notes
 
+* [2.1.1](2.1.1.md) ({{date.2_1_1}})
 * [2.1.0](2.1.0.md) ({{date.2_1_0}})
 * [2.0.4](2.0.4.md) (2023-12-14)
 * [2.0.3](2.0.3.md) (2023-11-29)
