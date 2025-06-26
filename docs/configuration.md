@@ -171,7 +171,7 @@ This parameter defines the shared memory limit (in MB) allocated for a query tra
 
 Type: boolean. Default: YES
 
-Server restart - NO
+Server restart - YES
 
 Controls whether pg_stat_monitor can grow beyond shared memory into swap space.
 
