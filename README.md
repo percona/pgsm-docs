@@ -1,6 +1,5 @@
 # pg_stat_monitor documentation
 
-
 Welcome to `pg_stat_monitor` documentation!
 
 ## Overview
@@ -16,7 +15,7 @@ This repository contains the source files for [`pg_stat_monitor` documentation](
 ## Contributing
 
 We welcome all contributors. For how to contribute to documentation, read the [Contributing guide](https://github.com/percona/pgsm-docs/blob/main/CONTRIBUTING.md).
- 
+
 ## Licensing
 
-Percona is dedicated to **keeping open source open**. Wherever possible, we strive to include permissive licensing for both our software and documentation. For this project, we are using the Apache License 2.0 license. 
+Percona is dedicated to **keeping open source open**. Wherever possible, we strive to include permissive licensing for both our software and documentation. For this project, we are using the Apache License 2.0 license.
