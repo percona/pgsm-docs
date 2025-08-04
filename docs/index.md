@@ -5,8 +5,6 @@
 These insights allow database users to understand query origins, execution, planning statistics and details, query information, and metadata. This significantly improves observability, enabling users to debug and tune query performance.
 
 ## How does pg_stat_monitor work?
-=======
-    This is the documentation for the latest release, **`pg_stat_monitor` {{release}}** ([Release notes](release-notes/{{release}}.md)). 
 
 `pg_stat_monitor` is developed on the basis of `pg_stat_statements` as its more advanced replacement. While `pg_stat_statements` provides ever-increasing metrics, `pg_stat_monitor` aggregates the collected data, saving user efforts for doing it themselves. `pg_stat_monitor`  stores statistics in configurable time-based units – _buckets_. Such bucket-based data collection allows focusing on statistics generated for shorter time periods and makes query timing information such as max/min/mean time more accurate.
 
