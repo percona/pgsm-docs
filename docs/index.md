@@ -7,7 +7,7 @@ These insights allow database users to understand query origins, execution, plan
 
     This is the documentation for the latest release, **`pg_stat_monitor` {{release}}** ([Release notes](release-notes/{{release}}.md)). 
 
-## How `pg_stat_monitor` works?
+## How does `pg_stat_monitor` work?
 
 `pg_stat_monitor` is developed on the basis of `pg_stat_statements` as its more advanced replacement. While `pg_stat_statements` provides ever-increasing metrics, `pg_stat_monitor` aggregates the collected data, saving user efforts for doing it themselves. `pg_stat_monitor`  stores statistics in configurable time-based units – _buckets_. Such bucket-based data collection allows focusing on statistics generated for shorter time periods and makes query timing information such as max/min/mean time more accurate.
 
@@ -37,16 +37,16 @@ These insights allow database users to understand query origins, execution, plan
 * PostgreSQL provided by PostgreSQL Global Development Group (PGDG) 
 * [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution).
 
-### Supported  versions
+### Supported versions
 
-The `pg_stat_monitor` should work on the latest version of both [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) and PostgreSQL, but is only tested with these versions:
+`pg_stat_monitor` should work on the latest version of both [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) and PostgreSQL, but is only tested with these versions:
 
 | **Distribution** | **Version**     | **Provider** |
 | ---------------- | --------------- | ------------ |
 |[Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution)| [11](https://www.percona.com/downloads/percona-postgresql-11/LATEST/), [12](https://www.percona.com/downloads/postgresql-distribution-12/LATEST/), [13](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/), [14](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/), [15](https://www.percona.com/downloads/postgresql-distribution-15/LATEST/), [16](https://www.percona.com/downloads/postgresql-distribution-16/LATEST/) and [17](https://www.percona.com/downloads/postgresql-distribution-17/LATEST/)| Percona|
 | [PostgreSQL](https://www.postgresql.org/download/)       | 11, 12, 13, 14, 15, 16 and 17 | PostgreSQL Global Development Group (PGDG) |
 
-The RPM (for RHEL and CentOS) and the DEB (for Debian and Ubuntu) packages are available from Percona repositories for PostgreSQL versions [11](https://www.percona.com/downloads/percona-postgresql-11/LATEST/), [12](https://www.percona.com/downloads/postgresql-distribution-12/LATEST/), [13](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/), [14](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/), [15](https://www.percona.com/downloads/postgresql-distribution-15/LATEST/), [16](https://www.percona.com/downloads/postgresql-distribution-16/LATEST/) and [17](https://www.percona.com/downloads/postgresql-distribution-17/LATEST/).
+RPM (for RHEL and CentOS) and DEB (for Debian and Ubuntu) packages are available from Percona repositories for PostgreSQL versions [11](https://www.percona.com/downloads/percona-postgresql-11/LATEST/), [12](https://www.percona.com/downloads/postgresql-distribution-12/LATEST/), [13](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/), [14](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/), [15](https://www.percona.com/downloads/postgresql-distribution-15/LATEST/), [16](https://www.percona.com/downloads/postgresql-distribution-16/LATEST/) and [17](https://www.percona.com/downloads/postgresql-distribution-17/LATEST/).
 
 The RPM packages are also available in the official PostgreSQL (PGDG) YUM repositories.
 
