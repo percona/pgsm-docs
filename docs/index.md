@@ -46,6 +46,10 @@ RPM (for RHEL and CentOS) and DEB (for Debian and Ubuntu) packages are available
 
 The RPM packages are also available in the official PostgreSQL (PGDG) YUM repositories.
 
+## Related topics
+
+Get started with the installation or read the latest release notes:
+
 <div data-grid markdown><div data-banner markdown>
 
 ### :material-progress-download: Installation guides { .title }
@@ -61,5 +65,21 @@ Get started quickly with the step-by-step installation instructions.
 Learn about the releases and changes in the Distribution.
 
 [Check what’s new in the latest version :material-arrow-right:](release-notes/{{release}}.md){.md-button}
+
+</div><div data-banner markdown>
+
+### :material-cog: Configure `pg_stat_monitor` { .title }
+
+Learn how to enable and customize `pg_stat_monitor`.
+
+[Configuration guide :material-arrow-right:](configuration.md){.md-button}
+
+</div><div data-banner markdown>
+
+### :material-autorenew: Upgrade `pg_stat_monitor` { .title }
+
+Learn how to upgrade `pg_stat_monitor` safely.
+
+[Upgrade guide :material-arrow-right:](upgrade.md){.md-button}
 
 </div></div>
