@@ -1,6 +1,6 @@
 # MkDocs general configuration
 
-site_name: Percona Query Performance Monitoring for PostgreSQL
+site_name: Percona Query Performance Monitoring for PostgreSQL Documentation
 site_description: Documentation
 site_author: Percona LLC
 copyright: >
