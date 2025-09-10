@@ -10,7 +10,7 @@ FROM pg_settings
 WHERE name like 'pg_stat_monitor.%';
 ```
 
-To amend the `pg_stat_monitor` configuration, use the General Configuration Unit (GCU) system. 
+To amend the `pg_stat_monitor` configuration, use the General Configuration Unit (GCU) system.
 
 !!! admonition "GUC variable types"
 
@@ -49,36 +49,149 @@ The following table shows setup options for each configuration parameter and whe
 
 ### pg_stat_monitor.pgsm_max
 
-Values:
+**Default**: 256
+**Min / Max**: 10 / 10240
+**Restart required**: YES
+**Context**: postmaster
 
-- Min: 10
-- Max: 10240
-- Default: 256
-
-Server restart - YES
-
-This parameter defines the limit of shared memory (in MB) for ``pg_stat_monitor``. This memory is used by buckets in a circular manner. The memory is divided between the buckets equally, at the start of the PostgreSQL. 
+Limits the shared memory (in MB) used by `pg_stat_monitor`. Memory is divided equally across buckets and allocated at PostgreSQL startup.
 
 ### pg_stat_monitor.pgsm_query_max_len
 
-Values:
+**Default**: 2048
+**Min / Max**: 1024 / 2147483647
+**Restart required**: YES
+**Context**: postmaster
 
-- Min: 1024
-- Max: 2147483647
-- Default: 2048
+Sets the maximum length of a query string (in characters) that `pg_stat_monitor` will track. Queries longer than this value are truncated to the specified length. This helps avoid excessive shared memory usage.
 
-Server restart - YES
+### pg_stat_monitor.pgsm_max_buckets
 
-Sets the maximum size of the query. This parameter can only be set at the start of PostgreSQL. For long queries, the query is truncated to that particular length. This is to avoid unnecessary usage of shared memory. 
+**Default**: 10
+**Min / Max**: 1 / 20000
+**Restart required**: YES
+**Context**: postmaster
 
+Defines how many buckets `pg_stat_monitor` uses for collecting and aggregating information.  
+Each bucket stores query information for the duration defined by [`pg_stat_monitor.pgsm_bucket_time`](#pg_stat_monitorpgsm_bucket_time).  
+
+**Example**:
+
+If set to `2`, `pg_stat_monitor` will:
+
+ 1. Collect query information in the first bucket
+ 2. After the bucket's time expires, defined by the [pg_stat_monitor.pgsm_bucket_time](#pg_stat_monitorpgsm_bucket_time) parameter, switch to the second bucket, reset all counters, and repeat
+
+### pg_stat_monitor.pgsm_bucket_time
+
+**Default**: 60
+**Min / Max**: 1 / 2147483647
+**Restart required**: YES
+**Context**: postmaster
+
+Defines how long each bucket remains active (in seconds). When the time expires, `pg_stat_monitor` switches to the next bucket and resets its counters.
+
+### pg_stat_monitor.pgsm_histogram_min
+
+**Default**: 1
+**Min / Max**: 0 / 50000000
+**Restart required**: YES
+**Context**: postmaster
+
+Defines the minimum execution time for a query to appear in histogram output (in ms).
+
+!!! note
+    Starting with version 2.0.0 you can set this parameter as a decimal value which allows query output with execution time less than 1 ms.
+
+### pg_stat_monitor.pgsm_histogram_max
+
+**Default**: 10000
+**Min / Max**: 10 / 50000000
+**Restart required**: YES
+**Context**: postmaster
+
+Defines the maximum execution time for a query to appear in histogram output (in ms).
+
+!!! note
+    Starting with version 2.0.0, you can set a decimal value which allows fine-tuning the output with more precision.
+
+### pg_stat_monitor.pgsm_histogram_buckets
+
+**Default**: 20
+**Min / Max**: 2 / 50
+**Restart required**: YES
+**Context**: postmaster
+
+Sets the maximum number of buckets used to generate the histogram output.
+
+!!! note
+    - Starting with version 1.1.0, the maximum allowed value is 50.
+    - Starting with version 2.0.0, on server startup `pg_stat_monitor` calculates the maximum number of buckets that can be created from the time range specified in `pgsm_histogram_min` and `pgsm_histogram_max`. If the calculated maximum is lower than your configured value, a warning is written to the server log.
+
+### pg_stat_monitor.pgsm_query_shared_buffer
+
+**Default**: 20
+**Min / Max**: 1 / 10000
+**Restart required**: YES
+**Context**: postmaster
+
+Defines the maximum shared memory (in MB) that `pg_stat_monitor` allocates for tracking queries.
+
+### pg_stat_monitor.pgsm_overflow_target (deprecated)
+
+**Default**: 1
+**Min / Max**: 0 / 1
+**Restart required**: YES
+**Context**: postmaster
+
+Sets the overflow target for `pg_stat_monitor`.
+
+!!! note
+    Starting with version 2.0.0, this option is deprecated. Use the [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) instead.
+
+**Historical defaults:**
+
+- Version 1.0.0 and earlier: `1`
+- Version 1.1.1: `0`
 
 ### pg_stat_monitor.pgsm_track_utility
 
-Type: boolean (YES / NO). Default: YES
+**Default**: 1
+**Min / Max**: 0 / 1
+**Restart required**: NO
+**Context**: client
 
-Server restart - NO
+Sets tracking of utility commands by `pg_stat_monitor`. Ignored utility commands are `SELECT`, `INSERT`, `UPDATE`, and `DELETE`.
 
-This parameter controls whether utility commands are tracked by the module. Utility commands are all those other than ``SELECT``, ``INSERT``, ``UPDATE``, and ``DELETE``. Starting with version 1.1.0, the values are changed from 1 / 0 to YES / NO.
+**Historical defaults:**
+
+- Version 1.1.0 and later: values now displayed as YES / NO instead of 1 / 0
+
+### pg_stat_monitor.pgsm_track_application_names
+
+**Default**: 1
+**Min / Max**: 0 / 1
+**Restart required**: NO
+**Context**: client
+
+Controls whether `pg_stat_monitor` records the application name that executes the query. If enabled, the application name becomes a part of the entry key.
+
+!!! note
+    Tracking application names is resource-intensive and may cause performance degradation, especially with a large number of connections.
+
+Disabling this feature can improve performance by consolidating statistics for the same query across different applications.
+
+### pg_stat_monitor.pgsm_enable_pgsm_query_id
+
+**Default**: 1
+**Min / Max**: 0 / 1
+**Restart required**: NO
+**Context**: client
+
+Controls the generation of a unique hash code that identifies the query. This hash code is independent of PostgreSQL server version, constants within the query, database, user or schema. Its usage allows getting insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas.
+
+!!! note
+    Enabling this parameter results in additional load on the database.
 
 ### pg_stat_monitor.pgsm_normalized_query
 
@@ -92,81 +205,6 @@ But in most cases users like the queries with a placeholder. This parameter is u
 
 In version 1.0.0 and earlier, the parameter type is "integer" and the default value is 1. This means that the query shows placeholders instead of the actual data
 
-### pg_stat_monitor.pgsm_max_buckets
-
-Values:
-
-- Min: 1
-- Max: 20000
-- Default: 10
-
-Server restart - YES
-
-``pg_stat_monitor`` accumulates the information in the form of buckets. All the aggregated information is bucket based. This parameter is used to set the number of buckets the system can have. For example, if this parameter is set to 2, then the system will create two buckets. First, the system will add all the information into the first bucket. After its lifetime (defined in the [pg_stat_monitor.pgsm_bucket_time](#pg-stat-monitorpgsm-bucket-time) parameter) expires, it will switch to the second bucket, reset all the counters and repeat the process.
-
-
-### pg_stat_monitor.pgsm_bucket_time
-
-Values:
-
-- Min: 1
-- Max: 2147483647
-- Default: 60
-
-Server restart - YES
-
-This parameter is used to set the lifetime of the bucket. System switches between buckets on the basis of [pg_stat_monitor.pgsm_bucket_time](#pg-stat-monitorpgsm-bucket-time).
-
-### pg_stat_monitor.pgsm_histogram_min
-
-Values:
-
-- Min: 0
-- Max: 50000000
-- Default: 1
-
-Server restart - YES
-
-The minimum execution time for a query to appear in histogram output (in ms). Starting with version 2.0.0, this parameter can be set as a decimal value, allowing to output queries with the execution time less than 1 ms.
-
-### pg_stat_monitor.pgsm_histogram_max
-
-Values:
-
-- Min: 10
-- Max: 50000000
-- Default: 10000
-
-Server restart - YES
-
-This parameter sets the upper bound of the query execution time for the histogram output (in ms). Starting with version 2.0.0, you can set a decimal value for this parameter thus fine-tuning the output to more precision. 
-
-### pg_stat_monitor.pgsm_histogram_buckets
-
-Values:
-
-- Min: 2
-- Max: 50
-- Default: 20
-
-Server restart - YES
-
-This parameter sets the maximum number of histogram buckets. Starting with version 1.1.0, the maximum value is changed to 50. 
-
-Starting with version 2.0.0, on server startup `pg_stat_monitor` calculates the maximum number of buckets that can be created for the time range specified in `pgsm_histogram_min`/`pgsm_histogram_max` and compares it with the number of buckets specified by the user. If the calculated number falls below the user configuration, the warning is written to the server log.
-
-### pg_stat_monitor.pgsm_query_shared_buffer
-
-Values:
-
-- Min: 1
-- Max: 10000
-- Default: 20
-
-Server restart - YES
-
-This parameter defines the shared memory limit (in MB) allocated for a query tracked by ``pg_stat_monitor``. 
-
 ### pg_stat_monitor.pgsm_enable_overflow
 
 Type: boolean. Default: YES
@@ -174,24 +212,6 @@ Type: boolean. Default: YES
 Server restart - YES
 
 Controls whether pg_stat_monitor can grow beyond shared memory into swap space.
-
-### pg_stat_monitor.pgsm_overflow_target
-
-Type: boolean (YES / NO). Default: NO
-
-Server restart - NO
-
-Starting with version 2.0.0, this option is deprecated. Use the [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) instead. 
-
-Sets the overflow target for the `pg_stat_monitor`. Starting with version 1.1.1, the default value is NO. In version 1.0.0 and earlier, the default value was 1 (YES).
-
-### pg_stat_monitor.pgsm_enable_pgsm_query_id
-
-Type: boolean. Default: YES
-
-Server restart - NO
-
-Controls the generation of a unique hash code that identifies the query. This hash code is independent of PostgreSQL server version, constants within the query, database, user or schema. Its usage allows getting insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas. Enabling this parameter results in additional load on the database.
 
 ### pg_stat_monitor.pgsm_enable_query_plan
 
@@ -233,13 +253,3 @@ Server restart - YES
 Available for PostgreSQL 14 and later versions. 
 
 This parameter instructs ``pg_stat_monitor`` to monitor query planning statistics. 
-
-### pg_stat_monitor.pgsm_track_application_names
-
-Type: boolean. Default: YES
-
-Server restart - NO
-
-Controls if to record or not the name of the application that executes the query. When enabled, the application name is a part of the entry key. However, the application name tracking is an expensive operation and you can face perfomance degradation correlated to the number of connections.  
-
-Disabling this parameter results in statistics cumulation for the same query issued by different applications in the same entry.  For the sake of query execution performance, it's recommeded to disable this feature.
