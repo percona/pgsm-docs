@@ -188,68 +188,82 @@ Disabling this feature can improve performance by consolidating statistics for t
 **Restart required**: NO
 **Context**: client
 
-Controls the generation of a unique hash code that identifies the query. This hash code is independent of PostgreSQL server version, constants within the query, database, user or schema. Its usage allows getting insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas.
+Enable or disable the generation of a unique hash code that identifies each query. This hash code is independent of the PostgreSQL server version, constants within the query, database, user or schema.
+
+It allows you to get insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas.
 
 !!! note
     Enabling this parameter results in additional load on the database.
 
 ### pg_stat_monitor.pgsm_normalized_query
 
-Type: boolean. Default: NO
+**Default**: 0
+**Min / Max**: 0 / 1
+**Restart required**: NO
+**Context**: client
 
-Server restart - NO
+Controls whether queries are saved in normalized form (with placeholders for constants) or in their literal form (with actual parameter values).
 
-Starting with version 1.1.0, the data type changed to boolean and the query shows the actual parameter instead of the placeholder by default. It is quite useful when users want to use that query and try to run that query to check the abnormalities. Users should be aware, however, that running queries with disabled normalization can expose some sensitive data. 
+!!! note
+    Disabling normalization can expose some sensitive data.
 
-But in most cases users like the queries with a placeholder. This parameter is used to toggle between the two said options.
+**Historical defaults:**
 
-In version 1.0.0 and earlier, the parameter type is "integer" and the default value is 1. This means that the query shows placeholders instead of the actual data
+- Version 1.0.0 and earlier: the parameter type was `integer` with the default value `1` (placeholders used).
+- Version 1.1.0 and later: the parameter type changed to `boolean` with the default value `0` (actual parameter used).
 
 ### pg_stat_monitor.pgsm_enable_overflow
 
-Type: boolean. Default: YES
+**Default**: 1
+**Min / Max**: 0 / 1
+**Restart required**: YES
+**Context**: postmaster
 
-Server restart - YES
-
-Controls whether pg_stat_monitor can grow beyond shared memory into swap space.
+Controls whether `pg_stat_monitor` is allowed to exceed beyond the shared memory and use swap space.
 
 ### pg_stat_monitor.pgsm_enable_query_plan
 
-Type: boolean. Default: NO
+**Default**: 0
+**Min / Max**: 0 / 1
+**Restart required**: NO
+**Context**: client
 
-Server restart - NO
+Controls whether  `pg_stat_monitor` captures query plans. When disabled, the query plan is not captured by `pg_stat_monitor`.
 
-Enables or disables query plan monitoring. When the `pgsm_enable_query_plan` is disabled (no), the query plan will not be captured by `pg_stat_monitor`. Enabling it may adversely affect the database performance. 
-
-### pg_stat_monitor.pgsm_track
-
-Default: top
-
-Server restart - NO
-
-This parameter controls which statements are tracked by `pg_stat_monitor`. 
-
-Values: 
-
-- `top`: Default, track only top level queries (those issued directly by clients) and excludes listing nested statements (those called within a function).
-- `all`: Track top along with sub/nested queries. As a result, some SELECT statement may be shown as duplicates. 
-- `none`: Disable query monitoring. The module is still loaded and is using shared memory, etc. It only silently ignores the capturing of data.
-
+!!! note
+    Enabling this parameter may negatively impact database performance.
 
 ### pg_stat_monitor.pgsm_extract_comments
 
-Type: boolean (YES/NO). Default: NO
+**Default**: 0
+**Min / Max**: 0 / 1
+**Restart required**: NO
+**Context**: client
 
-Server restart - NO
+Controls whether `pg_stat_monitor` extracts comments from queries.
 
-This parameter controls whether to enable or disable extracting comments from queries.
+### pg_stat_monitor.pgsm_track
+
+**Default**: top
+**Restart required**: NO
+**Context**: client
+
+Controls which statements are tracked by `pg_stat_monitor`.
+
+Values:
+
+- `top`: Track only top-level queries issued directly by clients excluding nested statements (e.g., queries inside functions).
+- `all`: Track both top-level and nested queries. Some `SELECT` statements may appear as duplicates.
+- `none`: Disables query monitoring. The module is still loaded and uses shared memory, but does not capture query data.
 
 ### pg_stat_monitor.pgsm_track_planning
 
-Type: boolean. Default: NO
+**Default**: 0
+**Min / Max**: 0 / 1
+**Restart required**: NO
+**Context**: client
 
-Server restart - YES
+Controls query planning statistics monitoring in `pg_stat_monitor`.
 
-Available for PostgreSQL 14 and later versions. 
-
-This parameter instructs ``pg_stat_monitor`` to monitor query planning statistics. 
+!!! note
+    This parameter is available only for for PostgreSQL versions 14 and above.
