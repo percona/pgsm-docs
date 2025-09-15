@@ -127,9 +127,7 @@ Defines the maximum shared memory (in MB) that `pg_stat_monitor` allocates for t
 
 ### pg_stat_monitor.pgsm_overflow_target (deprecated)
 
-**Default**: 1
-
-**Min / Max**: 0 / 1
+**Default**: on
 
 **Context**: postmaster
 
