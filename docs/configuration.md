@@ -72,7 +72,7 @@ If set to `2`, `pg_stat_monitor` will:
 
 **Context**: postmaster
 
-Defines how long each bucket remains active (in seconds). When the time expires, `pg_stat_monitor` switches to the next bucket and resets its counters.
+Defines how long each bucket remains active (in seconds). When the time expires, `pg_stat_monitor` switches to the next bucket.
 
 ### pg_stat_monitor.pgsm_histogram_min
 
