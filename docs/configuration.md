@@ -22,6 +22,10 @@ To amend the `pg_stat_monitor` configuration, use the General Configuration Unit
 
 ## Parameters description
 
+The following section describes each `pg_stat_monitor` configuration parameter, including its default value, allowed range, and the context in which it can be used.
+
+For more details on PostgreSQL configuration parameters and their contexts, see the [pg_settings](https://www.postgresql.org/docs/current/view-pg-settings.html) reference sheet.
+
 ### pg_stat_monitor.pgsm_max
 
 **Default**: 256
