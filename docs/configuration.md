@@ -20,38 +20,16 @@ To amend the `pg_stat_monitor` configuration, use the General Configuration Unit
 
     The second type of GUC variables can be set by the user from the client (`psql`) using the SET command. These variables are session-based, and their values can only be visible on that sessions. These variables can also be set with the or ALTER SYSTEM command and in the configuration file, but in that case, the effect of these variables is on all new sessions.
 
-## Parameters
-
-The following table shows setup options for each configuration parameter and whether the server restart is required to apply the parameter's value:
-
-| Parameter name                                | SET | ALTER SYSTEM SET  |  server restart   | configuration reload
-| ----------------------------------------------|-----|-------------------|-------------------|---------------------
-| [pg_stat_monitor.pgsm_max](#pg_stat_monitorpgsm_max) | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_query_max_len](#pg_stat_monitorpgsm_query_max_len)            | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_track_utility](#pg_stat_monitorpgsm_track_utility)            | :white_check_mark: |:white_check_mark: |:x: | :white_check_mark:
-| [pg_stat_monitor.pgsm_normalized_query](#pg_stat_monitorpgsm_normalized_query)         | :white_check_mark: |:white_check_mark: |:x: | :white_check_mark:
-| [pg_stat_monitor.pgsm_max_buckets](#pg_stat_monitorpgsm_max_buckets)              | :x:                |:x:                |:white_check_mark: | :white_check_mark:
-| [pg_stat_monitor.pgsm_bucket_time](#pg_stat_monitorpgsm_bucket_time)              |  :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_histogram_min](#pg_stat_monitorpgsm_histogram_min) |  :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_histogram_max](#pg_stat_monitorpgsm_histogram_max)        |  :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_histogram_buckets](#pg_stat_monitorpgsm_histogram_buckets)   | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_query_shared_buffer](#pg_stat_monitorpgsm_query_shared_buffer)      | :x:                |:x:                |:white_check_mark: | :x:
-| [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_overflow_target](#pg_stat_monitorpgsm_overflow_target) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_enable_pgsm_query_id](#pg_stat_monitorpgsm_enable_pgsm_query_id) |   :x:  |  :x:  |   :white_check_mark: |  :x:  | 
-| [pg_stat_monitor.pgsm_enable_query_plan](#pg_stat_monitorpgsm_enable_query_plan)  |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_track](#pg_stat_monitorpgsm_track) |  :x:  |  :x:  |   :x:  | :white_check_mark: |
-| [pg_stat_monitor.pgsm_extract_comments](#pg_stat_monitorpgsm_extract_comments)|  :x:  |  :x:  |   :x:  | :white_check_mark: |
-| [pg_stat_monitor.pgsm_track_planning](#pg_stat_monitorpgsm_track_planning) |   :x:  |  :x:  |   :white_check_mark: |  :x:  |
-| [pg_stat_monitor.pgsm_track_application_names](#pg_stat_monitorpgsm_track_application_names) |   :white_check_mark:  |  :white_check_mark:  |   :x: |  :x:  |
-
 ## Parameters description
 
 ### pg_stat_monitor.pgsm_max
 
 **Default**: 256
+
 **Min / Max**: 10 / 10240
+
 **Restart required**: YES
+
 **Context**: postmaster
 
 Limits the shared memory (in MB) used by `pg_stat_monitor`. Memory is divided equally across buckets and allocated at PostgreSQL startup.
@@ -114,6 +92,7 @@ Defines the maximum execution time for a query to appear in histogram output (in
 
 !!! note
     Starting with version 2.0.0, you can set a decimal value which allows fine-tuning the output with more precision.
+Defines how long each bucket remains active (in seconds). When the time expires, `pg_stat_monitor` switches to the next bucket.
 
 ### pg_stat_monitor.pgsm_histogram_buckets
 
@@ -159,7 +138,7 @@ Sets the overflow target for `pg_stat_monitor`.
 **Default**: 1
 **Min / Max**: 0 / 1
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Sets tracking of utility commands by `pg_stat_monitor`. Ignored utility commands are `SELECT`, `INSERT`, `UPDATE`, and `DELETE`.
 
@@ -172,7 +151,7 @@ Sets tracking of utility commands by `pg_stat_monitor`. Ignored utility commands
 **Default**: 1
 **Min / Max**: 0 / 1
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Controls whether `pg_stat_monitor` records the application name that executes the query. If enabled, the application name becomes a part of the entry key.
 
@@ -186,7 +165,7 @@ Disabling this feature can improve performance by consolidating statistics for t
 **Default**: 1
 **Min / Max**: 0 / 1
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Enable or disable the generation of a unique hash code that identifies each query. This hash code is independent of the PostgreSQL server version, constants within the query, database, user or schema.
 
@@ -200,7 +179,7 @@ It allows you to get insights into how the query is being planned and executed a
 **Default**: 0
 **Min / Max**: 0 / 1
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Controls whether queries are saved in normalized form (with placeholders for constants) or in their literal form (with actual parameter values).
 
@@ -226,7 +205,7 @@ Controls whether `pg_stat_monitor` is allowed to exceed beyond the shared memory
 **Default**: 0
 **Min / Max**: 0 / 1
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Controls whether  `pg_stat_monitor` captures query plans. When disabled, the query plan is not captured by `pg_stat_monitor`.
 
@@ -238,7 +217,7 @@ Controls whether  `pg_stat_monitor` captures query plans. When disabled, the que
 **Default**: 0
 **Min / Max**: 0 / 1
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Controls whether `pg_stat_monitor` extracts comments from queries.
 
@@ -246,7 +225,7 @@ Controls whether `pg_stat_monitor` extracts comments from queries.
 
 **Default**: top
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Controls which statements are tracked by `pg_stat_monitor`.
 
@@ -261,7 +240,7 @@ Values:
 **Default**: 0
 **Min / Max**: 0 / 1
 **Restart required**: NO
-**Context**: client
+**Context**: userset
 
 Controls query planning statistics monitoring in `pg_stat_monitor`.
 
