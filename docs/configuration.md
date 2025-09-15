@@ -28,8 +28,6 @@ To amend the `pg_stat_monitor` configuration, use the General Configuration Unit
 
 **Min / Max**: 10 / 10240
 
-**Restart required**: YES
-
 **Context**: postmaster
 
 Limits the shared memory (in MB) used by `pg_stat_monitor`. Memory is divided equally across buckets and allocated at PostgreSQL startup.
@@ -40,8 +38,6 @@ Limits the shared memory (in MB) used by `pg_stat_monitor`. Memory is divided eq
 
 **Min / Max**: 1024 / 2147483647
 
-**Restart required**: YES
-
 **Context**: postmaster
 
 Sets the maximum length of a query string (in characters) that `pg_stat_monitor` will track. Queries longer than this value are truncated to the specified length. This helps avoid excessive shared memory usage.
@@ -51,8 +47,6 @@ Sets the maximum length of a query string (in characters) that `pg_stat_monitor`
 **Default**: 10
 
 **Min / Max**: 1 / 20000
-
-**Restart required**: YES
 
 **Context**: postmaster
 
@@ -72,8 +66,6 @@ If set to `2`, `pg_stat_monitor` will:
 
 **Min / Max**: 1 / 2147483647
 
-**Restart required**: YES
-
 **Context**: postmaster
 
 Defines how long each bucket remains active (in seconds). When the time expires, `pg_stat_monitor` switches to the next bucket and resets its counters.
@@ -83,8 +75,6 @@ Defines how long each bucket remains active (in seconds). When the time expires,
 **Default**: 1
 
 **Min / Max**: 0 / 50000000
-
-**Restart required**: YES
 
 **Context**: postmaster
 
@@ -98,8 +88,6 @@ Defines how long each bucket remains active (in seconds). When the time expires,
 **Default**: 10000
 
 **Min / Max**: 10 / 50000000
-
-**Restart required**: YES
 
 **Context**: postmaster
 
@@ -115,8 +103,6 @@ Defines how long each bucket remains active (in seconds). When the time expires,
 
 **Min / Max**: 2 / 50
 
-**Restart required**: YES
-
 **Context**: postmaster
 
 Sets the maximum number of buckets used to generate the histogram output.
@@ -131,8 +117,6 @@ Sets the maximum number of buckets used to generate the histogram output.
 
 **Min / Max**: 1 / 10000
 
-**Restart required**: YES
-
 **Context**: postmaster
 
 Defines the maximum shared memory (in MB) that `pg_stat_monitor` allocates for tracking queries.
@@ -142,8 +126,6 @@ Defines the maximum shared memory (in MB) that `pg_stat_monitor` allocates for t
 **Default**: 1
 
 **Min / Max**: 0 / 1
-
-**Restart required**: YES
 
 **Context**: postmaster
 
@@ -163,8 +145,6 @@ Sets the overflow target for `pg_stat_monitor`.
 
 **Min / Max**: 0 / 1
 
-**Restart required**: NO
-
 **Context**: userset
 
 Sets tracking of utility commands by `pg_stat_monitor`. Ignored utility commands are `SELECT`, `INSERT`, `UPDATE`, and `DELETE`.
@@ -178,8 +158,6 @@ Sets tracking of utility commands by `pg_stat_monitor`. Ignored utility commands
 **Default**: 1
 
 **Min / Max**: 0 / 1
-
-**Restart required**: NO
 
 **Context**: userset
 
@@ -196,8 +174,6 @@ Disabling this feature can improve performance by consolidating statistics for t
 
 **Min / Max**: 0 / 1
 
-**Restart required**: NO
-
 **Context**: userset
 
 Enable or disable the generation of a unique hash code that identifies each query. This hash code is independent of the PostgreSQL server version, constants within the query, database, user or schema.
@@ -212,8 +188,6 @@ It allows you to get insights into how the query is being planned and executed a
 **Default**: 0
 
 **Min / Max**: 0 / 1
-
-**Restart required**: NO
 
 **Context**: userset
 
@@ -233,8 +207,6 @@ Controls whether queries are saved in normalized form (with placeholders for con
 
 **Min / Max**: 0 / 1
 
-**Restart required**: YES
-
 **Context**: postmaster
 
 Controls whether `pg_stat_monitor` is allowed to exceed beyond the shared memory and use swap space.
@@ -244,8 +216,6 @@ Controls whether `pg_stat_monitor` is allowed to exceed beyond the shared memory
 **Default**: 0
 
 **Min / Max**: 0 / 1
-
-**Restart required**: NO
 
 **Context**: userset
 
@@ -260,8 +230,6 @@ Controls whether  `pg_stat_monitor` captures query plans. When disabled, the que
 
 **Min / Max**: 0 / 1
 
-**Restart required**: NO
-
 **Context**: userset
 
 Controls whether `pg_stat_monitor` extracts comments from queries.
@@ -269,8 +237,6 @@ Controls whether `pg_stat_monitor` extracts comments from queries.
 ### pg_stat_monitor.pgsm_track
 
 **Default**: top
-
-**Restart required**: NO
 
 **Context**: userset
 
@@ -287,8 +253,6 @@ Values:
 **Default**: 0
 
 **Min / Max**: 0 / 1
-
-**Restart required**: NO
 
 **Context**: userset
 
