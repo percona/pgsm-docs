@@ -143,9 +143,7 @@ Sets the overflow target for `pg_stat_monitor`.
 
 ### pg_stat_monitor.pgsm_track_utility
 
-**Default**: 1
-
-**Min / Max**: 0 / 1
+**Default**: on
 
 **Context**: userset
 
@@ -157,9 +155,7 @@ Sets tracking of utility commands by `pg_stat_monitor`. Ignored utility commands
 
 ### pg_stat_monitor.pgsm_track_application_names
 
-**Default**: 1
-
-**Min / Max**: 0 / 1
+**Default**: on
 
 **Context**: userset
 
@@ -172,9 +168,7 @@ Disabling this feature can improve performance by consolidating statistics for t
 
 ### pg_stat_monitor.pgsm_enable_pgsm_query_id
 
-**Default**: 1
-
-**Min / Max**: 0 / 1
+**Default**: on
 
 **Context**: userset
 
@@ -187,9 +181,7 @@ It allows you to get insights into how the query is being planned and executed a
 
 ### pg_stat_monitor.pgsm_normalized_query
 
-**Default**: 0
-
-**Min / Max**: 0 / 1
+**Default**: off
 
 **Context**: userset
 
@@ -205,9 +197,7 @@ Controls whether queries are saved in normalized form (with placeholders for con
 
 ### pg_stat_monitor.pgsm_enable_overflow
 
-**Default**: 1
-
-**Min / Max**: 0 / 1
+**Default**: on
 
 **Context**: postmaster
 
@@ -215,9 +205,7 @@ Controls whether `pg_stat_monitor` is allowed to exceed beyond the shared memory
 
 ### pg_stat_monitor.pgsm_enable_query_plan
 
-**Default**: 0
-
-**Min / Max**: 0 / 1
+**Default**: off
 
 **Context**: userset
 
@@ -228,9 +216,7 @@ Controls whether  `pg_stat_monitor` captures query plans. When disabled, the que
 
 ### pg_stat_monitor.pgsm_extract_comments
 
-**Default**: 0
-
-**Min / Max**: 0 / 1
+**Default**: off
 
 **Context**: userset
 
@@ -252,9 +238,7 @@ Values:
 
 ### pg_stat_monitor.pgsm_track_planning
 
-**Default**: 0
-
-**Min / Max**: 0 / 1
+**Default**: off
 
 **Context**: userset
 
