@@ -144,7 +144,7 @@ Sets the overflow target for `pg_stat_monitor`.
 
 **Context**: userset
 
-Sets tracking of utility commands by `pg_stat_monitor`. Ignored utility commands are `SELECT`, `INSERT`, `UPDATE`, and `DELETE`.
+Enables tracking of utility commands by `pg_stat_monitor`. Utility commands are all PostgreSQL commands other than `SELECT`, `INSERT`, `UPDATE`, and `DELETE` (for example, `CREATE`, `ALTER`, `VACUUM`).
 
 **Historical defaults:**
 
