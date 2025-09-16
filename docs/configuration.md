@@ -3,11 +3,7 @@
 Use the following command to view available configuration parameters in the `pg_stat_monitor_settings` view:
 
 ```sql
-SELECT *
-
-FROM pg_settings
-
-WHERE name like 'pg_stat_monitor.%';
+SELECT * FROM pg_settings WHERE name like 'pg_stat_monitor.%';
 ```
 
 To amend the `pg_stat_monitor` configuration, use the General Configuration Unit (GCU) system.
