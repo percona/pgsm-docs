@@ -1,13 +1,10 @@
-# `pg_stat_monitor` Documentation
+# Percona Query Performance Monitoring for PostgreSQL documentation
 
-**pg_stat_monitor** is a **_Query Performance Monitoring_** tool for PostgreSQL. `pg_stat_monitor` collects performance statistics and provides query performance insights in a single view and graphically in histogram. 
-These insights allow database users to understand query origins, execution, planning statistics and details, query information, and metadata. This significantly improves observability, enabling users to debug and tune query performance. 
+`pg_stat_monitor` is a Query Performance Monitoring tool for PostgreSQL. `pg_stat_monitor` collects performance statistics and provides query performance insights in a single view and graphically in histogram.
 
-!!! admonition ""
+These insights allow database users to understand query origins, execution, planning statistics and details, query information, and metadata. This significantly improves observability, enabling users to debug and tune query performance.
 
-    This is the documentation for the latest release, **`pg_stat_monitor` {{release}}** ([Release notes](release-notes/{{release}}.md)). 
-
-## How does `pg_stat_monitor` work?
+## How does pg_stat_monitor work?
 
 `pg_stat_monitor` is developed on the basis of `pg_stat_statements` as its more advanced replacement. While `pg_stat_statements` provides ever-increasing metrics, `pg_stat_monitor` aggregates the collected data, saving user efforts for doing it themselves. `pg_stat_monitor`  stores statistics in configurable time-based units – _buckets_. Such bucket-based data collection allows focusing on statistics generated for shorter time periods and makes query timing information such as max/min/mean time more accurate.
 
@@ -29,12 +26,11 @@ These insights allow database users to understand query origins, execution, plan
 * **Tables Access Statistics for a Statement:** This allows us to easily identify all queries that accessed a given table. This set is at par with the information provided by the `pg_stat_statements`.
 * **Histogram:** Visual representation is very helpful as it can help identify issues. With the help of the histogram function, one can now view a timing/calling data histogram in response to an SQL query. And yes, it even works in psql.
 
-
-## Availability 
+## Availability
 
 `pg_stat_monitor` is compatible with:
 
-* PostgreSQL provided by PostgreSQL Global Development Group (PGDG) 
+* PostgreSQL provided by PostgreSQL Global Development Group (PGDG)
 * [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution).
 
 ### Supported versions
@@ -50,12 +46,40 @@ RPM (for RHEL and CentOS) and DEB (for Debian and Ubuntu) packages are available
 
 The RPM packages are also available in the official PostgreSQL (PGDG) YUM repositories.
 
-[Install and get started](install.md){.md-button}
+## Related topics
 
+Get started with the installation or read the latest release notes:
 
-## Get engaged
+<div data-grid markdown><div data-banner markdown>
 
-* [Become a contributor](contributing.md).
-* [Reach out to the community on forum](https://forums.percona.com/c/postgresql/pg-stat-monitor/69).
+### :material-progress-download: Installation guides { .title }
 
+Get started quickly with the step-by-step installation instructions.
 
+[How to install `pg_stat_monitor` :material-arrow-right:](install.md){ .md-button }
+
+</div><div data-banner markdown>
+
+### :loudspeaker: What's new? { .title }
+
+Learn about the releases and changes in the Distribution.
+
+[Check what’s new in the latest version :material-arrow-right:](release-notes/{{release}}.md){.md-button}
+
+</div><div data-banner markdown>
+
+### :material-cog: Configure `pg_stat_monitor` { .title }
+
+Learn how to enable and customize `pg_stat_monitor`.
+
+[Configuration guide :material-arrow-right:](configuration.md){.md-button}
+
+</div><div data-banner markdown>
+
+### :material-autorenew: Upgrade `pg_stat_monitor` { .title }
+
+Learn how to upgrade `pg_stat_monitor` safely.
+
+[Upgrade guide :material-arrow-right:](upgrade.md){.md-button}
+
+</div></div>
