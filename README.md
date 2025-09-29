@@ -6,7 +6,7 @@ Welcome to `pg_stat_monitor` documentation!
 
 The `pg_stat_monitor` is a Query Performance Monitoring tool for PostgreSQL. It is the advanced replacement of the `pg_stat_statements` extension because it aggregates the collected performance stats saving users from doing it themselves. The native integration with Percona Management and Monitoring (PMM) automates monitoring, provides data visualization on dashboards, security threat checks and alerting, available in PMM out of the box.
 
-`pg_stat_monitor` is compatible with upstream PostgreSQL and [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) versions 13, 14, 15, 16, 17 and later.
+`pg_stat_monitor` is compatible with upstream PostgreSQL and [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) versions 13, 14, 15, 16, 17, 18 and later.
 
 The `pg_stat_monitor` code is [in the dedicated repository](https://github.com/percona/pg_stat_monitor/blob/main).
 

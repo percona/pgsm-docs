@@ -42,5 +42,6 @@ The following **internal** functions are also visible to superusers. We don't re
  public         | pgsm_create_14_view      | FUNCTION     | integer
  public         | pgsm_create_15_view      | FUNCTION     | integer
  public         | pgsm_create_17_view      | FUNCTION     | integer
+ public         | pgsm_create_18_view      | FUNCTION     | integer
 
 ```
