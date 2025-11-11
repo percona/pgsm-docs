@@ -1,6 +1,6 @@
 # Release notes
 
-Below is the complete list of the release notes for every version of ``pg_stat_monitor``.
+Below is the complete list of the release notes for every version of `pg_stat_monitor`.
 
 ## Version 2.x release notes
 
