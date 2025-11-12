@@ -1,9 +1,9 @@
 # Variables set for HTML output
 # See also mkdocs.yml plugins.with-pdf.cover_subtitle and output_path
 
-release: '2.3.0'
+release: '2.3.1'
 date:
-  2_3_0: 2025-11-15
+  2_3_1: 2025-11-15
   2_2_0: 2025-06-30
   2_1_1: 2025-02-27
   2_1_0: 2024-09-10
