@@ -1,11 +1,11 @@
-# Comparison with pg_stat_statements 
+# Comparison with pg_stat_statements
 
 The `pg_stat_monitor` extension is developed on the basis of `pg_stat_statements`  as its more advanced replacement.
 
-Thus, `pg_stat_monitor` inherits the columns available in `pg_stat_statements` plus provides additional ones.
+Because of this, `pg_stat_monitor` inherits the columns available in `pg_stat_statements` and provides additional ones.
 
-Note that [`pg_stat_monitor` and `pg_stat_statements` process statistics data differently](index.md#how-pg_stat_monitor-works). Because of these differences, memory blocks and WAL (Write Ahead Logs) related statistics data are displayed inconsistently when both extensions are used together. 
-
+!!! note
+    [`pg_stat_monitor` and `pg_stat_statements` process statistics data differently](index.md#how-does-pg_stat_monitor-work). Because of these differences, memory blocks and WAL (Write Ahead Logs) related statistics data are displayed inconsistently when both extensions are used together.
 
 To see all available columns, run the following command from the `psql` terminal:
 
@@ -15,8 +15,8 @@ To see all available columns, run the following command from the `psql` terminal
 
 The following table compares the `pg_stat_monitor` (PGSM) view with that of `pg_stat_statements` (PGSS).
 
-Note that the column names differ depending on the PostgreSQL version you are running.
-
+!!! note
+    The column names differ depending on the PostgreSQL version you are running.
 
 ## Column Comparison Table
 
@@ -97,13 +97,9 @@ Note that the column names differ depending on the PostgreSQL version you are ru
 | :white_check_mark:  | :white_check_mark:  | stats_since                | stats_since           |                         |                         |
 | :white_check_mark:  | :white_check_mark:  | minmax_stats_since         | minmax_stats_since    |                         |                         |
 
-
 To learn more about the features in `pg_stat_monitor`, please see the [User guide](user_guide.md).
 
+Read more about [pg_stat_statements here :octicons-link-external-16:](https://www.postgresql.org/docs/current/pgstatstatements.html).
 
-Additional reading: [pg_stat_statements](https://www.postgresql.org/docs/current/pgstatstatements.html)
-
-
-
-
-[^1]: Available starting from PostgreSQL 14 and above
+!!! note
+    Available starting from PostgreSQL 14 and above.
