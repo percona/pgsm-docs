@@ -1,9 +1,10 @@
 # Release notes
 
-Below is the complete list of the release notes for every version of ``pg_stat_monitor``.
+Below is the complete list of the release notes for every version of `pg_stat_monitor`.
 
 ## Version 2.x release notes
 
+* [2.3.1](2.3.1.md) ({{date.2_3_1}})
 * [2.2.0](2.2.0.md) ({{date.2_2_0}})
 * [2.1.1](2.1.1.md) ({{date.2_1_1}})
 * [2.1.0](2.1.0.md) ({{date.2_1_0}})
