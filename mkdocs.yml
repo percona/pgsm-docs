@@ -65,11 +65,13 @@ extra_css:
   - css/osano.css
   - css/landing.css
   - css/postgresql.css
+  - css/rating.css
 
 extra_javascript:
   - js/version-select.js
   - js/promptremover.js
   - js/consent.js
+  - js/rating.js
 
 markdown_extensions:
   attr_list: {}
@@ -106,13 +108,16 @@ markdown_extensions:
       custom_icons:
         - _resource/.icons
 
-
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
   - git-revision-date-localized:
       enable_creation_date: true
       enabled: !ENV [ENABLED_GIT_REVISION_DATE, True]
+  - git-committers:
+      enabled: !ENV [CI, false]
+      repository: percona/pgsm-docs
+      branch: "main"
   - meta-descriptions:
       export_csv: false
       quiet: false
@@ -131,19 +136,6 @@ extra:
   analytics:
     provider: google
     property: G-J4J70BNH0G
-    feedback:
-      title: Was this page helpful?
-      ratings:
-        - icon: material/emoticon-happy-outline
-          name: This page was helpful
-          data: 1
-          note: >-
-            Thanks for your feedback!
-        - icon: material/emoticon-sad-outline
-          name: This page could be improved
-          data: 0
-          note: >- 
-            Thanks for your feedback! Want to improve this page? Click  <strong>Edit this page on GitHub</strong> above to submit a pull request.
 
 nav:
   - About: 
