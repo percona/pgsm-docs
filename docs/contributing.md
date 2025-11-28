@@ -6,29 +6,28 @@ We're glad that you would like to become a Percona community member and particip
 
 You can contribute in one of the following ways:
 
-1. Reach us on our [Forums](https://forums.percona.com/c/postgresql/pg-stat-monitor/69).
+1. Reach us on our [Forums :octicons-link-external-16:](https://forums.percona.com/c/postgresql/pg-stat-monitor/69)
 2. [Submit a bug report or a feature request](#submit-a-bug-report-or-a-feature-request)
 3. [Submit a pull request (PR) with the code patch](#submit-a-pull-request)
 4. [Contribute to documentation](#contributing-to-documentation)
 
-By contributing, you agree to the [Percona Community code of conduct](https://github.com/percona/community/blob/main/content/contribute/coc.md).
-
+By contributing, you agree to the [Percona Community Code of Conduct :octicons-link-external-16:](https://github.com/percona/community/blob/main/content/contribute/coc.md).
 
 ## Submit a bug report or a feature request
 
-All bug reports, enhancements and feature requests are tracked in [Jira issue tracker](https://jira.percona.com/projects/PG). If you would like to suggest a new feature / an improvement or you found a bug in `pg_stat_monitor`, please submit the report to the [PG project](https://jira.percona.com/projects/PG/issues).
+All bug reports, enhancements and feature requests are tracked in [Jira issue tracker :octicons-link-external-16:](https://jira.percona.com/projects/PG). If you would like to suggest a new feature / an improvement or you found a bug in `pg_stat_monitor`, please submit the report to the [PG project :octicons-link-external-16:](https://jira.percona.com/projects/PG/issues).
 
 Start by searching the open tickets for a similar report. If you find that someone else has already reported your issue, then you can upvote that report to increase its visibility.
 
 If there is no existing report, submit your report following these steps:
 
-1. Sign in to [Jira issue tracker](https://jira.percona.com/projects/PG/issues). You will need to create an account if you do not have one.
+1. Sign in to [Jira issue tracker :octicons-link-external-16:](https://jira.percona.com/projects/PG/issues). You will need to create an account if you do not have one.
 2. In the _Summary_, _Description_, _Steps To Reproduce_, _Affects Version_ fields describe the problem you have detected or an idea that you have for a new feature or improvement.
 3. As a general rule of thumb, try to create bug reports that are:
 
-  * Reproducible: describe the steps to reproduce the problem.
-  * Unique: check if there already exists a JIRA ticket to describe the problem.
-  * Scoped to a Single Bug: only report one bug in one JIRA ticket
+    - Reproducible: describe the steps to reproduce the problem.
+    - Unique: check if there already exists a JIRA ticket to describe the problem.
+    - Scoped to a Single Bug: only report one bug in one JIRA ticket
 
 ## Submit a pull request
 
@@ -38,11 +37,11 @@ For feature requests and enhancements, we do ask you to create a Jira issue, des
 
 If the bug hasn’t been reported / addressed, or we’ve agreed on the enhancement implementation with you, do the following:
 
-1. [Fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this repository
+1. [Fork :octicons-link-external-16:](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) this repository
 2. Clone this repository on your machine.
 3. Create a separate branch for your changes. If you work on a Jira issue, please include the issue number in the branch name so it reads as `<JIRAISSUE>-my_branch`. This makes it easier to track your contribution.
-4. Make your changes. Please follow the guidelines outlined in the [PostgreSQL Coding Standard](https://www.postgresql.org/docs/current/source.html)  to improve code readability.
-5. Test your changes locally. See the [Running tests ](#running-tests) section for more information
+4. Make your changes. Please follow the guidelines outlined in the [PostgreSQL Coding Standard :octicons-link-external-16:](https://www.postgresql.org/docs/current/source.html)  to improve code readability.
+5. Test your changes locally. See the [Running tests](#running-tests) section for more information
 6. Update the documentation describing your changes. See the [Contributing to documentation](#contributing-to-documentation) section for details
 8. Commit the changes. Add the Jira issue number at the beginning of your message subject, so that is reads as `<JIRAISSUE> : My commit message`.  Follow this pattern for your commits:
 
@@ -52,7 +51,7 @@ If the bug hasn’t been reported / addressed, or we’ve agreed on the enhancem
     Details of fix.
     ```
 
-    The [commit message guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53) will help you with writing great commit messages
+    The [commit message guidelines :octicons-link-external-16:](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53) will help you with writing great commit messages.
 
 9. Open a pull request to Percona
 10. Our team will review your code and if everything is correct, will merge it. Otherwise, we will contact you for additional information or with the request to make changes.
@@ -67,10 +66,9 @@ To build `pg_stat_monitor` from source code, you require the following:
 * gcc
 * pg_config
 
-Refer to the [Building from source code](https://github.com/percona/pg_stat_monitor#installing-from-source-code) section for guidelines.
+Refer to the [Building from source code :octicons-link-external-16:](https://github.com/percona/pg_stat_monitor#installing-from-source-code) section for guidelines.
 
-
-### Running tests 
+### Running tests
 
 When you work, you should periodically run tests to check that your changes don’t break existing code.
 
@@ -80,7 +78,8 @@ You can find the tests in the `regression` directory.
 
 1. Change directory to pg_stat_monitor
 
-**NOTE**: Make sure `postgres` user is the owner of the `pg_stat_monitor` directory
+!!! note
+    Make sure `postgres` user is the owner of the `pg_stat_monitor` directory
 
 2. Start the tests
     1. If you built PostgreSQL from PGDG, use the following command:
@@ -88,31 +87,30 @@ You can find the tests in the `regression` directory.
         ```sh
         make installcheck
         ```
-        
 
     2. If you installed PostgreSQL server  from Percona Distribution for PostgreSQL, use the following command:
 
         ```sh
         sudo su postgres bash -c 'make installcheck USE_PGXS=1'
         ```
-#### Run automatically       
+
+#### Run automatically
 
 The tests are run automatically with GitHub actions once you commit and push your changes. Make sure all tests are successfully passed before you proceed.
-
 
 ## Contributing to documentation
 
 `pg_stat_monitor` documentation is written in Markdown language, so you can 
-[edit it online via GitHub](#edit-documentation-online-vi-github). Alternatively, you can include doc changes in your patch. The doc files are in the `docs` directory.
+[edit it online via GitHub](#edit-documentation-online-via-github). Alternatively, you can include doc changes in your patch. The doc files are in the `docs` directory.
 
 ### Edit documentation online via GitHub
 
-1. Click the **Edit this page** link on the sidebar. The source `.md` file of the page opens in GitHub editor in your browser. If you haven’t worked with the repository before, GitHub creates a [fork](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) of it for you.
-2. Edit the page. You can check your changes on the **Preview** tab. 
+1. Click the **Edit this page** link on the sidebar. The source `.md` file of the page opens in GitHub editor in your browser. If you haven’t worked with the repository before, GitHub creates a [fork :octicons-link-external-16:](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo) of it for you.
+2. Edit the page. You can check your changes on the **Preview** tab.
 3. Commit your changes.
-    * In the _Commit changes_ section, describe your changes.
+    * In the _Commit changes_ section, describe your changes
     * Select the **Create a new branch for this commit** and start a pull request option
-    * Click **Propose changes**.
+    * Click **Propose changes**
 4. GitHub creates a branch and a commit for your changes. It loads a new page on which you can open a pull request to Percona. The page shows the base branch - the one you offer your changes for, your commit message and a diff - a visual representation of your changes against the original page. This allows you to make a last-minute review. When you are ready, click the Create pull request button.
 5. Someone from our team reviews the pull request and if everything is correct, merges it into the documentation. Then it gets published on the site.
 
