@@ -1,6 +1,6 @@
 # MkDocs general configuration
 
-site_name: pg_stat_monitor Documentation
+site_name: Percona Query Performance Monitoring for PostgreSQL
 site_description: Documentation
 site_author: Percona LLC
 copyright: >
@@ -139,7 +139,7 @@ extra:
 
 nav:
   - About: 
-    - "pg_stat_monitor": index.md
+    - "Percona Query Performance Monitoring for PostgreSQL": index.md
     - comparison.md
   - get-help.md
   - Get started:
