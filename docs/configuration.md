@@ -41,7 +41,7 @@ Limits the shared memory (in MB) used by `pg_stat_monitor`. Memory is divided eq
 
 **Context**: postmaster
 
-Sets the maximum length of a query string (in characters) that `pg_stat_monitor` will track. Queries longer than this value are truncated to the specified length. This helps avoid excessive shared memory usage.
+Sets the maximum length of a query string (in bytes) that `pg_stat_monitor` will track. Queries longer than this value are truncated to the specified length. This helps avoid excessive shared memory usage.
 
 ### pg_stat_monitor.pgsm_max_buckets
 
