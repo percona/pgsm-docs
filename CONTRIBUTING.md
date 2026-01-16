@@ -1,21 +1,35 @@
 # Contributing guide
 
-Welcome to `pg_stat_monitor` - the Query Performance Monitoring tool for PostgreSQL!
+Welcome to `pg_stat_monitor` - the Query Performance Monitoring tool for PostgreSQL! This guide explains how to contribute to the `pg_stat_monitor` documentation.
 
-We're glad that you would like to become a Percona community member and participate in keeping open source open.
+We welcome contributors from all users and the community. By contributing, you agree to the [Percona Community code of conduct](https://github.com/percona/community/blob/main/content/contribute/coc.md).
 
-This repository contains the source file for `pg_stat_monitor` documentation and this document explains how you can contribute to it. 
+If you want to contribute code, see the [Code contribution guide](https://github.com/percona/pg_stat_monitor/blob/main/CONTRIBUTING.md).
 
-If you'd like to submit a code patch, follow the [Contributing guide in `pg_stat_monitor` code repository](https://github.com/percona/pg_stat_monitor/blob/main/CONTRIBUTING.md). 
+You can contribute to documentation in the following ways:
 
-## Contribute to documentation
+1. Request documentation changes through Jira:
 
-`pg_stat_monitor` documentation is written in Markdown language, so you can 
-[edit it online via GitHub](#edit-documentation-online-vi-github). If you wish to have more control over the doc process, jump to how to [edit documentation locally](#edit-documentation-locally). 
+- Open the [Jira issue tracker](https://jira.percona.com/projects/PG/issues) for the project.
+- Sign in (create a Jira account if you don’t have one).
+- Click **Create** to create an issue.
+- (Optional but recommended) Search if the issue you want to report is already reported.
+- Select **PostgreSQL PG** in the Project dropdown and the work type.
+- Describe the issue in the Summary and Description fields. Optionally, you can also fill in the Steps To Reproduce and Affects Version fields.
 
-Before you start, learn what [git], [MkDocs] and [Docker] are and what [Markdown] is and how to write it. For your convenience, there's also a [cheat sheet](https://www.markdownguide.org/cheat-sheet/) to help you with the syntax. 
+2. [Contribute to documentation on GitHub](#contribute-directly-on-github).
 
-The doc files are in the `docs` directory.
+## Contribute directly on GitHub
+
+To contribute to the documentation, basic familiarity with the following tools is useful:
+
+- [Markdown]. The documentation is written in Markdown.
+- [MkDocs] documentation generator. We use it to convert source .md files to html and PDF documents.
+- [git] and [GitHub]
+
+`pg_stat_monitor` documentation is written in Markdown language, so you can [edit it online via GitHub](#edit-documentation-online-vi-github). If you wish to have more control over the doc process, jump to how to [edit documentation locally](#edit-documentation-locally). 
+
+The doc files are located in the `docs` directory.
 
 ### Edit documentation online via GitHub
 
@@ -30,112 +44,88 @@ The doc files are in the `docs` directory.
 
 ### Edit documentation locally
 
-This option is for users who prefer to work from their computer and / or have the full control over the documentation process.
-
-The steps are the following:
+If you want to work on your computer locally, follow these steps:
 
 1. Fork this repository
 2. Clone the repository on your machine:
 
 ```sh
 git clone git@github.com:<your_name>/pgsm-docs.git
+cd pgsm-docs
 ```
 
-3. Change the directory to ``pgsm-docs`` and add the remote upstream repository:
+3. Add the upstream (Percona) repository as a remote:
 
 ```sh
 git remote add upstream git@github.com:percona/pgsm-docs.git
 ```
 
-4. Pull the latest changes from upstream
+4. Pull the latest changes
 
 ```sh
 git fetch upstream
-git merge upstream/main
+git merge upstream/<branch>
 ```
 
-5. Create a separate branch for your changes
+5. Create a separate branch for your changes. If you work on a Jira issue, please follow this pattern for a branch name: `<PG-123>-short-description`:
 
 ```sh
-git checkout -b <my_branch>
+git checkout -b <PG-123>-short-description upstream/<target-branch>
 ```
 
-6. Make changes
-7. Commit your changes. The [commit message guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53) will help you with writing great commit messages
+6. Make a commit mentioning the Jira issue in the commit message if any:
+
+```sh
+git add .
+git commit -m "PG-123-<my_fixes>"
+git push -u origin <my_branch_name>
+```
 
 8. Open a pull request to Percona
 
-#### Building the documentation
+#### Building the documentation using MkDocs
 
-To verify how your changes look, generate the static site with the documentation. This process is called *building*. You can do it in these ways:
-- [Use Docker](#use-docker)
-- [Install MkDocs and build locally](#install-sphinx-and-build-locally)
+To verify how your changes look, generate the static site with the documentation. This process is called *building*.
 
-##### Use Docker
+> **NOTE**
+> Learn more about the documentation structure in the [Repository structure](#repository-structure) section.
 
-1. [Get Docker](https://docs.docker.com/get-docker/)
-2. We use [our Docker image](https://hub.docker.com/repository/docker/perconalab/pmm-doc-md) to build documentation. Run the following command:
+To verify how your changes look, you can generate a static site locally:
 
-```sh
-docker run --rm -v $(pwd):/docs perconalab/pmm-doc-md mkdocs build
-```
-   If Docker can't find the image locally, it first downloads the image, and then runs it to build the documentation.
-
-3. Go to the ``site`` directory and open the ``index.html`` file to see the documentation.
-
-If you want to see the changes as you edit the docs, use this command instead:
+1. Install [pip](https://pip.pypa.io/en/stable/installing/)
+2. Install [MkDocs](https://www.mkdocs.org/getting-started/#installation).
+3. Install all the required dependencies:
 
 ```sh
-docker run --rm -v $(pwd):/docs -p 8000:8000 perconalab/pmm-doc-md mkdocs serve --dev-addr=0.0.0.0:8000
+pip install -r requirements.txt
 ```
 
-Wait until you see `INFO    -  Start detecting changes`, then enter `0.0.0.0:8000` in the browser's address bar. The documentation automatically reloads after you save the changes in source files.
+4. While in the root directory of the documentation project, run the following command to build the documentation:
 
-##### Install MkDocs and build locally
+```sh
+mkdocs build 
+```
 
-1. Install [Python].
+5. Go to the ``site`` directory and open the ``index.html`` file in your web browser to see the documentation.
+6. To automatically rebuild the documentation and reload the browser as you make changes, run the following command:
 
-2. Install MkDocs and required extensions:
+```sh
+mkdocs serve 
+```
 
-    ```sh
-    pip install -r requirements.txt
-    ```
+7. To build the PDF documentation, do the following:
+   - Install [mkdocs-print-site-plugin](https://timvink.github.io/mkdocs-print-site-plugin/index.html)
+   - Run the following command
 
-3. Build the site:
-
-    ```sh
+   ```sh
     mkdocs build
-    ```
+   ```
 
-4. Open `site/index.html`
+This creates a single HTML page for the whole doc project. You can find the page in the `site/print_page.html` directory.
 
-Or, to run the built-in web server:
+8. Open the `site/print_page.html` in your browser and save as PDF. Depending on the browser, you may need to select the Export to PDF, Print - Save as PDF or just Save and select PDF as the output format.
 
-```sh
-mkdocs serve
-```
-
-#### PDF
-
-To create the PDF version of the documentation, use the following command:
-
-* With Docker:
-
-    ```sh
-    docker run --rm -v $(pwd):/docs -e ENABLE_PDF_EXPORT=1 perconalab/pmm-doc-md mkdocs build -f mkdocs-pdf.yml
-    ```
-
-* Without:
-
-    ```sh
-    ENABLE_PDF_EXPORT=1 mkdocs build -f mkdocs-pdf.yml
-    ```
-
-The PDF is in `site/_pdf`.
-
-
-
-View the site at <http://0.0.0.0:8000>
+You can also view the site at <http://127.0.0.1:8000>.
 
 [MkDocs]: https://www.mkdocs.org/
 [Markdown]: https://daringfireball.net/projects/markdown/
