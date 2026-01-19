@@ -83,7 +83,7 @@ git push -u origin <my_branch_name>
 
 8. Open a pull request to Percona
 
-#### Building the documentation using MkDocs
+#### Building the documentation
 
 To verify how your changes look, generate the static site with the documentation. This process is called *building*.
 
@@ -97,7 +97,7 @@ To verify how your changes look, you can generate a static site locally:
 3. Install all the required dependencies:
 
 ```sh
-pip install -r requirements.txt
+pip install -r requirements-doc.txt
 ```
 
 4. While in the root directory of the documentation project, run the following command to build the documentation:
@@ -124,8 +124,6 @@ mkdocs serve
 This creates a single HTML page for the whole doc project. You can find the page in the `site/print_page.html` directory.
 
 8. Open the `site/print_page.html` in your browser and save as PDF. Depending on the browser, you may need to select the Export to PDF, Print - Save as PDF or just Save and select PDF as the output format.
-
-You can also view the site at <http://127.0.0.1:8000>.
 
 [MkDocs]: https://www.mkdocs.org/
 [Markdown]: https://daringfireball.net/projects/markdown/
