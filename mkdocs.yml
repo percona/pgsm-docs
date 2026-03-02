@@ -4,7 +4,7 @@ site_name: Percona Query Performance Monitoring for PostgreSQL
 site_description: Documentation
 site_author: Percona LLC
 copyright: >
-  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2025 
+  <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2026 
 
  
 repo_name: percona/pgsm-docs
@@ -154,6 +154,7 @@ nav:
   - Uninstall: uninstall.md
   - Release notes:
     - Release notes index: release-notes/release_notes.md
+    - release-notes/2.3.2.md
     - release-notes/2.3.1.md
     - release-notes/2.2.0.md
     - release-notes/2.1.1.md
