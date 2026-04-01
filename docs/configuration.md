@@ -122,22 +122,6 @@ Sets the maximum number of buckets used to generate the histogram output.
 
 Defines the maximum shared memory (in MB) that `pg_stat_monitor` allocates for tracking queries.
 
-### pg_stat_monitor.pgsm_overflow_target (deprecated)
-
-**Default**: on
-
-**Context**: postmaster
-
-Sets the overflow target for `pg_stat_monitor`.
-
-!!! note
-    Starting with version 2.0.0, this option is deprecated. Use the [pg_stat_monitor.pgsm_enable_overflow](#pg_stat_monitorpgsm_enable_overflow) instead.
-
-**Historical defaults:**
-
-- Version 1.0.0 and earlier: `1`
-- Version 1.1.1: `0`
-
 ### pg_stat_monitor.pgsm_track_utility
 
 **Default**: on
