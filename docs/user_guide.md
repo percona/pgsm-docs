@@ -508,7 +508,7 @@ To track subqueries within a function, set the [`pg_stat_monitor.pgsm_track`](co
 
 ## Monitoring queries terminated with ERROR, WARNING and LOG error levels
 
-Monitoring queries that terminated with ERROR, WARNING, LOG states can give useful information to debug an issue. Such messages have the error level (`elevel`), [error code](https://www.postgresql.org/docs/current/errcodes-appendix.html) (`sqlcode`), and error message (`message`). 
+Monitoring queries that terminated with ERROR, WARNING, LOG states can give useful information to debug an issue. Such messages have the error level (`elevel`), [error code](https://www.postgresql.org/docs/current/errcodes-appendix.html) (`sqlcode`), and error message (`message`).
 
 `pg_stat_monitor` collects all this information and aggregates it so that you can measure performance for successful and failed queries separately, as well as understand why a particular query failed to execute successfully.
 
