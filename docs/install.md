@@ -2,14 +2,12 @@
 
 ## Supported platforms
 
-Find the list of supported platforms for `pg_stat_monitor` within [Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution) on the [Percona Release Lifecycle Overview](https://www.percona.com/services/policies/percona-software-support-lifecycle#pgsql) page.
+Find the list of supported platforms for `pg_stat_monitor` within [Percona Distribution for PostgreSQL :octicons-link-external-16:](https://www.percona.com/software/postgresql-distribution) on the [Percona Release Lifecycle Overview :octicons-link-external-16:](https://www.percona.com/services/policies/percona-software-support-lifecycle#pgsql) page.
 
 The PostgreSQL YUM repository supports `pg_stat_monitor` for all [supported versions](index.md#supported-versions) for the following platforms:
 
 * Red Hat Enterprise/Rocky/CentOS/Oracle Linux 7 and 8
 * Fedora 33 and 34
-
-
 
 ## Installation guidelines
 
@@ -19,7 +17,7 @@ Choose the installation source:
 
     To install `pg_stat_monitor` from Percona repositories, you need to use the `percona-release` repository management tool.
 
-    1. [Install percona-release](https://www.percona.com/doc/percona-repo-config/installing.html).
+    1. [Install percona-release :octicons-link-external-16:](https://docs.percona.com/percona-software-repositories/installing.html).
     2. Enable Percona repository:
 
         ```{.bash data-prompt="$"}
@@ -42,10 +40,9 @@ Choose the installation source:
             $ yum install percona-pg-stat-monitor15
             ``` 
 
- 
 === "PostgreSQL PGDG yum repositories"
 
-    Install the PostgreSQL repositories following the instructions in the [Linux downloads (Red Hat family)](https://www.postgresql.org/download/linux/redhat/) chapter in PostgreSQL documentation.
+    Install the PostgreSQL repositories following the instructions in the [Linux downloads (Red Hat family) :octicons-link-external-16:](https://www.postgresql.org/download/linux/redhat/) chapter in PostgreSQL documentation.
 
     Install `pg_stat_monitor`:
 
@@ -57,7 +54,7 @@ Choose the installation source:
 
 === "PGXN"
 
-    You can install `pg_stat_monitor` from [PGXN (PostgreSQL Extensions Network)](https://pgxn.org/) using the [PGXN client](https://pgxn.github.io/pgxnclient/).
+    You can install `pg_stat_monitor` from [PGXN (PostgreSQL Extensions Network)](https://pgxn.org/) using the [PGXN client :octicons-link-external-16:](https://pgxn.github.io/pgxnclient/).
 
     Use the following command:
 
@@ -74,7 +71,7 @@ Choose the installation source:
     * gcc
     * pg_config
 
-    You can download the source code of the latest release of `pg_stat_monitor` from [the releases page on GitHub](https://github.com/Percona/pg_stat_monitor/releases) or using git:
+    You can download the source code of the latest release of `pg_stat_monitor` from [the releases page on GitHub :octicons-link-external-16:](https://github.com/Percona/pg_stat_monitor/releases) or using git:
 
 
     ```{.bash data-prompt="$"}
@@ -92,5 +89,3 @@ Choose the installation source:
 ## Next steps
 
 * [Set up `pg_stat_monitor`](setup.md)
-
-

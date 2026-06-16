@@ -2,4 +2,4 @@
 
 To timely identify and react on issues, performance should be automated and alerts should be sent when an issue occurs. There are many monitoring tools available for PostgreSQL, some of them (like Nagios) supporting custom metrics provided via extensions. Though you can integrate `pg_stat_monitor` with these tools, it natively supports integration with Percona Management and Monitoring (PMM). This integration allows you to enjoy all the features provided by both solutions: advanced statistics data provided by `pg_stat_monitor` and automated monitoring with data visualization on dashboards, security threat checks and alerting, available in PMM out of the box.
 
-To learn how to integrate pg_stat_monitor with PMM, see [Configure pg_stat_monitor in PMM](https://www.percona.com/doc/percona-monitoring-and-management/2.x/setting-up/client/postgresql.html#pg_stat_monitor)
+To learn how to integrate pg_stat_monitor with PMM, see [Configure pg_stat_monitor in PMM :octicons-link-external-16:](https://docs.percona.com/percona-monitoring-and-management/3/install-pmm/install-pmm-client/connect-database/postgresql.html)
