@@ -39,10 +39,10 @@ These insights allow database users to understand query origins, execution, plan
 
 | **Distribution** | **Version**     | **Provider** |
 | ---------------- | --------------- | ------------ |
-|[Percona Distribution for PostgreSQL](https://www.percona.com/software/postgresql-distribution)| [13](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/), [14](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/), [15](https://www.percona.com/downloads/postgresql-distribution-15/LATEST/), [16](https://www.percona.com/downloads/postgresql-distribution-16/LATEST/), [17](https://www.percona.com/downloads/postgresql-distribution-17/LATEST/) and [18](https://www.percona.com/downloads/postgresql-distribution-18/LATEST/)| Percona|
+|[Percona Distribution for PostgreSQL :octicons-link-external-16:](https://www.percona.com/software/postgresql-distribution)| [13 :octicons-link-external-16:](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/), [14 :octicons-link-external-16:](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/), [15 :octicons-link-external-16:](https://www.percona.com/downloads/postgresql-distribution-15/LATEST/), [16 :octicons-link-external-16:](https://www.percona.com/downloads/postgresql-distribution-16/LATEST/), [17 :octicons-link-external-16:](https://www.percona.com/downloads/postgresql-distribution-17/LATEST/) and [18 :octicons-link-external-16:](https://www.percona.com/downloads/postgresql-distribution-18/LATEST/)| Percona|
 | [PostgreSQL](https://www.postgresql.org/download/)       | 13, 14, 15, 16, 17 and 18| PostgreSQL Global Development Group (PGDG) |
 
-RPM (for RHEL and CentOS) and DEB (for Debian and Ubuntu) packages are available from Percona repositories for PostgreSQL versions [13](https://www.percona.com/downloads/postgresql-distribution-13/LATEST/), [14](https://www.percona.com/downloads/postgresql-distribution-14/LATEST/), [15](https://www.percona.com/downloads/postgresql-distribution-15/LATEST/), [16](https://www.percona.com/downloads/postgresql-distribution-16/LATEST/), [17](https://www.percona.com/downloads/postgresql-distribution-17/LATEST/) and [18](https://www.percona.com/downloads/postgresql-distribution-17/LATEST/).
+RPM (for RHEL and CentOS) and DEB (for Debian and Ubuntu) packages are available from Percona repositories for PostgreSQL versions [13 to 18 :octicons-link-external-16:](https://docs.percona.com/postgresql/18/installing.html).
 
 The RPM packages are also available in the official PostgreSQL (PGDG) YUM repositories.
 

@@ -66,7 +66,7 @@ To build `pg_stat_monitor` from source code, you require the following:
 * gcc
 * pg_config
 
-Refer to the [Building from source code :octicons-link-external-16:](https://github.com/percona/pg_stat_monitor#installing-from-source-code) section for guidelines.
+Refer to the [Building from source code :octicons-link-external-16:](https://github.com/percona/pg_stat_monitor#building-from-source) section for guidelines.
 
 ### Running tests
 
