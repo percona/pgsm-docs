@@ -77,12 +77,12 @@
 
         script.setAttribute(
             "data-modal-example-questions",
-            "What is Valkey and how does it differ from Redis?, How do I install Valkey?, How do I connect to and use Valkey?, How do I deploy Valkey in production?"
+            "What is pg_stat_monitor?, How do I install pg_stat_monitor?, How do I use pg_stat_monitor?, How do I deploy pg_stat_monitor in production?"
         );
 
         script.setAttribute(
             "data-project-logo",
-            "https://docs.percona.com/valkey/_static/percona-logomark-one-color-dark.png"
+            "https://docs.percona.com/pg-stat-monitor/docs/_static/percona-logomark-one-color-dark.png"
         );
 
         document.head.appendChild(script);
