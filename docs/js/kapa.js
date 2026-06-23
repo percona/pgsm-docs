@@ -77,7 +77,7 @@
 
         script.setAttribute(
             "data-modal-example-questions",
-            "What is pg_stat_monitor?, How do I install pg_stat_monitor?, How do I use pg_stat_monitor?, How do I deploy pg_stat_monitor in production?"
+            "What is pg_stat_monitor and why would I use it?, How do I install pg_stat_monitor on PostgreSQL?, How can I use pg_stat_monitor to identify slow queries?, What are the best practices for running pg_stat_monitor in production?"
         );
 
         script.setAttribute(
