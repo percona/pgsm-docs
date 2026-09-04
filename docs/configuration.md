@@ -80,7 +80,7 @@ Defines how long each bucket remains active (in seconds). When the time expires,
 **Context**: postmaster
 
 Defines the minimum execution time for a query to appear in histogram output (in ms).
-Defines how long each bucket remains active (in seconds). When the time expires, `pg_stat_monitor` switches to the next bucket.
+
 !!! note
     Starting with version 2.0.0 you can set this parameter as a decimal value which allows query output with execution time less than 1 ms.
 
@@ -96,7 +96,6 @@ Defines the maximum execution time for a query to appear in histogram output (in
 
 !!! note
     Starting with version 2.0.0, you can set a decimal value which allows fine-tuning the output with more precision.
-Defines how long each bucket remains active (in seconds). When the time expires, `pg_stat_monitor` switches to the next bucket.
 
 ### pg_stat_monitor.pgsm_histogram_buckets
 
