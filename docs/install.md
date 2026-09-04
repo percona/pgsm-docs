@@ -82,8 +82,8 @@ Choose the installation source:
 
     ```{.bash data-prompt="$"}
     $ cd pg_stat_monitor
-    $ make USE_PGXS=1
-    $ make USE_PGXS=1 install
+    $ make
+    $ make install
     ```
 
 ## Next steps

@@ -37,11 +37,10 @@ The following **internal** functions are also visible to superusers. We don't re
 ```
  routine_schema |       routine_name       | routine_type | data_type 
 ----------------+--------------------------+--------------+-----------
- public         | pgsm_create_view         | FUNCTION     | integer
- public         | pgsm_create_13_view      | FUNCTION     | integer
  public         | pgsm_create_14_view      | FUNCTION     | integer
  public         | pgsm_create_15_view      | FUNCTION     | integer
  public         | pgsm_create_17_view      | FUNCTION     | integer
  public         | pgsm_create_18_view      | FUNCTION     | integer
+ public         | pgsm_create_19_view      | FUNCTION     | integer
 
 ```

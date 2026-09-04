@@ -91,7 +91,7 @@ You can find the tests in the `regression` directory.
     2. If you installed PostgreSQL server  from Percona Distribution for PostgreSQL, use the following command:
 
         ```sh
-        sudo su postgres bash -c 'make installcheck USE_PGXS=1'
+        sudo su postgres bash -c 'make installcheck'
         ```
 
 #### Run automatically
