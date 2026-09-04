@@ -24,8 +24,9 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 18 and h
      | datname              | text                        | The name of a database where the query was executed
      | client_ip          | inet                       | The IP address of a client that run the query
      | pgsm_query_id       | bigint                   | Generates a hash code to uniquely identify a query. The hash is independent of PostgreSQL server version, constants within the query, database, user or schema. It is calculated on the normalized query text. Comments within the query text are ignored and all spaces within the query text are normalized to a single space character before calculating the query hash. The `pgsm_query_id` provides insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas. This also leads to more visibility into query performance behavior, however, it affects the database performance. When needed, it can be disabled with the ` pg_stat_monitor.pgsm_enable_pgsm_query_id` configuration parameter
+     | queryid              | bigint               | The internal hash code serving to identify every query in a statement
      | toplevel             | bool                     | True means that a query was executed as a top-level statement
-     | top_queryid        | bignit             | The internal hash code serving to identify a top query in a statement|
+     | top_queryid        | bigint             | The internal hash code serving to identify a top query in a statement|
      | query              | text                       | The actual text of the query |
      | comments           | text                       | Comments about the query
      | planid             | text                       | An internally generated ID of a query plan
@@ -84,7 +85,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 18 and h
      | jit_emission_count   | bigint               | Number of times code has been emitted
      | jit_emission_time    | double precision     | Total time spent by the statement on emitting code, in milliseconds
      | jit_deform_count     | bigint               | Total number of tuple deform functions JIT-compiled by the statement | 
-     jit_deform_time       | double precision | Total time spent by the statement on JIT-compiling tuple deform functions, in milliseconds | 
+     | jit_deform_time      | double precision     | Total time spent by the statement on JIT-compiling tuple deform functions, in milliseconds |
      | parallel_workers_to_launch | bigint          | Number of parallel workers planned to be launched |
      | parallel_workers_launched  | bigint          | Number of parallel workers actually launched |
      | stats_since         | timestamp with time zone| Time at which statistics gathering started for this statement|
@@ -105,8 +106,9 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 18 and h
      | datname              | text                        | The name of a database where the query was executed
      | client_ip          | inet                       | The IP address of a client that run the query
      | pgsm_query_id       | bigint                   | Generates a hash code to uniquely identify a query. The hash is independent of PostgreSQL server version, constants within the query, database, user or schema. It is calculated on the normalized query text. Comments within the query text are ignored and all spaces within the query text are normalized to a single space character before calculating the query hash. The `pgsm_query_id` provides insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas. This also leads to more visibility into query performance behavior, however, it affects the database performance. When needed, it can be disabled with the ` pg_stat_monitor.pgsm_enable_pgsm_query_id` configuration parameter
+     | queryid              | bigint               | The internal hash code serving to identify every query in a statement
      | toplevel             | bool                     | True means that a query was executed as a top-level statement
-     | top_queryid        | bignit             | The internal hash code serving to identify a top query in a statement|
+     | top_queryid        | bigint             | The internal hash code serving to identify a top query in a statement|
      | query              | text                       | The actual text of the query |
      | comments           | text                       | Comments about the query
      | planid             | text                       | An internally generated ID of a query plan
@@ -164,7 +166,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 18 and h
      | jit_emission_count   | bigint               | Number of times code has been emitted
      | jit_emission_time    | double precision     | Total time spent by the statement on emitting code, in milliseconds
      | jit_deform_count     | bigint               | Total number of tuple deform functions JIT-compiled by the statement | 
-     jit_deform_time       | double precision | Total time spent by the statement on JIT-compiling tuple deform functions, in milliseconds | 
+     | jit_deform_time      | double precision     | Total time spent by the statement on JIT-compiling tuple deform functions, in milliseconds |
      | stats_since         | timestamp with time zone| Time at which statistics gathering started for this statement|
      | minmax_stats_since  | timestamp with time zone| Time at which min/max statistics gathering started for this statement (fields min_plan_time, max_plan_time, min_exec_time and max_exec_time). Please note that unlike  `pg_stat_statements`, `pg_stat_monitor` doesn't have an option to reset min/max counters, so `minmax_stats_since` always equals to `stats_since` |
      
@@ -183,8 +185,9 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 18 and h
      | datname              | text                        | The name of a database where the query was executed
      | client_ip          | inet                       | The IP address of a client that run the query
      | pgsm_query_id       | bigint                   | Generates a hash code to uniquely identify a query. The hash is independent of PostgreSQL server version, constants within the query, database, user or schema. It is calculated on the normalized query text. Comments within the query text are ignored and all spaces within the query text are normalized to a single space character before calculating the query hash. The `pgsm_query_id` provides insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas. This also leads to more visibility into query performance behavior, however, it affects the database performance. When needed, it can be disabled with the ` pg_stat_monitor.pgsm_enable_pgsm_query_id` configuration parameter
+     | queryid              | bigint               | The internal hash code serving to identify every query in a statement
      | toplevel             | bool                     | True means that a query was executed as a top-level statement
-     | top_queryid        | bignit             | The internal hash code serving to identify a top query in a statement|
+     | top_queryid        | bigint             | The internal hash code serving to identify a top query in a statement|
      | query              | text                       | The actual text of the query |
      | comments           | text                       | Comments about the query
      | planid             | text                       | An internally generated ID of a query plan
@@ -256,7 +259,7 @@ The following table describes the `pg_stat_monitor` view for PostgreSQL 18 and h
      client_ip          | inet                       | The IP address of a client that run the query
      pgsm_query_id       | bigint                   | Generates a hash code to uniquely identify a query. The hash is independent of PostgreSQL server version, constants within the query, database, user or schema. It is calculated on the normalized query text. Comments within the query text are ignored and all spaces within the query text are normalized to a single space character before calculating the query hash. The `pgsm_query_id` provides insights into how the query is being planned and executed across PostgreSQL versions, database, users or schemas. This also leads to more visibility into query performance behavior, however, it affects the database performance. When needed, it can be disabled with the ` pg_stat_monitor.pgsm_enable_pgsm_query_id` configuration parameter
      queryid            | bigint                       | The internal hash code serving to identify every query in a statement
-     top_queryid        | bignit             | The internal hash code serving to identify a top query in a statement|
+     top_queryid        | bigint             | The internal hash code serving to identify a top query in a statement|
      planid             | text                       | An internally generated ID of a query plan
      query_plan         | text                       | The sequence of steps used to execute a query. This parameter is available only when the `pgsm_enable_query_plan` is enabled.
      top_query          | text                       | Shows the top query used in a statement |
