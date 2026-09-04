@@ -20,15 +20,15 @@ The following are the primary keys for `pg_stat_monitor`:
 *  `application_name`
 *  `toplevel`.
 
-!!! note
-
-    The `toplevel` key is considered starting with PostgreSQL 14 and above. For PostgreSQL 13 and earlier versions, the `toplevel` value is set to 1 by default, and thus, ignored.
-
 A new row is created for each key in the `pg_stat_monitor` view. 
 
 `pg_stat_monitor` inherits the metrics available in `pg_stat_statements`, plus provides additional ones. See the [`pg_stat_monitor` vs `pg_stat_statements` comparison](comparison.md) for details.
 
-For security reasons, only superusers and members of the `pg_read_all_stats` role are allowed to see the SQL text, `client_ip` and `queryid` of queries executed by other users. Other users can see the statistics, however, if the view has been installed in their database.
+For security reasons, only superusers and roles with the privileges of the `pg_read_all_stats` role are allowed to see the columns that identify or contain the SQL of queries executed by *other* users. All other users see their own rows in full, and for rows that belong to other users they see the counters only, with the following columns hidden:
+ `query`, `query_plan`, `top_query`, `comments`, `message`,  `queryid`, `pgsm_query_id`, `planid`, `top_queryid`, `client_ip`.
+
+!!! note
+    In version 2.3.2 and earlier, only `query`, `query_plan` and `client_ip` were restricted.
 
 ## pg_stat_monitor_settings view (dropped)
 

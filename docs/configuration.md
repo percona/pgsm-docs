@@ -133,18 +133,18 @@ Enables tracking of utility commands by `pg_stat_monitor`. Utility commands are 
 
 - Version 1.1.0 and later: values now displayed as YES / NO instead of 1 / 0
 
-### pg_stat_monitor.pgsm_track_application_names
+### pg_stat_monitor.pgsm_track_application_names (deprecated)
 
 **Default**: on
 
 **Context**: userset
 
-Controls whether `pg_stat_monitor` records the application name that executes the query. If enabled, the application name becomes a part of the entry key.
+!!! warning
+    Starting with version 2.4.0, this parameter is deprecated and has no effect. The application name is now always recorded and is always a part of the entry key. Setting the parameter in the configuration file writes a deprecation warning to the server log. Remove it from your configuration.
 
-!!! note
-    Tracking application names is resource-intensive and may cause performance degradation, especially with a large number of connections.
+In version 2.3.2 and earlier, this parameter controlled whether `pg_stat_monitor` recorded the application name that executes the query. If enabled, the application name became a part of the entry key.
 
-Disabling this feature can improve performance by consolidating statistics for the same query across different applications.
+The performance overhead that motivated this parameter has been resolved in version 2.4.0, so tracking application names no longer requires a trade-off.
 
 ### pg_stat_monitor.pgsm_enable_pgsm_query_id
 
@@ -223,6 +223,3 @@ Values:
 **Context**: userset
 
 Controls query planning statistics monitoring in `pg_stat_monitor`.
-
-!!! note
-    This parameter is available only for for PostgreSQL versions 14 and above.
