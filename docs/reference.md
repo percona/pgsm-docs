@@ -8,14 +8,11 @@
 
 Some column names differ depending on the PostgreSQL version. 
 
-## PostgreSQL 19 beta 3
+## PostgreSQL 19
 
-The following table describes the `pg_stat_monitor` view for PostgreSQL 19 beta 3. Compared to PostgreSQL 18, it adds the `generic_plan_calls` and `custom_plan_calls` counters.
+The following table describes the `pg_stat_monitor` view for PostgreSQL 19. Compared to PostgreSQL 18, it adds the `generic_plan_calls` and `custom_plan_calls` counters.
 
-!!! note
-    PostgreSQL 19 has not been released yet. `pg_stat_monitor` supports PostgreSQL 19 beta 3 so that you can test against it. See the [2.4.0 release notes](release-notes/2.4.0.md#postgresql-19-beta-3-support).
-
-???+ admonition "PostgreSQL 19 beta 3"
+???+ admonition "PostgreSQL 19"
 
      | Column             |  Type                    | Description
      |--------------------|--------------------------|------------------
