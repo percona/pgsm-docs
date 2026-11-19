@@ -18,12 +18,9 @@ The following table compares the `pg_stat_monitor` (PGSM) view with that of `pg_
 !!! note
     The column names differ depending on the PostgreSQL version you are running.
 
-!!! note
-    PostgreSQL 19 has not been released yet. `pg_stat_monitor` supports PostgreSQL 19 beta 3 so that you can test against it. See the [2.4.0 release notes](release-notes/2.4.0.md#postgresql-19-beta-3-support).
-
 ## Column Comparison Table
 
-| PGSM                | PGSS                | PostgreSQL 19 beta 3       | PostgreSQL 18              | PostgreSQL 17         | PostgreSQL 15 - 16      | PostgreSQL 14           |
+| PGSM                | PGSS                | PostgreSQL 19              | PostgreSQL 18              | PostgreSQL 17         | PostgreSQL 15 - 16      | PostgreSQL 14           |
 |---------------------|---------------------|----------------------------|----------------------------|-----------------------|-------------------------|-------------------------|
 | :white_check_mark:  | :x:                 | bucket                     | bucket                     | bucket                | bucket                  | bucket                  |
 | :white_check_mark:  | :x:                 | bucket_start_time          | bucket_start_time          | bucket_start_time     | bucket_start_time       | bucket_start_time       |
