@@ -2,7 +2,7 @@
 
 site_name: Percona Query Performance Monitoring for PostgreSQL
 site_url: https://docs.percona.com/pg-stat-monitor/
-site_description: Documentation
+site_description: "Percona Query Performance Monitoring for PostgreSQL, built on the pg_stat_monitor extension: how it collects query statistics, plus installation, configuration and reference"
 site_author: Percona LLC
 copyright: >
   <a href="https://www.percona.com/about">Percona LLC</a> and/or its affiliates © 2026 
